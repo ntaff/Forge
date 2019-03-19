@@ -35,6 +35,7 @@ body {
   font-size: 300%;
   letter-spacing: .1em;
   text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636;
+  padding-left: 2%;
 }
 
 .navbar-custom {
