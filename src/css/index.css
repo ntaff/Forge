@@ -1,7 +1,7 @@
 #forgelogo {
   color: #202020;
-  background-color: #313131;
-  font-size: 450%;
+  background-color: #3c3c3c;
+  font-size: 490%;
   letter-spacing: .1em;
   text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636;
 }
@@ -21,8 +21,8 @@
 }
 
 .navbar-custom {
-    color: #313131;
-    background-color: #313131;
+    color: #3c3c3c;
+    background-color: #3c3c3c;
 }
 
 
