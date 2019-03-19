@@ -13,39 +13,71 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/loader.css">
 
-    <style>
-      #map {
-        height: 100%;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
   </head>
   <body>
   
-
-
     <nav class="navbar navbar-expand-lg navbar-custom">
-  <a class="navbar-brand" id="forgelogo" href="#">Forge</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active" id="cartelogo">
-        <a class="nav-link" href="#">Carte <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item" id="statslogo">
-        <a class="nav-link" href="#">Statistiques</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-    <div id="map"></div>
-  
+      <a class="navbar-brand" id="forgelogo" href="#">Forge</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active" id="cartelogo">
+            <a class="nav-link" href="#">Carte <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" id="statslogo">
+            <a class="nav-link" href="#">Statistiques</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
+
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+                    <div class="box">
+                        <div class="title">
+                            <i class="fa fa-paper-plane"></i>
+                            <h2>Cartes</h2>
+                        </div>
+                        <div class="option">
+                            <ul>
+                                <li><i class="fa fa-check"></i> Taux d'obésité par état</li>
+                                <li><i class="fa fa-check"></i> Liste des Mac Donald's</li>
+                                <li><i class="fa fa-check"></i> Liste des Burger King</li>
+                                <li><i class="fa fa-paper-times"></i> Selection par région</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-primary">Cliquez ici</button>
+                    </div>
+            </div>
+            <div class="col">
+                    <div class="box">
+                        <div class="title">
+                            <i class="fa fa-plane"></i>
+                            <h2>Statistiques</h2>
+                        </div>
+                        <div class="option">
+                            <ul>
+                                <li><i class="fa fa-check"></i> Corrélations</li>
+                                <li><i class="fa fa-check"></i> Fast foods par habitant</li>
+                                <li><i class="fa fa-check"></i> Graphiques</li>
+                                <li><i class="fa fa-check"></i> Autres</li>
+                            </ul>
+                        </div>
+                       <button type="button" class="btn btn-primary">Cliquez ici</button>
+                    </div>
+            </div>
+            <div class="col-6">
+                <div class="column">
+                    <div class="shadow" id="map"></div>
+                </div>
+            </div>
+      </section>
+      
     <script>
       var map;
       function initMap() {
