@@ -9,6 +9,7 @@
 	function drawRegionsMap() {
 	  
 		var data = google.visualization.arrayToDataTable([
+		['State', 'Obesity'],
 		  ['US-AL',0],
 			['US-AK',0],
 			['US-AZ',0],
