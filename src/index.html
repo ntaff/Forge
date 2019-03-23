@@ -1,84 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Forge</title>
-    <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="forge" />
+    <meta name="author" content="Nicolas Taffoureau - Quentin Omel - Ian Jammes" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
     
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="js/map.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/loader.css">
-
   </head>
-  <body>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="200">
+    
+    <header class="site-navbar py-3 js-site-navbar site-navbar-target" role="banner" id="site-navbar">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-11 col-xl-2 site-logo">
+            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Forge</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li><a href="#section-home" class="nav-link">Accueil</a></li>
+                <li><a href="#cartes" class="nav-link">Cartes</a></li>
+                <li><a href="#stats" class="nav-link">Statistiques</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div> 
+    </header>
+
   
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <a class="navbar-brand" id="forgelogo" href="#">Forge</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active" id="cartelogo">
-            <a class="nav-link" href="#">Carte <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item" id="statslogo">
-            <a class="nav-link" href="#">Statistiques</a>
-          </li>
-        </ul>
+
+    <div class="site-blocks-cover overlay" style="background-image: url(images/mapsaccueil.jpg);" data-aos="fade" data-stellar-background-ratio="0.5" id="section-home">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-8" data-aos="fade-up" data-aos-delay="300">
+            
+
+            <h1 class="text-white font-weight-light text-uppercase font-weight-bold" data-aos="fade-up">F O R G E</h1>
+            <p class="mb-5" data-aos="fade-up" data-aos-delay="600">Fast Foods et Obésité</p>
+            <p data-aos="fade-up" data-aos-delay="900"><a href="#decouvrir" class="btn btn-primary py-3 px-5 text-white">Découvrir</a></p>
+
+          </div>
+        </div>
       </div>
-  </nav>
+    </div>  
+
+    <div class="site-section" id="apropos">
+      <div class="container">
+        <div class="row mb-5">
+          
+          <div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="images/apropos.png" alt="obamaquibouffe" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 order-md-1" data-aos="fade-up">
+            <div class="text-left pb-1 border-primary mb-4">
+              <h2 class="text-primary">À propos</h2>
+            </div>
+            <p>Forge est un site repertoriant l'ensemble des fast-foods aux USA, sous forme de geopoints, et permettant de visualiser des statistiques en corrélation avec le taux d'obésité par états, ou entre chaînes de fast-foods.</p>
+            
+            <ul class="ul-check list-unstyled success">
+              <li><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Visualisation des données sous forme de geopoints</li>
+              <li><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Visualisation des données sous forme de statistiques</li>
+              <li><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Corrélations entre plusieurs données</li>
+            </ul>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
+    <div class="site-section bg-image overlay" style="background-image: url('images/decouvrir.png');" id="decouvrir">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary" data-aos="zoom-in">Découvrir</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" data-aos="zoom-in" data-aos-delay="300">
+            <div class="decouvrir">
+              <img 
+                src="images/burger.svg" 
+                alt="burger"
+                height="55px"
+                width="55px" />
+                <hr/>
+                <h2>Cartes</h2>
+                <p class="mb-5">Visualisez directement les données sur une carte</p>
+                <ul class="ul-check list-unstyled success">
+                  <li class="text-white"> <img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Ajoutez un fast-food et sa description</li>
+                  <li class="text-white"> <img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Visualisez uniquement certains fast-foods, par enseigne ou par localisation</li>
+                  <li class="text-white"><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Visualisez le taux d'obésité par état</li>
+                </ul>
+            </div>
+          </div>
+
+          <div class="col" data-aos="zoom-in" data-aos-delay="600">
+            <div class="decouvrir">
+              <img 
+                src="images/pizza.svg" 
+                alt="pizza"
+                height="55px"
+                width="55px" />
+                <hr/>
+                <h2>Statistiques</h2>
+                <p class="mb-5">Visualisez nos statistiques et créez les vôtres</p>
+                <ul class="ul-check list-unstyled success">
+                  <li class="text-white"> <img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Corrélations entre taux d'obésité et fast-foods</li>
+                  <li class="text-white"><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Densité de fast-foods par état</li>
+                  <li class="text-white"><img src="images/success.svg" alt="sucess"height="15px"width="15px" />  Nombre de fast-foods par habitant</li>
+                </ul>
+            </div>
+          </div>
 
 
-      <section>
-        <div class="container">
-          <div class="row">
-            <div class="col-3">
-                    <div class="box">
-                        <div class="title">
-                            <i class="fa fa-paper-plane"></i>
-                            <h2>Cartes</h2>
-                        </div>
-                        <div class="option">
-                            <ul>
-                                <li><i class="fa fa-check"></i> Taux d'obésité par état</li>
-                                <li><i class="fa fa-check"></i> Liste des Mac Donald's</li>
-                                <li><i class="fa fa-check"></i> Liste des Burger King</li>
-                                <li><i class="fa fa-paper-times"></i> Selection par région</li>
-                            </ul>
-                        </div>
-                        <button type="button" class="btn btn-primary">Cliquez ici</button>
-                    </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-5 mr-auto">
+                <h2 class="footer-heading mb-4">Qui sommes nous</h2>
+                <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion</p>
+              </div>
+              
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Liens</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#accueil">Accueil</a></li>
+                  <li><a href="#apropos">A propos</a></li>
+                  <li><a href="#decouvrir">Découvrir</a></li>
+                  <li><a href="#cartes">Cartes</a></li>
+                  <li><a href="#stats">Statistiques</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Suivez nous !</h2>
+                <a href="https://www.linkedin.com/in/nicolas-taffoureau-66a717109/" class="pl-0 pr-2"><span class="icon-linkedin"></span></a>
+                <a href="https://www.linkedin.com/in/quentin-g%C3%A9rome-omel-28b994151/" class="pl-2 pr-2"><span class="icon-linkedin"></span></a>
+                <a href="#" class="pl-2 pr-2"><span class="icon-linkedin"></span></a>
+              </div>
             </div>
-            <div class="col-3">
-                    <div class="box">
-                        <div class="title">
-                            <i class="fa fa-plane"></i>
-                            <h2>Statistiques</h2>
-                        </div>
-                        <div class="option">
-                            <ul>
-                                <li><i class="fa fa-check"></i> Corrélations</li>
-                                <li><i class="fa fa-check"></i> Fast foods par habitant</li>
-                                <li><i class="fa fa-check"></i> Graphiques</li>
-                                <li><i class="fa fa-check"></i> Autres</li>
-                            </ul>
-                        </div>
-                       <button type="button" class="btn btn-primary">Cliquez ici</button>
-                    </div>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p>
+              <small class="block">&copy; <script>document.write(new Date().getFullYear());</script> Nicolas Taffoureau - Quentin Omel - Ian Jammes</small> 
+              </p>
             </div>
-            <div class="col-6">
-                <div class="column">
-                    <div class="shadow" id="map"></div>
-                </div>
-            </div>
-      </section>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
-    async defer>  </script>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/aosinit.js"></script>
+    
   </body>
 </html>
