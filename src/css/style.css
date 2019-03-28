@@ -20,6 +20,14 @@ a {
   a:hover {
     text-decoration: none; }
 
+#main {
+    opacity: 1;
+    transition: opacity 0.700s;
+}
+#main.loading {
+    opacity: 0;
+}
+
 .border-2 {
   border-width: 2px; }
 
@@ -108,7 +116,6 @@ a {
 @media (max-width: 991.98px) {
   .display-1, .display-3 {
     font-size: 3rem; } }
-
 
 .overlap-to-top {
   margin-top: -150px; }
