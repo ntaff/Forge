@@ -14,6 +14,8 @@
 	var tab = new google.visualization.DataTable();
 	tab.addColumn('string', 'State');
 	tab.addColumn('number', 'Obesity');
+	var state;
+	var obesity;
 	
 	 $.ajax({
         url: '../data/obesiteusa.csv',
@@ -22,20 +24,18 @@
       
       function successFunctionObesity(data) {
 		var allRows = data.split(/\r?\n|\r/);
-		for (var singleRow = 0; singleRow < allRows.length; singleRow++) 
+		for (var singleRow = 1; singleRow < allRows.length - 1; singleRow++) 
         {    
           var rowCells = allRows[singleRow].split(',');
           for (var rowCell = 0; rowCell < rowCells.length; rowCell=rowCell+2) 
           {
-            for (var i = 0; i < data.length; i++) 
-			{
-				tab.addRow([rowCells[rowCell], parseFloat(rowCells[rowCell+1])]);
-			}			
+			state = rowCells[rowCell];
+			obesity = parseFloat(rowCells[rowCell+1]);
+			tab.addRow([state,obesity]);
           }
         }
-		
-		drawRegionsMap(data);
-        
+
+		drawRegionsMap(tab);        
       }
 	
 	function drawRegionsMap(data) {
@@ -51,6 +51,6 @@
 		
 		var chart = new google.visualization.GeoChart(
 			document.getElementById('geochart'));
-			chart.draw(tab, options);
+			chart.draw(data, options);
 	}
 	}
