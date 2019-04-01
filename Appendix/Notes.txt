@@ -6,3 +6,5 @@
 /* ngrok http 3000
 	--> Copy/Paste in browser Forwarding adress : https://077ebf73.ngrok.io
 */
+// npm install -g localtunnel
+// lt --port 3000 --subdomain xxxxx
