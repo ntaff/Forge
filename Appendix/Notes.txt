@@ -2,6 +2,7 @@
 // http://localhost:8080
 // npm install express --save
 // npm install ngrok -g
+// npm install mongodb --save
 // node server.js
 /* ngrok http 3000
 	--> Copy/Paste in browser Forwarding adress : https://077ebf73.ngrok.io
