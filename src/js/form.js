@@ -1,12 +1,21 @@
     $(document).ready(function() {
 
-        $('#multiple-checkboxes').multiselect();
+        $('#enseignes').multiselect();
 
     });
 
-   $("#dist").slider({
-    ticks: [0, 10, 50, 100, 500, 1000],
-    ticks_positions: [0, 20, 40, 60, 80, 100],
-    ticks_labels: ['$0', '$10', '$50', '$100', '$500', '$1000'],
-    ticks_snap_bounds: 30
+     $(document).ready(function() {
+
+        $('#etats').multiselect();
+
+    });
+
+$("#dist").slider();
+$("#dist").on("slide", function(slideEvt) {
+	$("#distVal").text(slideEvt.value);
+});
+
+$("#dist2").slider();
+$("#dist2").on("slide", function(slideEvt) {
+	$("#distVal2").text(slideEvt.value);
 });
