@@ -1,0 +1,202 @@
+[
+  {
+    "etat": "Alabama",
+    "quantite": 210
+  },
+  {
+    "etat": "Alaska",
+    "quantite": 27
+  },
+  {
+    "etat": "Arizona",
+    "quantite": 212
+  },
+  {
+    "etat": "Arkansas",
+    "quantite": 127
+  },
+  {
+    "etat": "California",
+    "quantite": 1165
+  },
+  {
+    "etat": "Colorado",
+    "quantite": 181
+  },
+  {
+    "etat": "Connecticut",
+    "quantite": 143
+  },
+  {
+    "etat": "Delaware",
+    "quantite": 34
+  },
+  {
+    "etat": "Florida",
+    "quantite": 728
+  },
+  {
+    "etat": "Georgia",
+    "quantite": 365
+  },
+  {
+    "etat": "Hawaii",
+    "quantite": 76
+  },
+  {
+    "etat": "Idaho",
+    "quantite": 50
+  },
+  {
+    "etat": "Illinois",
+    "quantite": 647
+  },
+  {
+    "etat": "Indiana",
+    "quantite": 326
+  },
+  {
+    "etat": "Iowa",
+    "quantite": 131
+  },
+  {
+    "etat": "Kansas",
+    "quantite": 147
+  },
+  {
+    "etat": "Kentucky",
+    "quantite": 221
+  },
+  {
+    "etat": "Louisiana",
+    "quantite": 226
+  },
+  {
+    "etat": "Maine",
+    "quantite": 58
+  },
+  {
+    "etat": "Maryland",
+    "quantite": 280
+  },
+  {
+    "etat": "Massachusetts",
+    "quantite": 249
+  },
+  {
+    "etat": "Michigan",
+    "quantite": 545
+  },
+  {
+    "etat": "Minnesota",
+    "quantite": 203
+  },
+  {
+    "etat": "Mississippi",
+    "quantite": 124
+  },
+  {
+    "etat": "Missouri",
+    "quantite": 299
+  },
+  {
+    "etat": "Montana",
+    "quantite": 41
+  },
+  {
+    "etat": "Nebraska",
+    "quantite": 71
+  },
+  {
+    "etat": "Nevada",
+    "quantite": 128
+  },
+  {
+    "etat": "New Hampshire",
+    "quantite": 62
+  },
+  {
+    "etat": "New Jersey",
+    "quantite": 261
+  },
+  {
+    "etat": "New Mexico",
+    "quantite": 80
+  },
+  {
+    "etat": "New York",
+    "quantite": 655
+  },
+  {
+    "etat": "North Carolina",
+    "quantite": 374
+  },
+  {
+    "etat": "North Dakota",
+    "quantite": 22
+  },
+  {
+    "etat": "Ohio",
+    "quantite": 616
+  },
+  {
+    "etat": "Oklahoma",
+    "quantite": 155
+  },
+  {
+    "etat": "Oregon",
+    "quantite": 152
+  },
+  {
+    "etat": "Pennsylvania",
+    "quantite": 497
+  },
+  {
+    "etat": "Rhode Island",
+    "quantite": 35
+  },
+  {
+    "etat": "South Carolina",
+    "quantite": 180
+  },
+  {
+    "etat": "South Dakota",
+    "quantite": 29
+  },
+  {
+    "etat": "Tennessee",
+    "quantite": 285
+  },
+  {
+    "etat": "Texas",
+    "quantite": 834
+  },
+  {
+    "etat": "Utah",
+    "quantite": 89
+  },
+  {
+    "etat": "Vermont",
+    "quantite": 29
+  },
+  {
+    "etat": "Virginia",
+    "quantite": 382
+  },
+  {
+    "etat": "Washington",
+    "quantite": 251
+  },
+  {
+    "etat": "West Virginia",
+    "quantite": 90
+  },
+  {
+    "etat": "Wisconsin",
+    "quantite": 285
+  },
+  {
+    "etat": "Wyoming",
+    "quantite": 24
+  }
+]
