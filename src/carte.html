@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/carte.css"/>
     <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/bootstrap-slider.css"/>
 
   </head>
 
@@ -45,16 +46,13 @@
                         <fieldset>
                            </div>
                            <div class="form-group">
-                              <label class="col-md-4 control-label">Test</label>
-                              <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
-                              </div>
+                              <label class="col-md-8 control-label"><h3 id='rechercher'>Recherche</h3></label>
                            </div>
                            <div class="form-group">
-                              <label class="col-md-4 control-label">Par enseigne</label>
+                              <label class="col-md-6 control-label">Par enseigne</label>
                               <div class="col-md-8 inputGroupContainer">
                                  <div class="input-group">
-                                    <select class="selectpicker form-control" id="multiple-checkboxes" multiple="multiple">
+                                    <select class="selectpicker form-control" id="enseignes" multiple="multiple">
                                       <option value="mcdo">Mac Donald's</option>
                                       <option value="bk">Burger King</option>
                                       <option value="tim">Tim Horton's</option>
@@ -62,10 +60,11 @@
                                  </div>
                               </div>
                            </div>
+                           <hr />
                            <div class="form-group">
-                              <label class="col-md-4 control-label">Test</label>
-                              <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><input id="dist" type="text" data-slider-ticks="[0, 10, 50, 100, 500, 1000]" data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["$0", "$10", "$50", "$100", "$500", "$1000"]' data-slider-ticks-positions="[0, 20, 40, 60, 80, 100]" /></div>
+                              <label class="col-md-9 control-label"><span id="rayon">Rayon de recherche: <span id="distVal">0 </span> km</span></label>
+                              <div class="col-md-12 inputGroupContainer">
+                                 <div class="input-group"><input id="dist" type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="0"/></div>
                               </div>
                            </div>
                         </fieldset>
@@ -75,27 +74,80 @@
                      <form class="well form-horizontal">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-md-4 control-label">Test</label>
-                              <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
+                              <label class="col-md-9 control-label"><span id="rayon">Fasts-food situés à moins de : <span id="distVal2">0 </span>m les uns des autres</span></label>
+                              <div class="col-md-12 inputGroupContainer">
+                                 <div class="input-group"><input id="dist2" type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="0"/></div>
                               </div>
                            </div>
                            <div class="form-group">
                               <label class="col-md-4 control-label">Par état</label>
                               <div class="col-md-8 inputGroupContainer">
                                  <div class="input-group">
-                                    <select class="selectpicker form-control">
-                                       <option>Alabama</option>
-                                       <option>Floride</option>
-                                       <option>Mon Cul</option>
+                                    <select class="selectpicker form-control" id="etats" multiple="multiple">
+                                      <option value="Alabama">Alabama</option>
+                                      <option value="Alaska">Alaska</option>
+                                      <option value="Arkansas">Arkansas</option>
+                                      <option value="Californie">Californie</option>
+                                      <option value="Colorado">Colorado</option>
+                                      <option value="Connecticut">Connecticut</option>
+                                      <option value="Delaware">Delaware</option>
+                                      <option value="Floride">Floride</option>
+                                      <option value="Georgie">Georgie</option>
+                                      <option value="Hawaii">Hawaii</option>
+                                      <option value="Idaho">Idaho</option>
+                                      <option value="Illinois">Illinois</option>
+                                      <option value="Indiana">Indiana</option>
+                                      <option value="Iowa">Iowa</option>
+                                      <option value="Kansas">Kansas</option>
+                                      <option value="Kentucky">Kentucky</option>
+                                      <option value="Louisiane">Louisiane</option>
+                                      <option value="Maine">Maine</option>
+                                      <option value="Maryland">Maryland</option>
+                                      <option value="Massachusetts">Massachusetts</option>
+                                      <option value="Michigan">Michigan</option>
+                                      <option value="Minnesota">Minnesota</option>
+                                      <option value="Mississippi">Mississippi</option>
+                                      <option value="Missouri">Missouri</option>
+                                      <option value="Montana">Montana</option>
+                                      <option value="Nebraska">Nebraska</option>
+                                      <option value="Montana">Montana</option>
+                                      <option value="Nebraska">Nebraska</option>
+                                      <option value="Nevada">Nevada</option>
+                                      <option value="New Hampshire">New Hampshire</option>
+                                      <option value="New York">New York</option>
+                                      <option value="Caroline du Nord">Caroline du Nord</option>
+                                      <option value="Dakota du Nord">Dakota du Nord</option>
+                                      <option value="Ohio">Ohio</option>
+                                      <option value="Oklahoma">Oklahoma</option>
+                                      <option value="Oregon">Oregon</option>
+                                      <option value="Pennsylvanie">Pennsylvanie</option>
+                                      <option value="Rhode Island">Rhode Island</option>
+                                      <option value="Caroline du Sud">Caroline du Sud</option>
+                                      <option value="Dakota du Sud">Dakota du Sud</option>
+                                      <option value="Tennessee">Tennessee</option>
+                                      <option value="Texas">Texas</option>
+                                      <option value="Utah">Utah</option>
+                                      <option value="Vermont">Vermont</option>
+                                      <option value="Virginie">Virginie</option>
+                                      <option value="Washington">Washington</option>
+                                      <option value="Virginie Occidentale">Virginie Occidentale</option>
+                                      <option value="Wisconsin">Wisconsin</option>
+                                      <option value="Wyoming">Wyoming</option>
                                     </select>
                                  </div>
                               </div>
                            </div>
+                           <hr/> 
                            <div class="form-group">
-                              <label class="col-md-4 control-label">Test</label>
+                              <label class="col-md-4 control-label">Latitude</label>
                               <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
+                                 <div class="input-group"><input id="latitudePt" name="lat" placeholder="-34.58545" class="form-control" required="true" value="" type="text"></div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Longitude</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group"><input id="longitudePt" name="long" placeholder="150.64474" class="form-control" required="true" value="" type="text"></div>
                               </div>
                            </div>
                         </fieldset>
@@ -175,7 +227,7 @@
   <script src="js/scrollto.js"></script>
   <script src="js/jquery-smoothState.js"></script>
   <script src="js/smoothState.js"></script>
-  <script src="js/slider.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script> 
   <script src="js/form.js"></script> 
 
 
