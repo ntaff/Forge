@@ -43,7 +43,7 @@
     var g = svg.append("g")
                .attr("transform", "translate(" + 100 + "," + 70 + ")");
 
-    d3.csv("../data/bd_mcdo_par_etats.csv", function(error, data) {
+    d3.json("../data/JSON/bd_mcdo_par_etats.json", function(error, data) {
         if (error) {
             throw error;
         }
