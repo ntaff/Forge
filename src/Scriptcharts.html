@@ -42,7 +42,7 @@
     var g = svg.append("g")
                .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-    d3.csv("../data/obesiteusa.csv", function(error, data) {
+    d3.json("../data/JSON/obesiteusa.json", function(error, data) {
         if (error) {
             throw error;
         }
