@@ -8,84 +8,117 @@
     <meta name="author" content="Nicolas Taffoureau - Quentin Omel - Ian Jammes" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/aos.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/carte.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+
   </head>
 
+<body>
 
 
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <a class="navbar-brand" id="forgelogo" href="index.html">Forge</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active" id="cartelogo">
+            <a class="nav-link" href="carte.html">Carte <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" id="statslogo">
+            <a class="nav-link" href="#">Statistiques</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="200">
-    <div id="main">
-      <header class="site-navbar py-3 js-site-navbar site-navbar-target" id="site-navbar">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-11 col-xl-2 site-logo">
-              <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Forge</a></h1>
-            </div>
-            <div class="col-12 col-md-10 d-none d-xl-block">
-              <nav class="site-navigation position-relative text-right">
-                <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                  <li><a href="index.html" class="nav-link">Accueil</a></li>
-                  <li><a href="carte.html" class="nav-link">Cartes</a></li>
-                  <li><a href="#stats" class="nav-link">Statistiques</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div> 
-      </header>
-
- 
-  
-    <div class="site-section bg-image overlay" style="background-image: url('images/decouvrir.png');" id="decouvrir">
+  <div class="row">
+    <div class="col-6" id="map"></div>
+    <div class="col">
       <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary" data-aos="zoom-in">Découvrir</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" data-aos="zoom-in" data-aos-delay="300">
-            <div class="decouvrir">
-              <img 
-                src="images/burger.svg" 
-                alt="burger"
-                height="55"
-                width="55" />
-                <hr/>
-                <h2>Cartes</h2>
-                <p class="mb-5">Visualisez directement les données sur une carte</p>
-                <ul class="ul-check list-unstyled success">
-                  <li class="text-white"> <img src="images/success.svg" alt="sucess" height="15" width="15" />  Ajoutez un fast-food et sa description</li>
-                  <li class="text-white"> <img src="images/success.svg" alt="sucess" height="15" width="15" />  Visualisez uniquement certains fast-foods, par enseigne ou par localisation</li>
-                  <li class="text-white"><img src="images/success.svg" alt="sucess" height="15" width="15" />  Visualisez le taux d'obésité par état</li>
-                </ul>
-            </div>
-          </div>
-
-          <div class="col" data-aos="zoom-in" data-aos-delay="600">
-            <div class="decouvrir">
-              <img 
-                src="images/pizza.svg" 
-                alt="pizza"
-                height="55"
-                width="55" />
-                <hr/>
-                <h2>Statistiques</h2>
-                <p class="mb-5">Visualisez nos statistiques et créez les vôtres</p>
-                <ul class="ul-check list-unstyled success">
-                  <li class="text-white"> <img src="images/success.svg" alt="sucess" height="15" width="15" />  Corrélations entre taux d'obésité et fast-foods</li>
-                  <li class="text-white"><img src="images/success.svg" alt="sucess" height="15" width="15" />  Densité de fast-foods par état</li>
-                  <li class="text-white"><img src="images/success.svg" alt="sucess" height="15" width="15" />  Nombre de fast-foods par habitant</li>
-                </ul>
-            </div>
-          </div>
-
-
-        </div>
+         <table class="table table-striped" id="formulairecarte">
+            <tbody>
+               <tr>
+                  <td colspan="1">
+                     <form class="well form-horizontal">
+                        <fieldset>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Test</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Par enseigne</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group">
+                                    <select class="selectpicker form-control" id="multiple-checkboxes" multiple="multiple">
+                                      <option value="mcdo">Mac Donald's</option>
+                                      <option value="bk">Burger King</option>
+                                      <option value="tim">Tim Horton's</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Test</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group"><input id="dist" type="text" data-slider-ticks="[0, 10, 50, 100, 500, 1000]" data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["$0", "$10", "$50", "$100", "$500", "$1000"]' data-slider-ticks-positions="[0, 20, 40, 60, 80, 100]" /></div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </td>
+                  <td colspan="1">
+                     <form class="well form-horizontal">
+                        <fieldset>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Test</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Par état</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group">
+                                    <select class="selectpicker form-control">
+                                       <option>Alabama</option>
+                                       <option>Floride</option>
+                                       <option>Mon Cul</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-4 control-label">Test</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Test" class="form-control" required="true" value="" type="text"></div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
       </div>
     </div>
+  </div>
+
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
+    async defer></script>
 
     <footer class="site-footer">
       <div class="container">
@@ -121,7 +154,7 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p>
-              <small class="block">&copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small> 
+              <small class="block"> &copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small> 
               </p>
             </div>
           </div>
@@ -129,15 +162,23 @@
         </div>
       </div>
     </footer>
-  </div>   
-      <script src="js/jquery.js"></script>
+
+</body>
+     
+  <script src="js/jquery.js"></script>
+  <script src="https://unpkg.com/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
   <script src="js/aos.js"></script>
   <script src="js/aosinit.js"></script>
   <script src="js/scrollto.js"></script>
   <script src="js/jquery-smoothState.js"></script>
-  <script src="js/smoothState.js"></script> 
+  <script src="js/smoothState.js"></script>
+  <script src="js/slider.js"></script> 
+  <script src="js/form.js"></script> 
+
+
   </body>
 
 </html>
