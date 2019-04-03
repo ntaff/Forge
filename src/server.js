@@ -27,14 +27,14 @@ var path = require('path');
 server.use("/css", express.static(__dirname + '/css'));
 server.use("/images", express.static(__dirname + '/images'));
 server.use("/js", express.static(__dirname + '/js'));
+server.use("", express.static(__dirname + ''));
 
 server.get('/', function(req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, '')});
+    res.send({message: 'coucou'});
+    res.sendFile('index.html', {root: path.join(__dirname)});
 });
 
 //server.listen(3000);
 server.listen(3000, "0.0.0.0", function() {
     console.log('Listening to port:  ' + 3000);
 });
-
-
