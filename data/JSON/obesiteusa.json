@@ -32,10 +32,6 @@
     "value": 31.8
   },
   {
-    "etat": "District of Columbia",
-    "value": 23
-  },
-  {
     "etat": "Florida",
     "value": 28.4
   },
@@ -202,13 +198,5 @@
   {
     "etat": "Wyoming",
     "value": 28.8
-  },
-  {
-    "etat": "Guam",
-    "value": 34.3
-  },
-  {
-    "etat": "Puerto Rico",
-    "value": 32.9
   }
 ]
