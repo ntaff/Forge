@@ -13,19 +13,28 @@ server.set('view engine', 'html');
 server.set('view cache', false);
 server.set('views', __dirname);
 
-server.get('/', function(req, res){
-  res.render('index.html', {message:"coucou"});
-});
 
-server.get('/index.html', function(req, res){
-  res.render('index.html', {message:"coucou"});
-});
+async function run()
+{
+    server.get('/', function(req, res){
+      res.render('index.html', {message:"coucou"});
+    });
 
-server.get('/carte.html', function(req, res){
-  // {{ Variable }} in html to display parameters sent to html page
-  res.render('carte.html', {message:"coucou", dao: dao.BurgerKing(dao.Test())});
-});
+    server.get('/index.html', function(req, res){
+      res.render('index.html', {message:"coucou"});
+    });
 
-server.listen(3000, "0.0.0.0", function() {
-    console.log('Listening to port:  ' + 3000);
-});
+    var mc = await dao.Macdonald();
+    var bk = await dao.BurgerKing();
+
+    server.get('/carte.html', function(req, res){
+      // {{ Variable }} in html to display parameters sent to html page
+      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk});
+    });
+
+    server.listen(3000, "0.0.0.0", function() {
+        console.log('Listening to port:  ' + 3000);
+    });
+}
+
+run();

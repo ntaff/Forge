@@ -34,8 +34,6 @@ module.exports = {
         {
           const doc = await cursor.next();
           tab.push({Longitude: doc.Longitude, Latitude: doc.Latitude});
-          // console.log(doc.Longitude)
-          // Definition of a time between each line
         }
 
         // Do not forget to close the connection
@@ -46,7 +44,6 @@ module.exports = {
                     resolve(tab);
                 });
             }, 0);
-
     },
 
     BurgerKing: async function() {
@@ -62,8 +59,6 @@ module.exports = {
         {
           const doc = await cursor.next();
           tab.push({Longitude: doc.Longitude, Latitude: doc.Latitude});
-          // console.log(doc.Longitude)
-          // Definition of a time between each line
         }
 
         // Do not forget to close the connection
@@ -84,4 +79,4 @@ module.exports = {
     }
 }
 
-module.exports.Test();
+// module.exports.Test();
