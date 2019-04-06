@@ -24,8 +24,11 @@ async function run()
       res.render('index.html', {message:"coucou"});
     });
 
-    var mc = await dao.Macdonald();
-    var bk = await dao.BurgerKing();
+    var mc = await dao.AllTable("Macdonald's");
+    var bk = await dao.AllTable("Burger King's");
+
+    // console.log(mc);
+    // console.log(bk);
 
     server.get('/carte.html', function(req, res){
       // {{ Variable }} in html to display parameters sent to html page

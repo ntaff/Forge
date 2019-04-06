@@ -21,37 +21,12 @@ module.exports = {
         });
     },
 
-    Macdonald: async function() {
-        var bdd = await module.exports.DAO("Macdonald's");
-        var macdonald = bdd[0];
-        var client = bdd[1];
+    AllTable: async function(bdd_name) {
+        var bdd_client = await module.exports.DAO(bdd_name);
+        var bdd = bdd_client[0];
+        var client = bdd_client[1];
         var query = {};
-        const cursor = macdonald.find(query);
-
-        var tab = [];
-
-        while(await cursor.hasNext())
-        {
-          const doc = await cursor.next();
-          tab.push({Longitude: doc.Longitude, Latitude: doc.Latitude});
-        }
-
-        // Do not forget to close the connection
-        client.close();
-
-        return new Promise(resolve => {
-            setTimeout(() => {
-                    resolve(tab);
-                });
-            }, 0);
-    },
-
-    BurgerKing: async function() {
-        var bdd = await module.exports.DAO("Burger King's");
-        var burgerKing = bdd[0];
-        var client = bdd[1];
-        var query = {};
-        const cursor = await burgerKing.find(query);
+        const cursor = await bdd.find(query);
 
         var tab = [];
 
@@ -72,8 +47,8 @@ module.exports = {
     },
 
     Test: async function() {
-        var mc = await module.exports.Macdonald();
-        var bk = await module.exports.BurgerKing();
+        var mc = await module.exports.AllTable("Macdonald's");
+        var bk = await module.exports.AllTable("Burger King's");
         console.log(mc);
         console.log(bk);
     }
