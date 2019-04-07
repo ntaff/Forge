@@ -35,6 +35,9 @@ module.exports = {
           // Object with Longitude: , Latitude:
           tab.push({Longitude: doc.Longitude, Latitude: doc.Latitude});
         }
+        // Deleting the last ',' from the String
+        result.slice(0,-1);
+
 
         // Do not forget to close the connection
         client.close();
