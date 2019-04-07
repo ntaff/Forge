@@ -1,7 +1,3 @@
-// Global Variable
-var burgerKing = {};
-var macdonald;
-
 // Connection to DataBase
 module.exports = {
     DAO: function(bdd_name) {
@@ -43,7 +39,7 @@ module.exports = {
         // Do not forget to close the connection
         client.close();
 
-        console.log(tab);
+        //console.log(tab);
 
         return new Promise(resolve => {
             setTimeout(() => {

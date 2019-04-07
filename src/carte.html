@@ -14,18 +14,7 @@
 
   </head>
 
-  <script>
-      var mc = "{{macdonald}}";
-      var rowCells = mc.split(',');
-      var tab = [];
-      for (var rowCell = 0; rowCell < rowCells.length; rowCell=rowCell+2)
-      {
-        tab.push({Longitude: parseFloat(rowCells[rowCell]) , Latitude: parseFloat(rowCells[rowCell+1])});
-      }
-
-      console.log(tab);
-
-  </script>
+  <script src="js/map.js"></script>
 
 <body>
 
@@ -182,7 +171,7 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=PopulateMap"
     async defer></script>
 
     <footer class="site-footer">
@@ -245,5 +234,10 @@
 
 
   </body>
+
+  <script>
+      var mc = "{{macdonald}}";
+      PopulateMap(mc, "Macdonald's");
+  </script>
 
 </html>
