@@ -1,6 +1,8 @@
 const express = require('express');
 const server = express();
 const dao = require('./DAO.js');
+const port = 3000;
+const address = "0.0.0.0";
 
 server.use("/css", express.static(__dirname + '/css'));
 server.use("/images", express.static(__dirname + '/images'));
@@ -31,12 +33,12 @@ async function run()
     // console.log(bk);
 
     server.get('/carte.html', function(req, res){
-      // {{ Variable }} in html to display parameters sent to html page
+      // "{{ Variable }}" in html to display parameters sent to html page
       res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk});
     });
 
-    server.listen(3000, "0.0.0.0", function() {
-        console.log('Listening to port:  ' + 3000);
+    server.listen(port, address, function() {
+        console.log('Listening to port:  ' + port);
     });
 }
 

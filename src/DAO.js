@@ -29,23 +29,30 @@ module.exports = {
         const cursor = await bdd.find(query);
 
         var tab = [];
+        var result = "";
 
         while(await cursor.hasNext())
         {
           const doc = await cursor.next();
+          // String with Longitude,Latitude
+          result+= doc.Longitude + "," + doc.Latitude + ",";
+          // Object with Longitude: , Latitude:
           tab.push({Longitude: doc.Longitude, Latitude: doc.Latitude});
         }
 
         // Do not forget to close the connection
         client.close();
 
+        console.log(tab);
+
         return new Promise(resolve => {
             setTimeout(() => {
-                    resolve(tab);
+                    resolve(result);
                 });
             }, 0);
     },
 
+    // Test method for DAO
     Test: async function() {
         var mc = await module.exports.AllTable("Macdonald's");
         var bk = await module.exports.AllTable("Burger King's");
@@ -53,5 +60,6 @@ module.exports = {
         console.log(bk);
     }
 }
+
 
 // module.exports.Test();

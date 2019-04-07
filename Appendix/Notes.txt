@@ -1,4 +1,5 @@
 // http://127.0.0.1:3000
+// http://127.0.0.1:3000/carte.html
 // http://localhost:3000
 // npm install express --save
 // npm install atpl
@@ -6,7 +7,7 @@
 // npm install mongodb --save
 // node server.js
 /* ngrok http 3000
-	--> Copy/Paste in browser Forwarding adress : https://077ebf73.ngrok.io
+	--> Copy/Paste in browser Forwarding address : https://077ebf73.ngrok.io
 */
 // npm install -g localtunnel
 // lt --port 3000 --subdomain xxxxx

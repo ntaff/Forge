@@ -14,6 +14,19 @@
 
   </head>
 
+  <script>
+      var mc = "{{macdonald}}";
+      var rowCells = mc.split(',');
+      var tab = [];
+      for (var rowCell = 0; rowCell < rowCells.length; rowCell=rowCell+2)
+      {
+        tab.push({Longitude: parseFloat(rowCells[rowCell]) , Latitude: parseFloat(rowCells[rowCell+1])});
+      }
+
+      console.log(tab);
+
+  </script>
+
 <body>
 
 
@@ -137,7 +150,7 @@
                                  </div>
                               </div>
                            </div>
-                           <hr/> 
+                           <hr/>
                            <div class="form-group">
                               <label class="col-md-4 control-label">Latitude</label>
                               <div class="col-md-8 inputGroupContainer">
@@ -182,7 +195,7 @@
                 <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion.
                 Nous avons réalisé ce site dans le cadre de l'UE Technologie du Web 3.</p>
               </div>
-              
+
               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Liens</h2>
                 <ul class="list-unstyled">
@@ -206,17 +219,17 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p>
-              <small class="block"> &copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small> 
+              <small class="block"> &copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small>
               </p>
             </div>
           </div>
-          
+
         </div>
       </div>
     </footer>
 
 </body>
-     
+
   <script src="js/jquery.js"></script>
   <script src="https://unpkg.com/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -227,8 +240,8 @@
   <script src="js/scrollto.js"></script>
   <script src="js/jquery-smoothState.js"></script>
   <script src="js/smoothState.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script> 
-  <script src="js/form.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
+  <script src="js/form.js"></script>
 
 
   </body>
