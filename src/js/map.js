@@ -10,13 +10,13 @@ function PopulateMap(geopoints) {
         zoom: 3
       });
 
-      for (var i = 0; i < geopoints.length; i++)
+      for (var i = 0; i < geopoints.length - 1; i++)
       {
         data = geopoints[i][0];
         geopoint_name = geopoints[i][1];
         var rowCells = data.split(',');
         var tab = [];
-        for (var rowCell = 0; rowCell < (rowCells.length - 2); rowCell=rowCell+2)
+        for (var rowCell = 0; rowCell < (rowCells.length - 3); rowCell=rowCell+2)
         {
           var long = parseFloat(rowCells[rowCell]);
           var lat = parseFloat(rowCells[rowCell+1]);
@@ -33,7 +33,7 @@ function PopulateMap(geopoints) {
 
         }
         console.log(tab);
-        
+
       }
 }
 
