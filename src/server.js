@@ -28,13 +28,14 @@ async function run()
 
     var mc = await dao.AllTable("Macdonald's");
     var bk = await dao.AllTable("Burger King's");
+    var mceu = await dao.AllTable("Macdonald's Europe");
 
     // console.log(mc);
     // console.log(bk);
 
     server.get('/carte.html', function(req, res){
       // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk});
+      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu});
     });
 
     server.listen(port, address, function() {
