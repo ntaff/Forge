@@ -9,14 +9,16 @@
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 
 <script>
+
 window.onload = function() {
 
-var dataPoints = [];
-var valueEtats = [];
-var nomEtats = [];
+dataPoints = [];
+obesite = [];
 
 var fastFood = [];
 var fastFood2 = [];
+
+
 
 
 function addData2(data){
@@ -26,7 +28,23 @@ function addData2(data){
         y: data[i].value
       });
   }
+
+   output2 = dataPoints.map(function(obj) {
+    return Object.keys(obj).sort().map(function(key) { 
+      return obj[key];
+    });
+  });
+
+   for (var k = 0; k < output2.length; k++) {
+    obesite.push(output2[k])
+    // nomEtats.push(output2[k][0])
+  };
+
+
 }
+
+
+
 
 function addData(data) {
   for (var i = 0; i < data.length; i++) {
@@ -39,7 +57,6 @@ function addData(data) {
 
 
 
-
   //convertir array of object to Array of arrays
   var output = fastFood.map(function(obj) {
     return Object.keys(obj).sort().map(function(key) { 
@@ -47,29 +64,14 @@ function addData(data) {
     });
   });
 
-
-
-  var output2 = dataPoints.map(function(obj) {
-    return Object.keys(obj).sort().map(function(key) { 
-      return obj[key];
-    });
-  });
-
-
-
-
   //recupérer valeurs des états
   for (var j = 0; j < output.length; j++) {
     fastFood2.push(output[j])
   };
 
-  for (var k = 0; k < output2.length; k++) {
-    valueEtats.push(output2[k][1])
-    nomEtats.push(output2[k][0])
-  };
+  
 
 
-     console.log(fastFood2)
 
 // Create the chart
 Highcharts.chart('container', {
@@ -79,9 +81,6 @@ Highcharts.chart('container', {
   title: {
     text: "Corrélation entre le nombre de fast food et le taux d'obésité par états"
   },
-  // subtitle: {
-  //   text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-  // },
   xAxis: {
     type: 'category',
     labels: {
@@ -94,26 +93,29 @@ Highcharts.chart('container', {
   },
   yAxis: [{
     min: 0,
+    max: 1200,
     title: {
       text: 'Nombre de fast food'
     }
     },{
         lineWidth: 1,
+        min: 20,
+        max: 40,
         opposite: true,
         title: {
             text: 'Taux obésite en %'
         }
   }],
   legend: {
-    enabled: false
+    enabled: true
   },
   tooltip: {
-    pointFormat: 'Nombre de fast food: <b>{point.y}</b>'
+    pointFormat: '<b>{point.y}</b>'
   },
 
-
   series: [{
-    name: 'Population',
+    yAxis :0,
+    name: 'Nbre fast food',
     data: fastFood2,
     dataLabels: {
       enabled: true,
@@ -127,8 +129,14 @@ Highcharts.chart('container', {
         fontFamily: 'Verdana, sans-serif'
       }
     }
+  },{
+    yAxis: 1,
+    type: 'spline',
+    name: 'Obésité',
+    data: obesite
   }]
 });
+console.log(obesite)
 
 }
 
@@ -140,8 +148,8 @@ $.ajaxSetup({
     contentType: "application/json; charset=utf-8"
 });
 
-$.getJSON("https://api.myjson.com/bins/om3qw", addData);
-$.getJSON("https://api.jsonbin.io/b/5ca4ceb924f5074645eba53f", addData2);
+$.getJSON("https://api.myjson.com/bins/19y34g", addData);
+$.getJSON("https://api.myjson.com/bins/1epjyo", addData2);
 
 }
 
@@ -150,7 +158,7 @@ $.getJSON("https://api.jsonbin.io/b/5ca4ceb924f5074645eba53f", addData2);
 
 </head>
 <body>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
 </body>
 </html>
 
