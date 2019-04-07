@@ -10,7 +10,7 @@ function PopulateMap(geopoints) {
         zoom: 3
       });
 
-      for (var i = 0; i < geopoints.length; i++)
+      for (var i = 0; i < geopoints.length - 1; i++)
       {
         data = geopoints[i][0];
         geopoint_name = geopoints[i][1];
