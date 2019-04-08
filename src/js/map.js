@@ -33,7 +33,6 @@ function PopulateMap(geopoints) {
 
         }
         console.log(tab);
-
       }
 }
 

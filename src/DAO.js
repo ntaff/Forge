@@ -51,6 +51,72 @@ module.exports = {
             }, 0);
     },
 
+    AllObesity: async function(bdd_name) {
+        var bdd_client = await module.exports.DAO(bdd_name);
+        var bdd = bdd_client[0];
+        var client = bdd_client[1];
+        var query = {};
+        const cursor = await bdd.find(query);
+
+        var tab = [];
+        var result = "";
+
+        while(await cursor.hasNext())
+        {
+          const doc = await cursor.next();
+          // String with Longitude,Latitude
+          result+= doc.State + "," + doc.Value + ",";
+          // Object with Longitude: , Latitude:
+          tab.push({State: doc.State, Value: doc.Value});
+        }
+        // Deleting the last ',' from the String
+        result.slice(0,-1);
+
+        // Do not forget to close the connection
+        client.close();
+
+        //console.log(tab);
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                    resolve(result);
+                });
+            }, 0);
+    },
+
+    AllFastFoodNumber: async function(bdd_name) {
+        var bdd_client = await module.exports.DAO(bdd_name);
+        var bdd = bdd_client[0];
+        var client = bdd_client[1];
+        var query = {};
+        const cursor = await bdd.find(query);
+
+        var tab = [];
+        var result = "";
+
+        while(await cursor.hasNext())
+        {
+          const doc = await cursor.next();
+          // String with Longitude,Latitude
+          result+= doc.State + "," + doc.Quantity + ",";
+          // Object with Longitude: , Latitude:
+          tab.push({State: doc.State, Quantity: doc.Quantity});
+        }
+        // Deleting the last ',' from the String
+        result.slice(0,-1);
+
+        // Do not forget to close the connection
+        client.close();
+
+        //console.log(tab);
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                    resolve(result);
+                });
+            }, 0);
+    },
+
     // Test method for DAO
     Test: async function() {
         var mc = await module.exports.AllTable("Macdonald's");
