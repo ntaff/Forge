@@ -29,6 +29,7 @@ async function run()
     var mc = await dao.AllTable("Macdonald's");
     var bk = await dao.AllTable("Burger King's");
     var mceu = await dao.AllTable("Macdonald's Europe");
+    var tim = await dao.AllTable("Tim Horton's");
     var ob = await dao.AllObesity("Obesity USA");
     var ffs = await dao.AllFastFoodNumber("State's Fast Food");
 
@@ -37,7 +38,7 @@ async function run()
 
     server.get('/carte.html', function(req, res){
       // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu});
+      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu, timHorton: tim});
     });
 
     server.get('/scriptchart_correlation.html', function(req, res){
