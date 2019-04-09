@@ -26,7 +26,7 @@
 }
 
 #map {
-  height: 600px;
+  height: 850px;
   width: 50%;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -34,6 +34,11 @@
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+.chart{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin-left: 15px;
+  background-color: rgb(240,240,240);
+}
 #formulairecarte {
 
   margin-top: 10px;
