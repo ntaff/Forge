@@ -127,7 +127,8 @@ function geochartObesityUS(dataOb)
 	  resolution: 'provinces',
 	  minValue: 0,
 	  maxValue: 100,
-	  colors:['white','#773239']
+	  colors:['white','#773239'],
+    backgroundColor: '#F0F0F0'
 	};
 
 	var chart = new google.visualization.GeoChart(
