@@ -13,11 +13,10 @@
     <link rel="stylesheet" href="css/footer.css"/>
   </head>
 
-
-
-
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="200">
     <div id="main">
+
+      <!-- Menu de navigation -->
       <header class="site-navbar py-3 js-site-navbar site-navbar-target" id="site-navbar">
         <div class="container">
           <div class="row align-items-center">
@@ -27,38 +26,33 @@
             <div class="col-12 col-md-10 d-none d-xl-block">
               <nav class="site-navigation position-relative text-right">
                 <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                  <li><a href="#section-home" class="nav-link">Accueil</a></li>
+                  <li><a href="index.html" class="nav-link">Accueil</a></li>
                   <li><a href="carte.html" class="nav-link">Cartes</a></li>
-                  <li><a href="#stats" class="nav-link">Statistiques</a></li>
+                  <li><a href="statistiques.html" class="nav-link">Statistiques</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-        </div> 
+        </div>
       </header>
 
-  
-
+    <!-- Accueil -->
     <div class="site-blocks-cover overlay" style="background-image: url(images/mapsaccueil.jpg);" data-aos="fade" data-stellar-background-ratio="0.5" id="accueil">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
-
           <div class="col-md-8" data-aos="fade-up" data-aos-delay="500">
-            
-
             <h1 class="text-white font-weight-light text-uppercase font-weight-bold" data-aos="fade-up">F O R G E</h1>
             <p class="mb-5 text-white" data-aos="fade-up" data-aos-delay="600">Fast Foods et Obésité</p>
             <p data-aos="fade-up" data-aos-delay="700"><a href="#decouvrir" class="btn btn-primary py-3 px-5 text-white js-scrollTo">Découvrir</a></p>
-
           </div>
         </div>
       </div>
-    </div>  
+    </div>
 
+    <!-- Section a propos -->
     <div class="site-section" id="apropos">
       <div class="container">
         <div class="row mb-5">
-          
           <div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade-up" data-aos-delay="100">
             <img src="images/apropos.png" alt="obamaquibouffe" class="img-fluid rounded"/>
           </div>
@@ -67,19 +61,17 @@
               <h2 class="text-primary">À propos</h2>
             </div>
             <p>Forge est un site repertoriant l'ensemble des fast-foods aux USA, sous forme de geopoints, et permettant de visualiser des statistiques en corrélation avec le taux d'obésité par états, ou entre chaînes de fast-foods.</p>
-            
             <ul class="ul-check list-unstyled success">
               <li><img src="images/success.svg" alt="sucess" height="15" width="15" />  Visualisation des données sous forme de geopoints</li>
               <li><img src="images/success.svg" alt="sucess" height="15" width="15" />  Visualisation des données sous forme de statistiques</li>
               <li><img src="images/success.svg" alt="sucess" height="15" width="15" />  Corrélations entre plusieurs données</li>
             </ul>
-            
           </div>
-          
         </div>
       </div>
     </div>
-  
+
+    <!-- Section découvrir -->
     <div class="site-section bg-image overlay" style="background-image: url('images/decouvrir.png');" id="decouvrir">
       <div class="container">
         <div class="row justify-content-center mb-5">
@@ -90,8 +82,8 @@
         <div class="row">
           <div class="col" data-aos="zoom-in" data-aos-delay="300">
             <div class="decouvrir">
-              <img 
-                src="images/burger.svg" 
+              <img
+                src="images/burger.svg"
                 alt="burger"
                 height="55"
                 width="55" />
@@ -105,11 +97,10 @@
                 </ul>
             </div>
           </div>
-
           <div class="col" data-aos="zoom-in" data-aos-delay="600">
             <div class="decouvrir">
-              <img 
-                src="images/pizza.svg" 
+              <img
+                src="images/pizza.svg"
                 alt="pizza"
                 height="55"
                 width="55" />
@@ -123,12 +114,11 @@
                 </ul>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
 
+    <!--Footer -->
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -139,15 +129,14 @@
                 <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion.
                 Nous avons réalisé ce site dans le cadre de l'UE Technologie du Web 3.</p>
               </div>
-              
               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Liens</h2>
                 <ul class="list-unstyled">
-                  <li><a class="js-scrollTo" href="#accueil">Accueil</a></li>
+                  <li><a class="js-scrollTo" href="index.html">Accueil</a></li>
                   <li><a class="js-scrollTo" href="#apropos">A propos</a></li>
                   <li><a class="js-scrollTo" href="#decouvrir">Découvrir</a></li>
                   <li><a class="js-scrollTo" href="carte.html">Cartes</a></li>
-                  <li><a class="js-scrollTo" href="#stats">Statistiques</a></li>
+                  <li><a class="js-scrollTo" href="statistiques.html">Statistiques</a></li>
                 </ul>
               </div>
               <div class="col-md-3">
@@ -163,16 +152,17 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p>
-              <small class="block">&copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small> 
+              <small class="block">&copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small>
               </p>
             </div>
           </div>
-          
         </div>
       </div>
     </footer>
+
   </div>
-    <script src="js/jquery.js"></script>
+
+  <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>
   <script src="js/aos.js"></script>
@@ -180,6 +170,7 @@
   <script src="js/scrollto.js"></script>
   <script src="js/jquery-smoothState.js"></script>
   <script src="js/smoothState.js"></script>
-  </body>
+
+</body>
 
 </html>
