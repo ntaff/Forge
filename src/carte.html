@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
   <head>
     <title>Forge</title>
     <meta charset="utf-8"/>
@@ -11,31 +12,50 @@
     <link rel="stylesheet" href="css/carte.css"/>
     <link rel="stylesheet" href="css/footer.css"/>
     <link rel="stylesheet" href="css/bootstrap-slider.css"/>
-
   </head>
 
 <body>
 
+  <!-- Menu de navigation -->
 
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <a class="navbar-brand" id="forgelogo" href="index.html">Forge</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Forge</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carte.html">Cartes <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="statistiques.html">Statistiques</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active" id="cartelogo">
-            <a class="nav-link" href="carte.html">Carte <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item" id="statslogo">
-            <a class="nav-link" href="#">Statistiques</a>
-          </li>
-        </ul>
-      </div>
-  </nav>
+    </nav>
+  </div>
 
+<!-- Container principal -->
   <div class="row">
+
+    <!-- Carte -->
     <div class="col-6" id="map"></div>
+
+    <!-- Formulaires -->
     <div class="col">
       <div class="container">
          <table class="table table-striped" id="formulairecarte">
@@ -67,6 +87,7 @@
                                  <div class="input-group"><input id="dist" type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="0"/></div>
                               </div>
                            </div>
+                           <button type="button" class="btn btn-default btn-lg btn3d">Actualiser la carte</button>
                         </fieldset>
                      </form>
                   </td>
@@ -157,9 +178,13 @@
             </tbody>
          </table>
       </div>
+
+      <!-- Carte taux d'obésité -->
+       <div id="geochart" style="width:820px; height: 310px;"></div>
     </div>
   </div>
 
+  <!-- Script de la carte -->
     <script>
       var map;
       function initMap() {
@@ -172,6 +197,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc"
     async defer></script>
 
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -186,11 +212,11 @@
               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Liens</h2>
                 <ul class="list-unstyled">
-                  <li><a class="js-scrollTo" href="#accueil">Accueil</a></li>
-                  <li><a class="js-scrollTo" href="#apropos">A propos</a></li>
-                  <li><a class="js-scrollTo" href="#decouvrir">Découvrir</a></li>
+                  <li><a class="js-scrollTo" href="index.html">Accueil</a></li>
+                  <li><a class="js-scrollTo" href="index.html/#apropos">A propos</a></li>
+                  <li><a class="js-scrollTo" href="index.html/#decouvrir">Découvrir</a></li>
                   <li><a class="js-scrollTo" href="carte.html">Cartes</a></li>
-                  <li><a class="js-scrollTo" href="#stats">Statistiques</a></li>
+                  <li><a class="js-scrollTo" href="statistiques.html">Statistiques</a></li>
                 </ul>
               </div>
               <div class="col-md-3">
@@ -210,7 +236,6 @@
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </footer>
@@ -222,14 +247,14 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/aosinit.js"></script>
-  <script src="js/scrollto.js"></script>
-  <script src="js/jquery-smoothState.js"></script>
-  <script src="js/smoothState.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
   <script src="js/form.js"></script>
   <script src="js/map.js"></script>
+
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://www.google.com/jsapi"></script>
+  <script src="js/geochart.js"></script>
 
   <script>
       var mc = "{{macdonald}}";
