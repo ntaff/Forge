@@ -17,7 +17,6 @@
 <body>
 
   <!-- Menu de navigation -->
-
   <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
       <div class="bg-dark p-4">
@@ -179,21 +178,11 @@
          </table>
       </div>
 
-      <!-- Carte taux d'obésité -->
-       <div id="geochart" style="width:820px; height: 310px;"></div>
+       <!-- Carte taux d'obésité -->
+       <div id="geochart" style="width: 900px; height: 500px;"></div>
     </div>
   </div>
 
-  <!-- Script de la carte -->
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc"
     async defer></script>
 
@@ -242,26 +231,28 @@
 
 </body>
 
-  <script src="js/jquery.js"></script>
   <script src="https://unpkg.com/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
-  <script src="js/form.js"></script>
-  <script src="js/map.js"></script>
-
-
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://www.google.com/jsapi"></script>
-  <script src="js/geochart.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/scriptchart.js"></script>
 
   <script>
       var mc = "{{macdonald}}";
       var bk = "{{burgerKing}}";
       var tim = "{{timHorton}}";
       var mceu = "{{macdonaldeu}}";
+      var ob = "{{Obesity}}";
       PopulateMap([[mc, "Macdonald's"],[bk, "Burger's King"],[mceu, "Macdonald's Europe"],[tim, "Tim Horton's"]]);
+      // Geochart United States's states Obesity
+      google.charts.load({'packages':['geochart']});
+      google.charts.setOnLoadCallback(function() { geochartObesityUS(ob); });
   </script>
 
 </html>

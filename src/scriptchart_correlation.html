@@ -6,14 +6,22 @@
   <script src="https://code.highcharts.com/modules/data.js"></script>
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://www.google.com/jsapi"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="js/scriptchart.js"></script>
+
 </head>
 <body>
   <div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+  <div id="geochart" style="width: 900px; height: 500px;"></div>
 </body>
-<script src="js/scriptchart.js"></script>
 <script>
     var ob = "{{Obesity}}";
     var ff = "{{FastFood}}";
     scriptchart_correlation(ob, ff);
+    // Geochart United States's states Obesity
+    google.charts.load({'packages':['geochart']});
+    google.charts.setOnLoadCallback(function() { geochartObesityUS(ob); });
 </script>
 </html>

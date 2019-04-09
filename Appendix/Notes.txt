@@ -12,6 +12,8 @@
 	npm install atpl
 	npm install ngrok -g
 	npm install mongodb --save
+	npm install body-parser --save
+
 
 /* ********************************************** */
 
@@ -28,5 +30,5 @@
 
 	npm install -g localtunnel
 	lt --port 3000 --subdomain xxxxx
-	
+
 /* **** */

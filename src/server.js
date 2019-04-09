@@ -38,7 +38,7 @@ async function run()
 
     server.get('/carte.html', function(req, res){
       // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu, timHorton: tim});
+      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu, timHorton: tim, Obesity: ob, FastFood: ffs});
     });
 
     server.get('/scriptchart_correlation.html', function(req, res){

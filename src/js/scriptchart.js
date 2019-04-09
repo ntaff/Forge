@@ -2,7 +2,7 @@
 // Correlation between obesity, states, fast food's number
 // Parameters : - dataOb : string representing Obesity per state (state,Value)
 //              - dateFF : string representing Number of fast food's per state (state,quantity)
-function scriptchart_correlation(dataOb, dataFF)
+function StringToTab(dataOb, dataFF)
 {
   for (var i = 0; i < dataOb.length; i++)
   {
@@ -11,7 +11,7 @@ function scriptchart_correlation(dataOb, dataFF)
     var tabOb = [];
     var tabFF = [];
 
-    for (var rowCell = 0; rowCell < (rowCellsOb.length - 3); rowCell=rowCell+2)
+    for (var rowCell = 0; rowCell < (rowCellsOb.length - 2); rowCell=rowCell+2)
     {
       var stateOb = rowCellsOb[rowCell];
       var value = parseFloat(rowCellsOb[rowCell+1]);
@@ -24,12 +24,21 @@ function scriptchart_correlation(dataOb, dataFF)
       // tabFF.push({State: stateFF , Quantity: quantity});
       tabOb.push([stateOb,value]);
       tabFF.push([stateFF,quantity]);
-
     }
   }
 
-  console.log(tabOb);
-  console.log(tabFF);
+  tabOb.sort();
+  tabFF.sort();
+  // console.log(tabOb);
+  // console.log(tabFF);
+  return [tabOb,tabFF];
+}
+
+function scriptchart_correlation(dataOb, dataFF)
+{
+  var tabs = StringToTab(dataOb, dataFF);
+  var tabOb = tabs[0];
+  var tabFF = tabs[1];
 
   // Creation of the chart
   Highcharts.chart('container', {
@@ -94,4 +103,34 @@ function scriptchart_correlation(dataOb, dataFF)
       data: tabOb
     }]
   });
+}
+
+function geochartObesityUS(dataOb)
+{
+
+  var tabs = StringToTab(dataOb, "");
+  var tabOb = tabs[0];
+
+  var dataTable = new google.visualization.DataTable();
+	dataTable.addColumn('string', 'State');
+	dataTable.addColumn('number', 'Obesity');
+
+  // Converting Array to DataTable for Charts
+  for(var i = 1; i < tabOb.length; i++)
+  {
+    dataTable.addRow([tabOb[i][0],tabOb[i][1]]);
+  }
+
+	var options = {
+	  region: 'US',
+	  displayMode: 'regions',
+	  resolution: 'provinces',
+	  minValue: 0,
+	  maxValue: 100,
+	  colors:['white','#773239']
+	};
+
+	var chart = new google.visualization.GeoChart(
+		document.getElementById('geochart'));
+		chart.draw(dataTable, options);
 }
