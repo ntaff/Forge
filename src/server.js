@@ -46,6 +46,11 @@ async function run()
       res.render('scriptchart_correlation.html', {message:"coucou", Obesity: ob, FastFood: ffs});
     });
 
+    server.get('/statistiques.html', function(req, res){
+      // "{{ Variable }}" in html to display parameters sent to html page
+      res.render('statistiques.html', {message:"coucou", Obesity: ob, FastFood: ffs});
+    });
+
     server.listen(port, address, function() {
         console.log('Listening to port:  ' + port);
     });

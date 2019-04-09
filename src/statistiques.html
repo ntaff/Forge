@@ -46,12 +46,12 @@
   </div>
 
   <div class="row">
-    <div class="col-6" id="chart" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+    <div class="col-6" id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
     <div class="col">
       <div class="container">
 
       </div>
-       <div id="chart" style="width:720px; height: 310px;"></div>
+       <div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
     </div>
   </div>
 
@@ -104,13 +104,11 @@
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-
-
-  <script src="js/scriptchart.js"></script>
-  <script>
-      var ob = "{{Obesity}}";
-      var ff = "{{FastFood}}";
-      scriptchart_correlation(ob, ff);
-  </script>
+<script src="js/scriptchart.js"></script>
+<script>
+    var ob = "{{Obesity}}";
+    var ff = "{{FastFood}}";
+    scriptchart_correlation(ob, ff);
+</script>
 
 </html>
