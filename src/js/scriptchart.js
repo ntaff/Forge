@@ -34,6 +34,76 @@ function StringToTab(dataOb, dataFF)
   return [tabOb,tabFF];
 }
 
+function scripchart_obesite_etat(dataOb)
+{
+
+  var tabs = StringToTab(dataOb, "");
+  var tab = tabs[0];
+  var tabEt = [];
+  var tabVal = [];
+
+  for(var i=1; i<tab.length;i++){
+    tabEt.push([tab[i][0]]);
+    tabVal.push([tab[i][1]]);
+  }
+
+  var chart = Highcharts.chart('obesiteEtat', {
+    title: {
+      text: 'Taux d\'obésité par états (en %)'
+    },
+
+    xAxis: {
+      categories: tabEt
+    },
+
+    yAxis: {
+      title: {
+        text: 'Obésité en %'
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<b>{point.y}%</b>'
+    },
+
+    series: [{
+      type: 'column',
+      colorByPoint: false,
+      data: tabVal,
+      zones: [{
+            value: 27,
+            color: 'green'
+        }, {
+            value: 30,
+            color: '#f9d82f'
+        }, {
+            value: 35,
+            color: '#e58014'
+        }, {
+            color: '#d10000'
+        }],
+      showInLegend: false
+    }]
+  });
+
+
+  $('#plain').click(function () {
+    chart.update({
+      chart: {
+        inverted: false
+      }
+    });
+  });
+
+  $('#inverted').click(function () {
+    chart.update({
+      chart: {
+        inverted: true
+      }
+    });
+  });
+}
+
 function scriptchart_correlation(dataOb, dataFF)
 {
   var tabs = StringToTab(dataOb, dataFF);
@@ -127,8 +197,7 @@ function geochartObesityUS(dataOb)
 	  resolution: 'provinces',
 	  minValue: 0,
 	  maxValue: 100,
-	  colors:['white','#773239'],
-    backgroundColor: '#F0F0F0'
+	  colors:['white','#773239']
 	};
 
 	var chart = new google.visualization.GeoChart(
