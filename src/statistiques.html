@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Forge</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="keywords" content="forge" />
+    <meta name="author" content="Nicolas Taffoureau - Quentin Omel - Ian Jammes" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/carte.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/bootstrap-slider.css"/>
+  </head>
+
+<body>
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Forge</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carte.html">Cartes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="statistiques.html">Statistique<span class="sr-only">(current)</span>s</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="col-6" id="chart" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+    <div class="col">
+      <div class="container">
+
+      </div>
+       <div id="chart" style="width:720px; height: 310px;"></div>
+    </div>
+  </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-5 mr-auto">
+                <h2 class="footer-heading mb-4">Qui sommes nous</h2>
+                <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion.
+                Nous avons réalisé ce site dans le cadre de l'UE Technologie du Web 3.</p>
+              </div>
+
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Liens</h2>
+                <ul class="list-unstyled">
+                  <li><a class="js-scrollTo" href="index.html">Accueil</a></li>
+                  <li><a class="js-scrollTo" href="index.html/#apropos">A propos</a></li>
+                  <li><a class="js-scrollTo" href="index.html/#decouvrir">Découvrir</a></li>
+                  <li><a class="js-scrollTo" href="carte.html">Cartes</a></li>
+                  <li><a class="js-scrollTo" href="statistiques.html">Statistiques</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Suivez nous !</h2>
+                <a href="https://www.linkedin.com/in/nicolas-taffoureau-66a717109/" class="pl-0 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+                <a href="https://www.linkedin.com/in/quentin-g%C3%A9rome-omel-28b994151/" class="pl-2 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+                <a href="https://www.linkedin.com/in/ian-jammes-sanz-4084b6183/" class="pl-2 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p>
+              <small class="block"> &copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+</body>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+
+
+  <script src="js/scriptchart.js"></script>
+  <script>
+      var ob = "{{Obesity}}";
+      var ff = "{{FastFood}}";
+      scriptchart_correlation(ob, ff);
+  </script>
+
+</html>
