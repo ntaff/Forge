@@ -1,5 +1,13 @@
-
 var map;
+var geopoints;
+
+
+
+function initMap()
+{
+  PopulateMap(geopoints);
+}
+
 
 // Parameters : - geopoints : Array containing [data,geopoint_name] :
 //                                   - data : String with Format ("Longitude,Latitude,..")
