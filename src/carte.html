@@ -182,17 +182,9 @@
        <div class="chart" id="geochart" style="width: 881px; height: 442px;"></div>
     </div>
   </div>
-
-    <script src="js/map.js"></script>
-       <script>
-           var mc = "{{macdonald}}";
-           var bk = "{{burgerKing}}";
-           var tim = "{{timHorton}}";
-           var mceu = "{{macdonaldeu}}";
-           var ob = "{{Obesity}}";
-           geopoints = [[mc, "Macdonald's"],[bk, "Burger's King"],[mceu, "Macdonald's Europe"],[tim, "Tim Horton's"]];
-       </script>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
+      <script src="js/jquery.js"></script>
+      <script src="js/map.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
    async defer></script>
 
     <!-- Footer -->
@@ -240,7 +232,6 @@
 
 </body>
 
-  <script src="js/jquery.js"></script>
   <script src="https://unpkg.com/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>
@@ -251,9 +242,12 @@
   <script src="https://www.google.com/jsapi"></script>
   <script src="js/scriptchart.js"></script>
   <script>
+      StringToTabOb();
       // Geochart United States's states Obesity
       google.charts.load({'packages':['geochart']});
-      google.charts.setOnLoadCallback(function() { geochartObesityUS(ob); });
+      google.charts.setOnLoadCallback(function() { geochartObesityUS(); });
+      // Populate the Google Map API with Points
+      PopulateMap();
   </script>
 
 </html>

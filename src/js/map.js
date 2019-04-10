@@ -1,47 +1,38 @@
 var map;
-var geopoints;
-
-
 
 function initMap()
 {
-  PopulateMap(geopoints);
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.0 , lng: -94.0},
+    zoom: 3
+  });
+  PopulateMap()
 }
 
+function PopulateMap()
+{
+      $(document).ready(function(){
+        $.ajax({
+          method: "GET",
+          url: "/bdd",
+          dataType: "JSON",
+          success:function(data){
+            for (var i in data)
+            {
+              var long = parseFloat(data[i].Longitude);
+              var lat = parseFloat(data[i].Latitude);
+              var point_name = data[i].Name;
 
-// Parameters : - geopoints : Array containing [data,geopoint_name] :
-//                                   - data : String with Format ("Longitude,Latitude,..")
-//                                   - geopoint_name : String (name of the geopoint)
-function PopulateMap(geopoints) {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 41.0 , lng: -94.0},
-        zoom: 3
+              // Add geopoint on Google Map API
+              var marker = new google.maps.Marker({
+                position: {lat: lat , lng: long},
+                map: map,
+                title: point_name
+                });
+            }
+          }
+        });
       });
-
-      for (var i = 0; i < geopoints.length; i++)
-      {
-        data = geopoints[i][0];
-        geopoint_name = geopoints[i][1];
-        var rowCells = data.split(',');
-        var tab = [];
-        for (var rowCell = 0; rowCell < (rowCells.length - 3); rowCell=rowCell+2)
-        {
-          var long = parseFloat(rowCells[rowCell]);
-          var lat = parseFloat(rowCells[rowCell+1]);
-
-          // Filling tab Array with coordinates
-          tab.push({Longitude: long , Latitude: lat});
-
-          // Add geopoint on Google Map API
-          var marker = new google.maps.Marker({
-            position: {lat: lat , lng: long},
-            map: map,
-            title: geopoint_name
-            });
-
-        }
-        console.log(tab);
-      }
 }
 
 

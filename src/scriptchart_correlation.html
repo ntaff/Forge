@@ -27,12 +27,12 @@
 
 </body>
 <script>
-    var ob = "{{Obesity}}";
-    var ff = "{{FastFood}}";
-    scriptchart_correlation(ob, ff);
+    StringToTabOb();
+    StringToTabFF();
     // Geochart United States's states Obesity
     google.charts.load({'packages':['geochart']});
-    google.charts.setOnLoadCallback(function() { geochartObesityUS(ob); });
-    scripchart_obesite_etat(ob);
+    google.charts.setOnLoadCallback(geochartObesityUS);
+    scripchart_obesite_etat();
+    scriptchart_correlation();
 </script>
 </html>
