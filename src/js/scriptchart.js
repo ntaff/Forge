@@ -117,6 +117,7 @@ async function scripchart_obesite_etat()
         }],
       showInLegend: false
     }]
+
   });
 
 
@@ -227,6 +228,7 @@ async function geochartObesityUS()
 	  resolution: 'provinces',
 	  minValue: 0,
 	  maxValue: 100,
+    backgroundColor: '#F0F0F0',
 	  colors:['white','#773239']
 	};
 
