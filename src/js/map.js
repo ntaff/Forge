@@ -6,10 +6,9 @@ function initMap()
     center: {lat: 41.0 , lng: -94.0},
     zoom: 3
   });
-  PopulateMap()
 }
 
-function PopulateMap()
+async function PopulateMap()
 {
       $(document).ready(function(){
         $.ajax({
@@ -17,6 +16,7 @@ function PopulateMap()
           url: "/bdd",
           dataType: "JSON",
           success:function(data){
+            var markers=[];
             for (var i in data)
             {
               var long = parseFloat(data[i].Longitude);
@@ -26,10 +26,12 @@ function PopulateMap()
               // Add geopoint on Google Map API
               var marker = new google.maps.Marker({
                 position: {lat: lat , lng: long},
-                map: map,
                 title: point_name
                 });
+              markers.push(marker);
             }
+            var icon_cluster = {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'};
+            var markerCluster = new MarkerClusterer(map, markers, icon_cluster);
           }
         });
       });
