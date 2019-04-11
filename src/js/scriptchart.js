@@ -96,7 +96,6 @@ async function StringToTabTM()
           tabTM.push([state,quantity]);
         }
         tabTM.sort();
-        console.log(tabTM);
       }
     });
   });
@@ -177,6 +176,13 @@ async function scriptchart_tm_state()
 {
 
   await filledTabTM();
+  var tabEt = [];
+  var tabVal = [];
+
+  for(var i=1; i<tabTM.length;i++){
+    tabEt.push([tabTM[i][0]]);
+    tabVal.push([tabTM[i][1]]);
+  }
 
   var chart = Highcharts.chart('fftm',{
       chart: {
@@ -191,35 +197,29 @@ async function scriptchart_tm_state()
           }
       },
       title: {
-          text: 'Chart rotation demo'
-      },
-      subtitle: {
-          text: 'Test options by dragging the sliders below'
+          text: 'Nombre de Tim Hortons par états'
       },
       plotOptions: {
           column: {
               depth: 25
           }
       },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
       series: [{
-          data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+          data: tabVal,
+          color: '#bf1313'
       }]
   });
-
-  function showValues() {
-      $('#alpha-value').html(chart.options.chart.options3d.alpha);
-      $('#beta-value').html(chart.options.chart.options3d.beta);
-      $('#depth-value').html(chart.options.chart.options3d.depth);
-  }
-
-  // Activate the sliders
-  $('#sliders input').on('input change', function () {
-      chart.options.chart.options3d[this.id] = parseFloat(this.value);
-      showValues();
-      chart.redraw(false);
-  });
-
-  showValues();
 }
 
 async function scriptchart_correlation()
