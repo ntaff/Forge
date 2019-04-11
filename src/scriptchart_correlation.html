@@ -7,6 +7,7 @@
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/cylinder.js"></script>
   <script src="https://www.google.com/jsapi"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -28,17 +29,20 @@
 
   <div id="fftm" style="width: 1000px; height: 500px; padding-bottom: 5%;"></div>
 
+  <div id="ff_inhabitants" style="width: 1000px; height: 500px; padding-bottom: 5%;"></div>
 
 </body>
 <script>
     StringToTabOb();
     StringToTabFF();
     StringToTabTM();
+    StringToTabIN();
     // Geochart United States's states Obesity
     google.charts.load({'packages':['geochart']});
     google.charts.setOnLoadCallback(geochartObesityUS);
     scripchart_obesite_etat();
     scriptchart_correlation();
     scriptchart_tm_state();
+    scriptchart_ff_inhabitants();
 </script>
 </html>
