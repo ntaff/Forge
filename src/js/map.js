@@ -6,6 +6,8 @@ function initMap()
     center: {lat: 41.0 , lng: -94.0},
     zoom: 3
   });
+  // Populate the Google Map API with Points
+  PopulateMap();
 }
 
 async function PopulateMap()
