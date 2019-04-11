@@ -3,6 +3,7 @@
 // Global Variables
 var tabOb = [];
 var tabFF = [];
+var tabTM = [];
 
 // Waiting for tabOb to be filled with datas
 function filledTabOb()
@@ -26,8 +27,19 @@ function filledTabFF()
   });
 }
 
+// Waiting for tabTM to be filled with datas
+function filledTabTM()
+{
+  return new Promise(resolve => {
+      setTimeout(() => {
+              while(tabTM.length == 0){}
+              resolve();
+      }, 1000);
+  });
+}
+
 // Correlation between obesity and states
-function StringToTabOb()
+async function StringToTabOb()
 {
   $(document).ready(function(){
     $.ajax({
@@ -49,7 +61,7 @@ function StringToTabOb()
 
 
 // Correlation between fast food's number and states
-function StringToTabFF()
+async function StringToTabFF()
 {
   $(document).ready(function(){
     $.ajax({
@@ -68,6 +80,29 @@ function StringToTabFF()
     });
   });
 }
+
+async function StringToTabTM()
+{
+  $(document).ready(function(){
+    $.ajax({
+      method: "GET",
+      url: "/fftm",
+      dataType: "JSON",
+      success:function(data){
+        for (var i in data)
+        {
+          var state = data[i].State;
+          var quantity = parseFloat(data[i].Quantity);
+          tabTM.push([state,quantity]);
+        }
+        tabTM.sort();
+        console.log(tabTM);
+      }
+    });
+  });
+}
+
+
 
 async function scripchart_obesite_etat()
 {
@@ -136,6 +171,57 @@ async function scripchart_obesite_etat()
       }
     });
   });
+}
+
+async function scriptchart_tm_state()
+{
+
+  //await filledTabTM();
+
+
+
+  var chart = Highcharts.chart('fftm',{
+      chart: {
+          renderTo: 'container',
+          type: 'column',
+          options3d: {
+              enabled: true,
+              alpha: 15,
+              beta: 15,
+              depth: 50,
+              viewDistance: 25
+          }
+      },
+      title: {
+          text: 'Chart rotation demo'
+      },
+      subtitle: {
+          text: 'Test options by dragging the sliders below'
+      },
+      plotOptions: {
+          column: {
+              depth: 25
+          }
+      },
+      series: [{
+          data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+      }]
+  });
+
+  function showValues() {
+      $('#alpha-value').html(chart.options.chart.options3d.alpha);
+      $('#beta-value').html(chart.options.chart.options3d.beta);
+      $('#depth-value').html(chart.options.chart.options3d.depth);
+  }
+
+  // Activate the sliders
+  $('#sliders input').on('input change', function () {
+      chart.options.chart.options3d[this.id] = parseFloat(this.value);
+      showValues();
+      chart.redraw(false);
+  });
+
+  showValues();
 }
 
 async function scriptchart_correlation()
