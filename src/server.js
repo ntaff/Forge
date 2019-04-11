@@ -1,13 +1,14 @@
 const express = require('express');
 const server = express();
-const dao = require('./DAO.js');
+const dao = require('./dao/DAO.js');
+const Points = require('./dao/Points.js');
 const port = 3000;
 const address = "0.0.0.0";
 
 server.use("/css", express.static(__dirname + '/css'));
 server.use("/images", express.static(__dirname + '/images'));
 server.use("/js", express.static(__dirname + '/js'));
-server.use(".././data", express.static(__dirname + '../data'));
+server.use("/dao", express.static(__dirname + '/dao'));
 
 server.engine('html', require('atpl').__express);
 server.set('devel', false);
@@ -16,44 +17,53 @@ server.set('view cache', false);
 server.set('views', __dirname);
 
 
-async function run()
+async function Db_ressources()
 {
+    let bdd = new Points();
+    bdd.setPoints(await dao.AllTable("Macdonald's"));
+    bdd.setPoints(await dao.AllTable("Burger King's"));
+    bdd.setPoints(await dao.AllTable("Macdonald's Europe"));
+    bdd.setPoints(await dao.AllTable("Tim Horton's"));
+    var ob = new Points();
+    ob.setPoints(await dao.AllObesity("Obesity USA"));
+    var ff = new Points();
+    ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food"));
+
+    // Index of ressources
+    server.get('/bdd', async function(req, res){
+      res.send(bdd.listPoints);
+    });
+    server.get('/ob', async function(req, res){
+      res.send(ob.listPoints);
+    });
+    server.get('/ff', async function(req, res){
+      res.send(ff.listPoints);
+    });
+
+}
+
+function run()
+{
+    // Gestion of pages
     server.get('/', function(req, res){
-      res.render('index.html', {message:"coucou"});
+      res.render('index.html');
     });
-
     server.get('/index.html', function(req, res){
-      res.render('index.html', {message:"coucou"});
+      res.render('index.html');
     });
-
-    var mc = await dao.AllTable("Macdonald's");
-    var bk = await dao.AllTable("Burger King's");
-    var mceu = await dao.AllTable("Macdonald's Europe");
-    var tim = await dao.AllTable("Tim Horton's");
-    var ob = await dao.AllObesity("Obesity USA");
-    var ffs = await dao.AllFastFoodNumber("State's Fast Food");
-
-    // console.log(mc);
-    // console.log(bk);
-
     server.get('/carte.html', function(req, res){
-      // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('carte.html', {message:"coucou", macdonald: mc, burgerKing: bk, macdonaldeu: mceu, timHorton: tim, Obesity: ob, FastFood: ffs});
+      res.render('carte.html');
     });
-
-    server.get('/scriptchart_correlation.html', function(req, res){
-      // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('scriptchart_correlation.html', {message:"coucou", Obesity: ob, FastFood: ffs});
-    });
-
     server.get('/statistiques.html', function(req, res){
-      // "{{ Variable }}" in html to display parameters sent to html page
-      res.render('statistiques.html', {message:"coucou", Obesity: ob, FastFood: ffs});
+      res.render('statistiques.html');
     });
-
+    server.get('/scriptchart_correlation.html', function(req, res){
+      res.render('scriptchart_correlation.html');
+    });
     server.listen(port, address, function() {
         console.log('Listening to port:  ' + port);
     });
 }
 
+Db_ressources();
 run();
