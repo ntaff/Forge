@@ -34,6 +34,9 @@ async function Db_ressources()
     var fftm = new Points();
     fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State"));
 
+    var ffinhabitants = new Points();
+    ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State"));
+
     // Index of ressources
     server.get('/bdd', async function(req, res){
       res.send(bdd.listPoints);
@@ -46,6 +49,9 @@ async function Db_ressources()
     });
     server.get('/fftm', async function(req, res){
       res.send(fftm.listPoints);
+    });
+    server.get('/ffinhabitants', async function(req, res){
+      res.send(ffinhabitants.listPoints);
     });
 
 }
