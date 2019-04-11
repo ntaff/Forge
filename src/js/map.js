@@ -32,7 +32,7 @@ async function PopulateMap()
                 });
               markers.push(marker);
             }
-            var icon_cluster = {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'};
+            var icon_cluster = {imagePath: 'images/clustermarker/m'};
             var markerCluster = new MarkerClusterer(map, markers, icon_cluster);
           }
         });
