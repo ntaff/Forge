@@ -176,9 +176,7 @@ async function scripchart_obesite_etat()
 async function scriptchart_tm_state()
 {
 
-  //await filledTabTM();
-
-
+  await filledTabTM();
 
   var chart = Highcharts.chart('fftm',{
       chart: {
