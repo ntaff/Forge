@@ -24,10 +24,15 @@ async function Db_ressources()
     bdd.setPoints(await dao.AllTable("Burger King's"));
     bdd.setPoints(await dao.AllTable("Macdonald's Europe"));
     bdd.setPoints(await dao.AllTable("Tim Horton's"));
+
     var ob = new Points();
     ob.setPoints(await dao.AllObesity("Obesity USA"));
+
     var ff = new Points();
     ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food"));
+
+    var fftm = new Points();
+    fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State"));
 
     // Index of ressources
     server.get('/bdd', async function(req, res){
@@ -38,6 +43,9 @@ async function Db_ressources()
     });
     server.get('/ff', async function(req, res){
       res.send(ff.listPoints);
+    });
+    server.get('/fftm', async function(req, res){
+      res.send(fftm.listPoints);
     });
 
 }
