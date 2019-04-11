@@ -49,12 +49,13 @@ ul.dock li.nearby {
     z-index: 100;
 }
 
+
 div#dockContainer {
     position: fixed;
     margin-bottom: 10px;
     bottom: 12px;
     height: 120px;
-    padding: 50px 0 0;
+    padding: 0px 0 0;
     text-align: center;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
