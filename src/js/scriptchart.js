@@ -11,7 +11,7 @@ function filledTabOb()
       setTimeout(() => {
               while(tabOb.length == 0){}
               resolve();
-      }, 0);
+      }, 1000);
   });
 }
 
@@ -22,7 +22,7 @@ function filledTabFF()
       setTimeout(() => {
               while(tabFF.length == 0){}
               resolve();
-      }, 0);
+      }, 1000);
   });
 }
 

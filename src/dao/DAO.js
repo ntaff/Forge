@@ -13,7 +13,7 @@ module.exports = {
                     console.log("Connection to MongoDB Atlas DataBase Forge succefull for " + bdd_name);
                     resolve([bdd,client]);
                 });
-            }, 0);
+            }, 1000);
         });
     },
 
