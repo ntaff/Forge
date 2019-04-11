@@ -1,0 +1,78 @@
+ul.dock {
+    display: inline-block;
+    height: 130px;
+    padding: 0 40px 0 0;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) no-repeat right bottom;
+    overflow: hidden;
+}
+
+ul.dock li {
+    display: block;
+    position: relative;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 60px 0 4px 0;
+    margin-right: 10px;
+    -webkit-transition: 0.15s linear;
+    -webkit-transition-property: -webkit-transform margin;
+    text-align: center;
+}
+
+ul.dock li a {
+    display: block;
+    height: 50px;
+    padding: 0 1px;
+    -webkit-transition: 0.15s linear;
+    -webkit-transition-property: -webkit-transform margin;
+    margin: 0;
+}
+
+ul.dock li a img {
+    width: 50px;
+}
+
+ul.dock li:hover {
+    margin-left: 27px;
+    margin-right: 27px;
+    z-index: 200;
+}
+
+ul.dock li:hover a {
+    -webkit-transform-origin: center bottom;
+    -webkit-transform: scale(1.8);
+}
+
+ul.dock li.nearby {
+    margin-left: 6px;
+    margin-right: 6px;
+    z-index: 100;
+}
+
+div#dockContainer {
+    position: fixed;
+    margin-bottom: 10px;
+    bottom: 12px;
+    height: 120px;
+    padding: 50px 0 0;
+    text-align: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    width: 100%;
+    line-height: 1;
+    z-index: 100;
+}
+
+div#dockWrapper {
+    width: auto;
+    display: inline-block;
+    position: relative;
+    border-bottom: solid 2px rgba(255,255,255,.35);
+    line-height: 0;
+}
+
+#dockContainer,#dockContainer * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
