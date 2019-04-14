@@ -16,27 +16,33 @@ server.set('view engine', 'html');
 server.set('view cache', false);
 server.set('views', __dirname);
 
+var bodyParser = require('body-parser');
+server.use(bodyParser.json()); // support json encoded bodies
+server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+let bdd = new Points();
+var ob = new Points();
+var ff = new Points();
+var fftm = new Points();
+var ffinhabitants = new Points();
 
 async function Db_ressources()
 {
-    let bdd = new Points();
     bdd.setPoints(await dao.AllTable("Macdonald's"));
     bdd.setPoints(await dao.AllTable("Burger King's"));
     bdd.setPoints(await dao.AllTable("Macdonald's Europe"));
     bdd.setPoints(await dao.AllTable("Tim Horton's"));
-
-    var ob = new Points();
     ob.setPoints(await dao.AllObesity("Obesity USA"));
-
-    var ff = new Points();
     ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food"));
-
-    var fftm = new Points();
     fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State"));
+    ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State"));
+}
 
+function run()
+{
     // Index of ressources
     server.get('/bdd', async function(req, res){
-      res.send(bdd.listPoints);
+      res.send(bdd.currentListPoints);
     });
     server.get('/ob', async function(req, res){
       res.send(ob.listPoints);
@@ -47,11 +53,10 @@ async function Db_ressources()
     server.get('/fftm', async function(req, res){
       res.send(fftm.listPoints);
     });
+    server.get('/ffinhabitants', async function(req, res){
+      res.send(ffinhabitants.listPoints);
+    });
 
-}
-
-function run()
-{
     // Gestion of pages
     server.get('/', function(req, res){
       res.render('index.html');
@@ -70,6 +75,13 @@ function run()
     });
     server.listen(port, address, function() {
         console.log('Listening to port:  ' + port);
+    });
+
+    // Gestion of formulaire
+    server.post('/carte.html', function(req, res){
+      var points = req.body.enseignes;
+      bdd.selectPoints(points);
+      res.render('carte.html');
     });
 }
 

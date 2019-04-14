@@ -4,6 +4,7 @@
 var tabOb = [];
 var tabFF = [];
 var tabTM = [];
+var tabIN = [];
 
 // Waiting for tabOb to be filled with datas
 function filledTabOb()
@@ -38,6 +39,17 @@ function filledTabTM()
   });
 }
 
+// Waiting for tabTM to be filled with datas
+function filledTabIN()
+{
+  return new Promise(resolve => {
+      setTimeout(() => {
+              while(tabIN.length == 0){}
+              resolve();
+      }, 1000);
+  });
+}
+
 // Correlation between obesity and states
 async function StringToTabOb()
 {
@@ -58,7 +70,6 @@ async function StringToTabOb()
     });
   });
 }
-
 
 // Correlation between fast food's number and states
 async function StringToTabFF()
@@ -102,7 +113,25 @@ async function StringToTabTM()
   });
 }
 
-
+async function StringToTabIN()
+{
+  $(document).ready(function(){
+    $.ajax({
+      method: "GET",
+      url: "/ffinhabitants",
+      dataType: "JSON",
+      success:function(data){
+        for (var i in data)
+        {
+          var state = data[i].State;
+          var quantity = parseFloat(data[i].Quantity);
+          tabIN.push([state,quantity]);
+        }
+        tabIN.sort();
+      }
+    });
+  });
+}
 
 async function scripchart_obesite_etat()
 {
@@ -220,6 +249,72 @@ async function scriptchart_tm_state()
   });
 
   showValues();
+}
+
+async function scriptchart_ff_inhabitants()
+{
+
+  tabEt = [];
+  tabValInhabitants = [];
+  tabValFF = [];
+  tabINST = [];
+
+  await filledTabIN();
+  await filledTabFF();
+
+  for(var i=3; i<tabIN.length;i++){
+    tabValInhabitants.push([tabIN[i][1]]);
+  }
+
+  for(var i=1; i<tabFF.length;i++){
+    tabValFF.push([tabFF[i][1]]);
+  }
+
+  for(var i=1; i<tabFF.length;i++){
+    tabEt.push([tabFF[i][0]]);
+  }
+
+  // calculs pour les données
+  for(var i=0;i<50;i++){
+    tabINST.push([tabValInhabitants[i]/tabValFF[i]]);
+  }
+
+  Highcharts.chart('ff_inhabitants', {
+    chart: {
+      type: 'cylinder',
+      options3d: {
+        enabled: true,
+        alpha: 15,
+        beta: 15,
+        depth: 50,
+        viewDistance: 25
+      }
+    },
+    title: {
+      text: 'Nombre de McDonald\'s par habitants dans chaque état'
+    },
+    plotOptions: {
+      series: {
+        depth: 45
+      }
+    },
+    xAxis: {
+        categories: tabEt
+    },
+    yAxis: {
+      title: {
+        text: 'Quantité'
+      }
+    },
+    series: [{
+      data: tabINST,
+      name: 'Cylinders',
+      color: '#eeba18',
+      showInLegend: false
+    }]
+  });
+
+
 }
 
 async function scriptchart_correlation()
