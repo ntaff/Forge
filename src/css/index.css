@@ -151,7 +151,7 @@ a {
         .site-navbar .site-navigation .site-menu > li > a:hover {
           color: #f16821; }
 
- 
+
 
 /* Page de garde */
 .site-blocks-cover {
@@ -208,3 +208,8 @@ a {
 
 .decouvrir p {
   color: white; }
+
+#food:hover {
+
+  -webkit-transform: scale(1.5);
+}
