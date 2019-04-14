@@ -209,7 +209,18 @@ a {
 .decouvrir p {
   color: white; }
 
-#food:hover {
 
-  -webkit-transform: scale(1.5);
-}
+  #food:hover {
+
+    animation: spinAround 2s linear infinite;
+
+  }
+
+  @keyframes spinAround {
+  	from {
+  		transform: rotate(0deg)
+  	}
+  	to {
+  		transform: rotate(360deg);
+  	}
+  }
