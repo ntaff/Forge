@@ -18,7 +18,7 @@ server.set('views', __dirname);
 
 var bodyParser = require('body-parser');
 server.use(bodyParser.json()); // support json encoded bodies
-server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+server.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 
 let bdd = new Points();
 var ob = new Points();
@@ -65,6 +65,7 @@ function run()
       res.render('index.html');
     });
     server.get('/carte.html', function(req, res){
+      bdd.currentListPoints = bdd.listPoints;
       res.render('carte.html');
     });
     server.get('/statistiques.html', function(req, res){
@@ -81,7 +82,7 @@ function run()
     server.post('/carte.html', function(req, res){
       var points = req.body.enseignes;
       bdd.selectPoints(points);
-      res.render('carte.html');
+      res.status(204).send();
     });
 }
 
