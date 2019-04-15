@@ -306,9 +306,11 @@ async function scriptchart_ff_inhabitants()
         text: 'Quantité'
       }
     },
+    tooltip: {
+      pointFormat: '<b>{point.y}</b>'
+    },
     series: [{
       data: tabINST,
-      name: 'Cylinders',
       color: '#eeba18',
       showInLegend: false
     }]
