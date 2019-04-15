@@ -22,7 +22,7 @@ function initMap()
     title: 'Move me~♥',
     zIndex:99999,
     draggable: true,
-    icon: {url:'images/icon_heart.png', scaledSize: new google.maps.Size(90, 90)}
+    icon: {url:'images/icon_person.png', scaledSize: new google.maps.Size(90, 90)}
   });
 
   new google.maps.event.addListener(point, 'dragend', function() {
