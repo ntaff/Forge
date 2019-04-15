@@ -21,8 +21,9 @@ function newMap(latMapCenter,lngMapCenter,latPoint,lngPoint,zoom)
     position: coordinatePointPosition,
     map: map,
     title: 'Move me~♥',
+    zIndex:99999,
     draggable: true,
-    //icon: {url:icons[iconCounter], scaledSize: new google.maps.Size(70, 70)}
+    icon: {url:'images/icon_heart.png', scaledSize: new google.maps.Size(90, 90)}
     //icon: {scaledSize: new google.maps.Size(70, 70)}
   });
 }
