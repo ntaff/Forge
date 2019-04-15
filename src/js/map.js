@@ -1,23 +1,42 @@
 var map;
+var point;
 
 function initMap()
 {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 41.0 , lng: -94.0},
-    zoom: 3
-  });
+  // Creating new Google Map
+  newMap(41.0,-94.0,41.0,-94.0,3);
   // Populate the Google Map API with Points
-  PopulateMap();
+  PopulateMap(14000, new google.maps.LatLng(41, -94));
 }
 
-async function PopulateMap()
+function newMap(latMapCenter,lngMapCenter,latPoint,lngPoint,zoom)
+{
+  var coordinateMapCenter = {lat: latMapCenter , lng: lngMapCenter};
+  var coordinatePointPosition = {lat: latPoint , lng: lngPoint};
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: coordinateMapCenter,
+    zoom: zoom
+  });
+  point = new google.maps.Marker({
+    position: coordinatePointPosition,
+    map: map,
+    title: 'Move me~♥',
+    draggable: true,
+    //icon: {url:icons[iconCounter], scaledSize: new google.maps.Size(70, 70)}
+    //icon: {scaledSize: new google.maps.Size(70, 70)}
+  });
+}
+
+// Parameter : radius : radius around the point in km
+async function PopulateMap(radius, pointCenter)
 {
       $(document).ready(function(){
         $.ajax({
           method: "GET",
           url: "/bdd",
           dataType: "JSON",
-          success:function(data){
+          success:function(data)
+          {
             var markers=[];
             for (var i in data)
             {
@@ -30,7 +49,13 @@ async function PopulateMap()
                 position: {lat: lat , lng: long},
                 title: point_name
                 });
-              markers.push(marker);
+
+              var a2 = new google.maps.LatLng(lat,long);
+
+              if((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius)
+              {
+                markers.push(marker);
+              }
             }
             var icon_cluster = {imagePath: 'images/clustermarker/m'};
             var markerCluster = new MarkerClusterer(map, markers, icon_cluster);
@@ -38,40 +63,3 @@ async function PopulateMap()
         });
       });
 }
-
-
-  /* How Google API works
-  var marker = new google.maps.Marker({
-  position: {lat: 43.918986, lng: 2.138034},
-  map: map,
-  title: 'Albi'
-  });
-  marker.setMap(map); */
-
-  /* Imports geopoint from CSV files
-  $.ajax({
-    url: '../data/burgerking.csv',
-    dataType: 'text',
-  }).done(successFunctionBK);
-
-  function successFunctionBK(data)
-  {
-    var allRows = data.split(/\r?\n|\r/);
-    for (var singleRow = 0; singleRow < allRows.length; singleRow++)
-    {
-      var rowCells = allRows[singleRow].split(',');
-      for (var rowCell = 0; rowCell < rowCells.length; rowCell=rowCell+2)
-      {
-        var marker = new google.maps.Marker({
-          position: {lat: parseFloat(rowCells[rowCell+1]) , lng: parseFloat(rowCells[rowCell])},
-          map: map,
-          title: 'BurgerKing'
-          });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-        marker.setMap(map);
-
-        //console.log(parseFloat(rowCells[rowCell]));
-        //console.log(rowCells[rowCell+1]);
-      }
-    }
-  } */

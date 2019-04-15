@@ -74,9 +74,9 @@
                               <div class="col-md-8 inputGroupContainer">
                                  <div class="input-group">
                                     <select class="selectpicker form-control" id="enseignes" multiple="multiple" name="enseignes">
-                                      <option value="Macdonald's">Mac Donald's</option>
-                                      <option value="Burger King's">Burger King</option>
-                                      <option value="Tim Horton's">Tim Horton's</option>
+                                      <option selected="selected" value="Macdonald's">Mac Donald's</option>
+                                      <option selected="selected" value="Burger King's">Burger King</option>
+                                      <option selected="selected" value="Tim Horton's">Tim Horton's</option>
                                     </select>
                                  </div>
                               </div>
@@ -163,13 +163,13 @@
                            <div class="form-group">
                               <label class="col-md-4 control-label">Latitude</label>
                               <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><input id="latitudePt" name="lat" placeholder="-34.58545" class="form-control" required="true" value="" type="text"></div>
+                                 <div class="input-group"><input id="latitudePt" name="lat" class="form-control" required="true" placeholder="41.0" value="41.0" type="text"></div>
                               </div>
                            </div>
                            <div class="form-group">
                               <label class="col-md-4 control-label">Longitude</label>
                               <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><input id="longitudePt" name="long" placeholder="150.64474" class="form-control" required="true" value="" type="text"></div>
+                                 <div class="input-group"><input id="longitudePt" name="long" class="form-control" required="true" placeholder="-94.0" value="-94.0" type="text"></div>
                               </div>
                            </div>
                         </fieldset>
@@ -187,8 +187,7 @@
       <script src="js/jquery.js"></script>
       <script src="js/map.js"></script>
       <script src="js/markerclusterer.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap"
-   async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap&libraries=geometry" async defer></script>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -261,7 +260,6 @@
   <script src="https://www.google.com/jsapi"></script>
   <script src="js/scriptchart.js"></script>
   <script>
-
       $(document).ready(function () {
         $("#update_map").on('click', function () {
           $.ajax({
@@ -269,16 +267,14 @@
              beforeSend: function ( xhr ) {
                  xhr.overrideMimeType("text/plain; charset=x-user-defined");
              }
-            }).done(function ( data, textStatus, jqXHR) {
+            }).done(function (data, textStatus, jqXHR) {
                 console.log(jqXHR.status);
                 if(jqXHR.status == 200)
                 {
-                  map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 41.0 , lng: -94.0},
-                    zoom: 3
-                  });
-                  PopulateMap();
-                } //handle your 204 or other status codes here
+                  newMap(map.getCenter().lat(),map.getCenter().lng(),point.getPosition().lat(), point.getPosition().lng(), map.getZoom());
+                  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
+                  PopulateMap($("#dist").slider('getValue'), pointCenter);
+                }
             });
         })
       });
