@@ -1,6 +1,6 @@
 
 $("#dist").slider().on('slideStop', function(ev){
-  newMap(map.getCenter().lat(),map.getCenter().lng(),point.getPosition().lat(), point.getPosition().lng(), map.getZoom());
+  removeMarkers();
   var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
   PopulateMap($("#dist").slider('getValue'), pointCenter);
 });
@@ -16,10 +16,10 @@ $(document).ready(function () {
           console.log(jqXHR.status);
           if(jqXHR.status == 200)
           {
-            newMap(map.getCenter().lat(),map.getCenter().lng(),point.getPosition().lat(), point.getPosition().lng(), map.getZoom());
+            removeMarkers();
             var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
             PopulateMap($("#dist").slider('getValue'), pointCenter);
-            //removeMarkers();
+
           }
       });
   })

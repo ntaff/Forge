@@ -5,37 +5,31 @@ var markerCluster;
 
 function initMap()
 {
-  // Creating new Google Map
-  newMap(41.0,-94.0,41.0,-94.0,3);
-  // Populate the Google Map API with Points
-  PopulateMap(14000, new google.maps.LatLng(41, -94));
-}
+  var coordinateMapCenter = {lat: 41.0 , lng: -94.0};
 
-function newMap(latMapCenter,lngMapCenter,latPoint,lngPoint,zoom)
-{
-  var coordinateMapCenter = {lat: latMapCenter , lng: lngMapCenter};
-  var coordinatePointPosition = {lat: latPoint , lng: lngPoint};
+  // Creating new Google Map
   map = new google.maps.Map(document.getElementById('map'), {
     center: coordinateMapCenter,
-    zoom: zoom
+    zoom: 3
   });
 
+  // Populate the Google Map API with Points
+  PopulateMap(14000, new google.maps.LatLng(41, -94));
+
   point = new google.maps.Marker({
-    position: coordinatePointPosition,
+    position: coordinateMapCenter,
     map: map,
     title: 'Move me~♥',
     zIndex:99999,
     draggable: true,
     icon: {url:'images/icon_heart.png', scaledSize: new google.maps.Size(90, 90)}
-    //icon: {scaledSize: new google.maps.Size(70, 70)}
   });
 
   new google.maps.event.addListener(point, 'dragend', function() {
-    newMap(map.getCenter().lat(),map.getCenter().lng(),point.getPosition().lat(), point.getPosition().lng(), map.getZoom());
+    removeMarkers();
     var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
     PopulateMap($("#dist").slider('getValue'), pointCenter);
   });
-
 }
 
 // Parameter : radius : radius around the point in km
@@ -77,13 +71,5 @@ async function PopulateMap(radius, pointCenter)
 
 function removeMarkers()
 {
-  for (var i=0; i < markerCluster.length; i++)
-  {
-    markerCluster[i].setMap(null);
-  }
-
-  for(var i=0; i < markers.length; i++)
-  {
-      markers[i].setMap(null);
-  }
+  markerCluster.clearMarkers();
 }
