@@ -1,5 +1,7 @@
 var map;
 var point;
+var markers=[];
+var markerCluster;
 
 function initMap()
 {
@@ -17,6 +19,7 @@ function newMap(latMapCenter,lngMapCenter,latPoint,lngPoint,zoom)
     center: coordinateMapCenter,
     zoom: zoom
   });
+
   point = new google.maps.Marker({
     position: coordinatePointPosition,
     map: map,
@@ -26,6 +29,13 @@ function newMap(latMapCenter,lngMapCenter,latPoint,lngPoint,zoom)
     icon: {url:'images/icon_heart.png', scaledSize: new google.maps.Size(90, 90)}
     //icon: {scaledSize: new google.maps.Size(70, 70)}
   });
+
+  new google.maps.event.addListener(point, 'dragend', function() {
+    newMap(map.getCenter().lat(),map.getCenter().lng(),point.getPosition().lat(), point.getPosition().lng(), map.getZoom());
+    var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
+    PopulateMap($("#dist").slider('getValue'), pointCenter);
+  });
+
 }
 
 // Parameter : radius : radius around the point in km
@@ -38,7 +48,7 @@ async function PopulateMap(radius, pointCenter)
           dataType: "JSON",
           success:function(data)
           {
-            var markers=[];
+            markers=[];
             for (var i in data)
             {
               var long = parseFloat(data[i].Longitude);
@@ -59,8 +69,21 @@ async function PopulateMap(radius, pointCenter)
               }
             }
             var icon_cluster = {imagePath: 'images/clustermarker/m'};
-            var markerCluster = new MarkerClusterer(map, markers, icon_cluster);
+            markerCluster = new MarkerClusterer(map, markers, icon_cluster);
           }
         });
       });
+}
+
+function removeMarkers()
+{
+  for (var i=0; i < markerCluster.length; i++)
+  {
+    markerCluster[i].setMap(null);
+  }
+
+  for(var i=0; i < markers.length; i++)
+  {
+      markers[i].setMap(null);
+  }
 }
