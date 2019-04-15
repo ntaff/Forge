@@ -5,6 +5,26 @@ $("#dist").slider().on('slideStop', function(ev){
   PopulateMap($("#dist").slider('getValue'), pointCenter);
 });
 
+$("#latitudePt").on('change', function(ev){
+  removeMarkers();
+  point.setPosition({
+      lat: parseFloat($("#latitudePt").val()),
+      lng: point.getPosition().lng()
+    });
+  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
+  PopulateMap($("#dist").slider('getValue'), pointCenter);
+});
+
+$("#longitudePt").on('change', function(ev){
+  removeMarkers();
+  point.setPosition({
+      lat: point.getPosition().lat(),
+      lng: parseFloat($("#longitudePt").val())
+    });
+  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
+  PopulateMap($("#dist").slider('getValue'), pointCenter);
+});
+
 $(document).ready(function () {
   $("#update_map").on('click', function () {
     $.ajax({

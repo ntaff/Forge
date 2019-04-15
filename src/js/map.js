@@ -14,7 +14,7 @@ function initMap()
   });
 
   // Populate the Google Map API with Points
-  PopulateMap(14000, new google.maps.LatLng(41, -94));
+  PopulateMap(500, new google.maps.LatLng(41, -94));
 
   point = new google.maps.Marker({
     position: coordinateMapCenter,
@@ -27,6 +27,8 @@ function initMap()
 
   new google.maps.event.addListener(point, 'dragend', function() {
     removeMarkers();
+    $("#latitudePt").val(point.getPosition().lat());
+    $("#longitudePt").val(point.getPosition().lng());
     var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
     PopulateMap($("#dist").slider('getValue'), pointCenter);
   });
