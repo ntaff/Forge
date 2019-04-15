@@ -7,11 +7,12 @@
     <meta name="keywords" content="forge" />
     <meta name="author" content="Nicolas Taffoureau - Quentin Omel - Ian Jammes" />
 
-    <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/dock.css"/>
     <link rel="stylesheet" href="css/footer.css"/>
     <link rel="stylesheet" href="css/bootstrap-slider.css"/>
+    <link rel="stylesheet" href="css/statistiques.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   </head>
 
 <body>
@@ -46,15 +47,100 @@
     </nav>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
   <div class="row">
     <div class="col-6" id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
     <div class="col">
-      <div class="container">
-
-      </div>
        <div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
     </div>
   </div>
+
+ -->
+<div id="my_carousel" class="carousel slide" data-ride="carousel">
+  <!-- Bulles -->
+  <ol class="carousel-indicators">
+    <li data-target="#my_carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#my_carousel" data-slide-to="1"></li>
+    <li data-target="#my_carousel" data-slide-to="2"></li>
+    <li data-target="#my_carousel" data-slide-to="3"></li>
+  </ol>
+  <!-- Slides -->
+  <div class="carousel-inner">
+
+    <!-- Page 1 -->
+    <div class="item active">  
+      <div class="carousel-page">
+        <div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+      </div> 
+    </div>   
+
+    <!-- Page 2 -->
+    <div class="item"> 
+      <div class="carousel-page">
+         <div id="obesiteEtat" style="width: : 270px; height: 520px; margin: 0 auto"></div>
+          <div style="width: 160px; display: block; margin: auto; ">
+            <button id="plain" style="height: 30px; width: 60px; background-color: #08b22a; border: none; color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Plain</button>
+            <button id="inverted" style="height: 30px; width: 60px; background-color: #08b22a; border: none; color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Inverted</button>
+  </div>
+      </div> 
+    </div>  
+
+    <!-- Page 3 -->
+    <div class="item">  
+      <div class="carousel-page">
+        <div id="fftm" style="min-width: 310px; height: 600px; margin: 0 auto;"></div>
+      </div>  
+    </div>     
+ 
+
+  <!-- Page 4 -->
+    <div class="item">  
+      <div class="carousel-page">
+        <div id="ff_inhabitants" style="min-width: 310px; height: 600px; margin: 0 auto;"></div>
+      </div>  
+    </div>   
+     </div>  
+  </div>
+
+  <!-- Contrôles -->
+  <a class="left carousel-control" href="#my_carousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#my_carousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
   <div id="dockContainer">
   <div id="dockWrapper">
@@ -115,19 +201,35 @@
       </div>
     </footer>
 
+
+
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/drilldown.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/cylinder.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/scriptchart.js"></script>
 <script src="js/stats.js"></script>
 <script>
     StringToTabOb();
     StringToTabFF();
+    StringToTabTM();
+    StringToTabIN();
+    // Geochart United States's states Obesity
+    google.charts.load({'packages':['geochart']});
+    google.charts.setOnLoadCallback(geochartObesityUS);
+    scripchart_obesite_etat();
     scriptchart_correlation();
+    scriptchart_tm_state();
+    scriptchart_ff_inhabitants();
 </script>
 
 </html>
