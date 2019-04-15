@@ -44,3 +44,8 @@ $(document).ready(function () {
       });
   })
 });
+
+
+  $("#etats").on('change', function () {
+    //insert code here
+  });

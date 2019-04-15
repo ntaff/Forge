@@ -27,11 +27,15 @@ function initMap()
 
   new google.maps.event.addListener(point, 'dragend', function() {
     removeMarkers();
+    getPointAddress(point);
     $("#latitudePt").val(point.getPosition().lat());
     $("#longitudePt").val(point.getPosition().lng());
     var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
     PopulateMap($("#dist").slider('getValue'), pointCenter);
   });
+
+  // Show in console State's Point
+  getPointAddress(point);
 }
 
 // Parameter : radius : radius around the point in km
@@ -50,10 +54,10 @@ async function PopulateMap(radius, pointCenter)
               var long = parseFloat(data[i].Longitude);
               var lat = parseFloat(data[i].Latitude);
               var point_name = data[i].Name;
-
+              var position =  {lat: lat , lng: long};
               // Add geopoint on Google Map API
               var marker = new google.maps.Marker({
-                position: {lat: lat , lng: long},
+                position: position,
                 title: point_name
                 });
 
@@ -69,6 +73,41 @@ async function PopulateMap(radius, pointCenter)
           }
         });
       });
+}
+
+function reverseGeocoding(latlng)
+{
+  return new Promise(resolve => {
+      setTimeout(() => {
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK)
+          {
+            if (results[0])
+            {
+              console.log(results[0].formatted_address);
+              var adresses = results[0].formatted_address.split(',');
+              var state = adresses[(adresses.length-2)%adresses.length].split(' ');
+              resolve(state[(state.length-2)%state.length]);
+            } else {
+              resolve("Nooope ~♥");
+            }
+          } else {
+            resolve("Nooope ~♥");
+          }
+        });
+      }, 0);
+  });
+}
+
+async function getPointAddress(marker)
+{
+  var lat = marker.getPosition().lat();
+  var lng = marker.getPosition().lng();
+  var latlng = {lat: lat, lng: lng};
+  var state = await reverseGeocoding(latlng);
+  console.log(state);
+  return state;
 }
 
 function removeMarkers()
