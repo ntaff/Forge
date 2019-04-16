@@ -197,48 +197,62 @@
       <script src="js/markerclusterer.js"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap&libraries=geometry" async defer></script>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-5 mr-auto">
-                <h2 class="footer-heading mb-4">Qui sommes nous</h2>
-                <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion.
-                Nous avons réalisé ce site dans le cadre de l'UE Technologie du Web 3.</p>
-              </div>
+      <!--Footer -->
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-5 mr-auto">
+                  <h2 class="footer-heading mb-4">Qui sommes nous</h2>
+                  <p>Nous sommes trois étudiants en dernière année de licence informatique à l'Institut National Universitaire Jean-François Champollion.
+                  Nous avons réalisé ce site dans le cadre de l'UE Technologie du Web 3.</p>
+                </div>
+                <div class="col-md-3">
+                  <h2 class="footer-heading mb-4">Liens</h2>
+                  <ul class="list-unstyled">
+                    <li><a class="js-scrollTo" href="index.html">Accueil</a></li>
+                    <li><a class="js-scrollTo" href="#apropos">A propos</a></li>
+                    <li><a class="js-scrollTo" href="#decouvrir">Découvrir</a></li>
+                    <li><a class="js-scrollTo" href="carte.html">Cartes</a></li>
+                    <li><a class="js-scrollTo" href="statistiques.html">Statistiques</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <h2 class="footer-heading mb-4">Suivez nous !</h2>
+                  <a href="https://www.linkedin.com/in/nicolas-taffoureau-66a717109/" class="pl-0 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+                  <a href="https://www.linkedin.com/in/quentin-g%C3%A9rome-omel-28b994151/" class="pl-2 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+                  <a href="https://www.linkedin.com/in/ian-jammes-sanz-4084b6183/" class="pl-2 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
 
-              <div class="col-md-3">
-                <h2 class="footer-heading mb-4">Liens</h2>
-                <ul class="list-unstyled">
-                  <li><a class="js-scrollTo" href="index.html">Accueil</a></li>
-                  <li><a class="js-scrollTo" href="index.html/#apropos">A propos</a></li>
-                  <li><a class="js-scrollTo" href="index.html/#decouvrir">Découvrir</a></li>
-                  <li><a class="js-scrollTo" href="carte.html">Cartes</a></li>
-                  <li><a class="js-scrollTo" href="statistiques.html">Statistiques</a></li>
-                </ul>
+                  <h2 id="don" class="footer-heading mb-4">Faire un don !</h2>
+                  <div id="copy">
+                    <a href="#don">
+                   <img id="food"
+                      src="images/bitcoin.svg"
+                      alt="pizza"
+                      height="90"
+                      width="90" /></a>
+                  </br>  <span class="copiedtext" id="copie" aria-hidden="true">Adresse copiée !</span>
+                  </div>
+                </div>
+
               </div>
-              <div class="col-md-3">
-                <h2 class="footer-heading mb-4">Suivez nous !</h2>
-                <a href="https://www.linkedin.com/in/nicolas-taffoureau-66a717109/" class="pl-0 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
-                <a href="https://www.linkedin.com/in/quentin-g%C3%A9rome-omel-28b994151/" class="pl-2 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
-                <a href="https://www.linkedin.com/in/ian-jammes-sanz-4084b6183/" class="pl-2 pr-2"><img src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
+            </div>
+          </div>
+
+          <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+              <div class="border-top pt-5">
+                <p>
+                <small class="block">&copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small>
+                </p>
+                <textarea id="to-copy" spellcheck="false" style="opacity:0;">1D32roggyCHCyS8TiG9W9JCxUK7LBVcKVp</textarea>
               </div>
             </div>
           </div>
         </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p>
-              <small class="block"> &copy; 2019 Nicolas Taffoureau - Quentin Omel - Ian Jammes</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+      <!--Fin Footer -->
 
     <div id="dockContainer">
     <div id="dockWrapper">
@@ -268,6 +282,7 @@
   <script src="https://www.google.com/jsapi"></script>
   <script src="js/scriptchart.js"></script>
   <script src="js/events.js"></script>
+  <script src="js/don.js"></script>
   <script>
       StringToTabOb();
       // Geochart United States's states Obesity
