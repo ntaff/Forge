@@ -5,9 +5,15 @@ function repopulateMap()
   PopulateMap($("#dist").slider('getValue'), pointCenter);
 }
 
-$("#dist").slider().on('slideStop', function(ev){
-  repopulateMap();
-});
+function sliderEvent()
+{
+  $("#dist").slider().on('slideStop', function(ev){
+    repopulateMap();
+    $('#dist').unbind();
+    setTimeout(function(){sliderEvent();}, 500);
+  });
+}
+sliderEvent();
 
 $("#latitudePt").on('change', function(ev){
   point.setPosition({
@@ -23,23 +29,6 @@ $("#longitudePt").on('change', function(ev){
       lng: parseFloat($("#longitudePt").val())
     });
   repopulateMap();
-});
-
-$(document).ready(function () {
-  $("#update_map").on('click', function () {
-    $.ajax({
-       url: "/bdd",
-       beforeSend: function ( xhr ) {
-           xhr.overrideMimeType("text/plain; charset=x-user-defined");
-       }
-      }).done(function (data, textStatus, jqXHR) {
-          console.log(jqXHR.status);
-          if(jqXHR.status == 200)
-          {
-            repopulateMap();
-          }
-      });
-  })
 });
 
 $("#enseignes").on('change', function () {

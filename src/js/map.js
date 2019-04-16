@@ -70,7 +70,7 @@ async function PopulateMap(radius, pointCenter)
 
               if((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius)
               {
-                addInfoWindow(marker,contentString);
+                //addInfoWindow(marker,contentString);
                 markers.push(marker);
               }
             }
