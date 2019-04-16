@@ -19,3 +19,24 @@
   .site-footer .footer-heading {
     font-size: 16px;
     color: #fff; }
+
+#don{
+
+  margin-top:30px;
+}
+
+.copiedtext {
+  opacity: 0;
+  transform: translateY(-1em);
+  color: #000;
+  transition: all .500s;
+}
+.copied .copiedtext {
+  opacity: 1;
+  transform: translateY(-2em);
+}
+
+#copie{
+  color:#FFFF;
+  text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
+}

@@ -1,0 +1,69 @@
+Front-End
+
+	Fait
+
+		- Index.html (Fini)
+		- Footer
+		- Dock de navigation
+		- Navbar
+
+	A Faire
+
+		- Finir pages carte et stats
+		- Paufiner les détails
+
+
+Données
+
+	Fait
+
+		- Gestion des données
+		- Backend
+
+
+	A Faire
+
+		- Rajouter les fonctions d'ajout, de modif et de suppression (async) 
+		- Upload en ligne
+
+
+Formulaires
+
+	Fait
+
+		- Recupération des données par type
+		- Recupération des données situées à X km du point
+
+
+	A Faire
+
+		- Recupération des données par état
+		- Truc pour afficher tout les points
+
+
+Affichage Cartographique
+
+	Fait
+
+		- Afficher les points en fonction des formulaires
+		- Afficher un point spécial de référence
+		- Clusteriser les points
+
+
+	A Faire
+
+		- Popups (Type, Adresse, commentaires, notes)
+		- 
+
+
+Affichage Statistique
+
+	Fait
+
+		- Affichage du carousel de stats
+		- Graphiques fait (5)
+
+
+	A Faire
+
+		- Ajouter plus d'interactivité
