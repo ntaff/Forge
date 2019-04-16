@@ -1,202 +1,202 @@
 [
   {
-    "etat": "Alabama",
-    "value": 36.3
+    "Etat": "Alabama",
+    "Value": 36.3
   },
   {
-    "etat": "Alaska",
-    "value": 34.2
+    "Etat": "Alaska",
+    "Value": 34.2
   },
   {
-    "etat": "Arizona",
-    "value": 29.5
+    "Etat": "Arizona",
+    "Value": 29.5
   },
   {
-    "etat": "Arkansas",
-    "value": 35
+    "Etat": "Arkansas",
+    "Value": 35
   },
   {
-    "etat": "California",
-    "value": 25.1
+    "Etat": "California",
+    "Value": 25.1
   },
   {
-    "etat": "Colorado",
-    "value": 22.6
+    "Etat": "Colorado",
+    "Value": 22.6
   },
   {
-    "etat": "Connecticut",
-    "value": 26.9
+    "Etat": "Connecticut",
+    "Value": 26.9
   },
   {
-    "etat": "Delaware",
-    "value": 31.8
+    "Etat": "Delaware",
+    "Value": 31.8
   },
   {
-    "etat": "Florida",
-    "value": 28.4
+    "Etat": "Florida",
+    "Value": 28.4
   },
   {
-    "etat": "Georgia",
-    "value": 31.6
+    "Etat": "Georgia",
+    "Value": 31.6
   },
   {
-    "etat": "Hawaii",
-    "value": 23.8
+    "Etat": "Hawaii",
+    "Value": 23.8
   },
   {
-    "etat": "Idaho",
-    "value": 29.3
+    "Etat": "Idaho",
+    "Value": 29.3
   },
   {
-    "etat": "Illinois",
-    "value": 31.1
+    "Etat": "Illinois",
+    "Value": 31.1
   },
   {
-    "etat": "Indiana",
-    "value": 33.6
+    "Etat": "Indiana",
+    "Value": 33.6
   },
   {
-    "etat": "Iowa",
-    "value": 36.4
+    "Etat": "Iowa",
+    "Value": 36.4
   },
   {
-    "etat": "Kansas",
-    "value": 32.4
+    "Etat": "Kansas",
+    "Value": 32.4
   },
   {
-    "etat": "Kentucky",
-    "value": 34.3
+    "Etat": "Kentucky",
+    "Value": 34.3
   },
   {
-    "etat": "Louisiana",
-    "value": 36.2
+    "Etat": "Louisiana",
+    "Value": 36.2
   },
   {
-    "etat": "Maine",
-    "value": 29.1
+    "Etat": "Maine",
+    "Value": 29.1
   },
   {
-    "etat": "Maryland",
-    "value": 31.3
+    "Etat": "Maryland",
+    "Value": 31.3
   },
   {
-    "etat": "Massachusetts",
-    "value": 25.9
+    "Etat": "Massachusetts",
+    "Value": 25.9
   },
   {
-    "etat": "Michigan",
-    "value": 32.3
+    "Etat": "Michigan",
+    "Value": 32.3
   },
   {
-    "etat": "Minnesota",
-    "value": 28.4
+    "Etat": "Minnesota",
+    "Value": 28.4
   },
   {
-    "etat": "Mississippi",
-    "value": 37.3
+    "Etat": "Mississippi",
+    "Value": 37.3
   },
   {
-    "etat": "Missouri",
-    "value": 32.5
+    "Etat": "Missouri",
+    "Value": 32.5
   },
   {
-    "etat": "Montana",
-    "value": 25.3
+    "Etat": "Montana",
+    "Value": 25.3
   },
   {
-    "etat": "Nebraska",
-    "value": 32.8
+    "Etat": "Nebraska",
+    "Value": 32.8
   },
   {
-    "etat": "Nevada",
-    "value": 26.7
+    "Etat": "Nevada",
+    "Value": 26.7
   },
   {
-    "etat": "New Hampshire",
-    "value": 28.1
+    "Etat": "New Hampshire",
+    "Value": 28.1
   },
   {
-    "etat": "New Jersey",
-    "value": 27.3
+    "Etat": "New Jersey",
+    "Value": 27.3
   },
   {
-    "etat": "New Mexico",
-    "value": 28.4
+    "Etat": "New Mexico",
+    "Value": 28.4
   },
   {
-    "etat": "New York",
-    "value": 25.7
+    "Etat": "New York",
+    "Value": 25.7
   },
   {
-    "etat": "North Carolina",
-    "value": 32.1
+    "Etat": "North Carolina",
+    "Value": 32.1
   },
   {
-    "etat": "North Dakota",
-    "value": 33.2
+    "Etat": "North Dakota",
+    "Value": 33.2
   },
   {
-    "etat": "Ohio",
-    "value": 33.8
+    "Etat": "Ohio",
+    "Value": 33.8
   },
   {
-    "etat": "Oklahoma",
-    "value": 36.5
+    "Etat": "Oklahoma",
+    "Value": 36.5
   },
   {
-    "etat": "Oregon",
-    "value": 29.4
+    "Etat": "Oregon",
+    "Value": 29.4
   },
   {
-    "etat": "Pennsylvania",
-    "value": 31.6
+    "Etat": "Pennsylvania",
+    "Value": 31.6
   },
   {
-    "etat": "Rhode Island",
-    "value": 30
+    "Etat": "Rhode Island",
+    "Value": 30
   },
   {
-    "etat": "South Carolina",
-    "value": 34.1
+    "Etat": "South Carolina",
+    "Value": 34.1
   },
   {
-    "etat": "South Dakota",
-    "value": 31.9
+    "Etat": "South Dakota",
+    "Value": 31.9
   },
   {
-    "etat": "Tennessee",
-    "value": 32.8
+    "Etat": "Tennessee",
+    "Value": 32.8
   },
   {
-    "etat": "Texas",
-    "value": 33
+    "Etat": "Texas",
+    "Value": 33
   },
   {
-    "etat": "Utah",
-    "value": 25.3
+    "Etat": "Utah",
+    "Value": 25.3
   },
   {
-    "etat": "Vermont",
-    "value": 27.6
+    "Etat": "Vermont",
+    "Value": 27.6
   },
   {
-    "etat": "Virginia",
-    "value": 30.1
+    "Etat": "Virginia",
+    "Value": 30.1
   },
   {
-    "etat": "Washington",
-    "value": 27.7
+    "Etat": "Washington",
+    "Value": 27.7
   },
   {
-    "etat": "West Virginia",
-    "value": 38.1
+    "Etat": "West Virginia",
+    "Value": 38.1
   },
   {
-    "etat": "Wisconsin",
-    "value": 32
+    "Etat": "Wisconsin",
+    "Value": 32
   },
   {
-    "etat": "Wyoming",
-    "value": 28.8
+    "Etat": "Wyoming",
+    "Value": 28.8
   }
 ]
