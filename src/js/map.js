@@ -27,13 +27,18 @@ function initMap()
   });
 
   google.maps.event.addListener(point, 'dragend', async function() {
-    removeMarkers();
-    $("#adressPoint").val(await getPointAddress(point));
-    getPointAddress(point);
-    $("#latitudePt").val(point.getPosition().lat());
-    $("#longitudePt").val(point.getPosition().lng());
-    var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-    PopulateMap($("#dist").slider('getValue'), pointCenter);
+      var boolDisplayAll = $("#afficherall").is(":checked");
+      if(!boolDisplayAll)
+      {
+        removeMarkers();
+        $("#adressPoint").val(await getPointAddress(point));
+        var lat = point.getPosition().lat();
+        var lng = point.getPosition().lng();
+        $("#latitudePt").val(lat);
+        $("#longitudePt").val(lng);
+        var pointCenter = new google.maps.LatLng(lat, lng);
+        PopulateMap($("#dist").slider('getValue'), pointCenter, false);
+      }
   });
 
   // Show in console State's Point
@@ -41,7 +46,7 @@ function initMap()
 }
 
 // Parameter : radius : radius around the point in km
-async function PopulateMap(radius, pointCenter)
+async function PopulateMap(radius, pointCenter, boolDisplayAll)
 {
       $(document).ready(function(){
         $.ajax({
@@ -66,7 +71,7 @@ async function PopulateMap(radius, pointCenter)
 
               var a2 = new google.maps.LatLng(lat,long);
 
-              if((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius)
+              if(((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) || boolDisplayAll == true)
               {
                 addInfoWindow(marker);
                 markers.push(marker);

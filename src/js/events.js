@@ -2,7 +2,8 @@ function repopulateMap()
 {
   removeMarkers();
   var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-  PopulateMap($("#dist").slider('getValue'), pointCenter);
+  var boolDisplayAll = $("#afficherall").is(":checked");
+  PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
 }
 
 function sliderEvent()
@@ -45,6 +46,10 @@ $("#enseignes").on('change', function () {
           repopulateMap();
         }
     });
+});
+
+$("#afficherall").on('click', function () {
+  repopulateMap();
 });
 
 $("#etats").on('change', function () {
