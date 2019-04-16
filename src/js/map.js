@@ -26,8 +26,9 @@ function initMap()
     icon: {url:'images/pin2.svg', scaledSize: new google.maps.Size(50, 50)}
   });
 
-  google.maps.event.addListener(point, 'dragend', function() {
+  google.maps.event.addListener(point, 'dragend', async function() {
     removeMarkers();
+    $("#adressPoint").val(await getPointAddress(point));
     getPointAddress(point);
     $("#latitudePt").val(point.getPosition().lat());
     $("#longitudePt").val(point.getPosition().lng());
@@ -106,7 +107,7 @@ async function getPointAddress(marker)
   var lng = marker.getPosition().lng();
   var latlng = {lat: lat, lng: lng};
   var state = await reverseGeocoding(latlng);
-  console.log(state);
+  //console.log(state);
   return state;
 }
 
