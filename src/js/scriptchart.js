@@ -216,22 +216,10 @@ async function scriptchart_tm_state()
   var chart = Highcharts.chart('fftm',{
       chart: {
           renderTo: 'container',
-          type: 'column',
-          options3d: {
-              enabled: true,
-              alpha: 15,
-              beta: 15,
-              depth: 50,
-              viewDistance: 25
-          }
+          type: 'column'
       },
       title: {
           text: 'Nombre de Tim Hortons par états'
-      },
-      plotOptions: {
-          column: {
-              depth: 25
-          }
       },
       legend: {
         enabled: false
@@ -281,22 +269,10 @@ async function scriptchart_ff_inhabitants()
 
   Highcharts.chart('ff_inhabitants', {
     chart: {
-      type: 'cylinder',
-      options3d: {
-        enabled: true,
-        alpha: 15,
-        beta: 15,
-        depth: 50,
-        viewDistance: 25
-      }
+      type: 'cylinder'
     },
     title: {
       text: 'Nombre de McDonald\'s par habitants dans chaque état'
-    },
-    plotOptions: {
-      series: {
-        depth: 45
-      }
     },
     xAxis: {
         categories: tabEt
@@ -327,7 +303,8 @@ async function scriptchart_correlation()
   // Creation of the chart
   Highcharts.chart('container', {
     chart: {
-      type: 'column'
+      type: 'column',
+      zoomType: 'x'
     },
     title: {
       text: "Corrélation entre le nombre de fast food et le taux d'obésité par états"
