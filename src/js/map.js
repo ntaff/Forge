@@ -27,17 +27,11 @@ function initMap()
   });
 
   google.maps.event.addListener(point, 'dragend', async function() {
-      var boolDisplayAll = $("#afficherall").is(":checked");
-      if(!boolDisplayAll)
-      {
-        removeMarkers();
-        var lat = point.getPosition().lat();
-        var lng = point.getPosition().lng();
-        $("#latitudePt").val(lat);
-        $("#longitudePt").val(lng);
-        var pointCenter = new google.maps.LatLng(lat, lng);
-        PopulateMap($("#dist").slider('getValue'), pointCenter, false);
-      }
+      repopulateMap(false);
+      var lat = point.getPosition().lat();
+      var lng = point.getPosition().lng();
+      $("#latitudePt").val(lat);
+      $("#longitudePt").val(lng);
       setAdressPoint();
   });
 
@@ -71,7 +65,7 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
 
               var a2 = new google.maps.LatLng(lat,long);
 
-              if(((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) || boolDisplayAll == true)
+              if(((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) || boolDisplayAll)
               {
                 addInfoWindow(marker);
                 markers.push(marker);
@@ -82,6 +76,19 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
           }
         });
       });
+}
+
+function repopulateMap(special)
+{
+  var boolDisplayAll = getBoolDisplayAll();
+  if(!boolDisplayAll || special)
+  {
+    removeMarkers();
+    var lat = point.getPosition().lat();
+    var lng = point.getPosition().lng();
+    var pointCenter = new google.maps.LatLng(lat, lng);
+    PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
+  }
 }
 
 function reverseGeocoding(latlng)
@@ -112,7 +119,6 @@ async function getPointAddress(marker)
   var lng = marker.getPosition().lng();
   var latlng = {lat: lat, lng: lng};
   var state = await reverseGeocoding(latlng);
-  //console.log(state);
   return state;
 }
 
@@ -135,6 +141,11 @@ function hideLastInfoWindow(infowindow)
     lastWindow.close();
   }
   lastWindow=infowindow;
+}
+
+function getBoolDisplayAll()
+{
+  return $("#afficherall").is(":checked");
 }
 
 async function setAdressPoint()

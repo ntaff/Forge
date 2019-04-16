@@ -1,15 +1,7 @@
-function repopulateMap()
-{
-  removeMarkers();
-  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-  var boolDisplayAll = $("#afficherall").is(":checked");
-  PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
-}
-
 function sliderEvent()
 {
   $("#dist").slider().on('slideStop', function(ev){
-    repopulateMap();
+    repopulateMap(false);
     $('#dist').unbind();
     setTimeout(function(){sliderEvent();}, 500);
   });
@@ -21,7 +13,8 @@ $("#latitudePt").on('change', function(ev){
       lat: parseFloat($("#latitudePt").val()),
       lng: point.getPosition().lng()
     });
-  repopulateMap();
+  repopulateMap(false);
+  setAdressPoint();
 });
 
 $("#longitudePt").on('change', function(ev){
@@ -29,7 +22,8 @@ $("#longitudePt").on('change', function(ev){
       lat: point.getPosition().lat(),
       lng: parseFloat($("#longitudePt").val())
     });
-  repopulateMap();
+  repopulateMap(false);
+  setAdressPoint();
 });
 
 $("#enseignes").on('change', function () {
@@ -43,13 +37,13 @@ $("#enseignes").on('change', function () {
         console.log(jqXHR.status);
         if(jqXHR.status == 200)
         {
-          repopulateMap();
+          repopulateMap(true);
         }
     });
 });
 
 $("#afficherall").on('click', function () {
-  repopulateMap();
+  repopulateMap(true);
 });
 
 $("#etats").on('change', function () {
