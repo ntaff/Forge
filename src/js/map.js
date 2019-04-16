@@ -31,7 +31,6 @@ function initMap()
       if(!boolDisplayAll)
       {
         removeMarkers();
-        $("#adressPoint").val(await getPointAddress(point));
         var lat = point.getPosition().lat();
         var lng = point.getPosition().lng();
         $("#latitudePt").val(lat);
@@ -39,10 +38,11 @@ function initMap()
         var pointCenter = new google.maps.LatLng(lat, lng);
         PopulateMap($("#dist").slider('getValue'), pointCenter, false);
       }
+      setAdressPoint();
   });
 
-  // Show in console State's Point
-  getPointAddress(point);
+  // Set Adress Point
+  setAdressPoint();
 }
 
 // Parameter : radius : radius around the point in km
@@ -135,6 +135,11 @@ function hideLastInfoWindow(infowindow)
     lastWindow.close();
   }
   lastWindow=infowindow;
+}
+
+async function setAdressPoint()
+{
+  $("#adressPoint").val(await getPointAddress(point));
 }
 
 function removeMarkers()
