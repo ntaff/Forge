@@ -2,6 +2,7 @@ var map;
 var point;
 var markers=[];
 var markerCluster;
+var lastWindow=null;
 
 function initMap()
 {
@@ -50,10 +51,6 @@ async function PopulateMap(radius, pointCenter)
           {
             markers=[];
             // Popup settings
-            var contentString = "Coucou toi ~♥";
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString
-            });
             for (var i in data)
             {
               var long = parseFloat(data[i].Longitude);
@@ -70,7 +67,7 @@ async function PopulateMap(radius, pointCenter)
 
               if((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius)
               {
-                //addInfoWindow(marker,contentString);
+                addInfoWindow(marker);
                 markers.push(marker);
               }
             }
@@ -91,10 +88,7 @@ function reverseGeocoding(latlng)
           {
             if (results[0])
             {
-              console.log(results[0].formatted_address);
-              var adresses = results[0].formatted_address.split(',');
-              var state = adresses[(adresses.length-2)%adresses.length].split(' ');
-              resolve(state[(state.length-2)%state.length]);
+              resolve(results[0].formatted_address);
             } else {
               resolve("Nooope ~♥");
             }
@@ -116,13 +110,25 @@ async function getPointAddress(marker)
   return state;
 }
 
-function addInfoWindow(marker, content) {
-    var infoWindow = new google.maps.InfoWindow({
-        content: content
-    });
-    google.maps.event.addListener(marker, 'click', function () {
+async function addInfoWindow(marker)
+{
+    google.maps.event.addListener(marker, 'click', async function () {
+        var content = await getPointAddress(marker);
+        var infoWindow = new google.maps.InfoWindow({
+            content: content
+        });
+        hideLastInfoWindow(infoWindow);
         infoWindow.open(map, marker);
     });
+}
+
+function hideLastInfoWindow(infowindow)
+{
+  if(lastWindow != null)
+  {
+    lastWindow.close();
+  }
+  lastWindow=infowindow;
 }
 
 function removeMarkers()
