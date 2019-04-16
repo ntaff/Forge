@@ -25,7 +25,7 @@ function initMap()
     icon: {url:'images/pin2.svg', scaledSize: new google.maps.Size(50, 50)}
   });
 
-  new google.maps.event.addListener(point, 'dragend', function() {
+  google.maps.event.addListener(point, 'dragend', function() {
     removeMarkers();
     getPointAddress(point);
     $("#latitudePt").val(point.getPosition().lat());
@@ -49,6 +49,11 @@ async function PopulateMap(radius, pointCenter)
           success:function(data)
           {
             markers=[];
+            // Popup settings
+            var contentString = "Coucou toi ~♥";
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
             for (var i in data)
             {
               var long = parseFloat(data[i].Longitude);
@@ -65,6 +70,7 @@ async function PopulateMap(radius, pointCenter)
 
               if((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius)
               {
+                addInfoWindow(marker,contentString);
                 markers.push(marker);
               }
             }
@@ -108,6 +114,15 @@ async function getPointAddress(marker)
   var state = await reverseGeocoding(latlng);
   console.log(state);
   return state;
+}
+
+function addInfoWindow(marker, content) {
+    var infoWindow = new google.maps.InfoWindow({
+        content: content
+    });
+    google.maps.event.addListener(marker, 'click', function () {
+        infoWindow.open(map, marker);
+    });
 }
 
 function removeMarkers()

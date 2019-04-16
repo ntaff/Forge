@@ -1,28 +1,28 @@
-
-$("#dist").slider().on('slideStop', function(ev){
+function repopulateMap()
+{
   removeMarkers();
   var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
   PopulateMap($("#dist").slider('getValue'), pointCenter);
+}
+
+$("#dist").slider().on('slideStop', function(ev){
+  repopulateMap();
 });
 
 $("#latitudePt").on('change', function(ev){
-  removeMarkers();
   point.setPosition({
       lat: parseFloat($("#latitudePt").val()),
       lng: point.getPosition().lng()
     });
-  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-  PopulateMap($("#dist").slider('getValue'), pointCenter);
+  repopulateMap();
 });
 
 $("#longitudePt").on('change', function(ev){
-  removeMarkers();
   point.setPosition({
       lat: point.getPosition().lat(),
       lng: parseFloat($("#longitudePt").val())
     });
-  var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-  PopulateMap($("#dist").slider('getValue'), pointCenter);
+  repopulateMap();
 });
 
 $(document).ready(function () {
@@ -36,16 +36,28 @@ $(document).ready(function () {
           console.log(jqXHR.status);
           if(jqXHR.status == 200)
           {
-            removeMarkers();
-            var pointCenter = new google.maps.LatLng(point.getPosition().lat(), point.getPosition().lng());
-            PopulateMap($("#dist").slider('getValue'), pointCenter);
-
+            repopulateMap();
           }
       });
   })
 });
 
+$("#enseignes").on('change', function () {
+  $.post("/carte.html", $("#enseignes").serialize());
+  $.ajax({
+     url: "/bdd",
+     beforeSend: function ( xhr ) {
+         xhr.overrideMimeType("text/plain; charset=x-user-defined");
+     }
+    }).done(function (data, textStatus, jqXHR) {
+        console.log(jqXHR.status);
+        if(jqXHR.status == 200)
+        {
+          repopulateMap();
+        }
+    });
+});
 
-  $("#etats").on('change', function () {
-    //insert code here
-  });
+$("#etats").on('change', function () {
+  //insert code here
+});
