@@ -144,6 +144,9 @@ async function scripchart_obesite_etat()
   }
 
   var chart = Highcharts.chart('obesiteEtat', {
+    chart: {
+         zoomType: 'x'
+    },
     title: {
       text: 'Taux d\'obésité par états (en %)'
     },
@@ -216,7 +219,8 @@ async function scriptchart_tm_state()
   var chart = Highcharts.chart('fftm',{
       chart: {
           renderTo: 'container',
-          type: 'column'
+          type: 'column',
+          zoomType: 'x'
       },
       title: {
           text: 'Nombre de Tim Hortons par états'
@@ -269,10 +273,11 @@ async function scriptchart_ff_inhabitants()
 
   Highcharts.chart('ff_inhabitants', {
     chart: {
-      type: 'cylinder'
+      type: 'cylinder',
+      zoomType: 'x'
     },
     title: {
-      text: 'Nombre de McDonald\'s par habitants dans chaque état'
+      text: 'Nombre d\'habitants par McDonald\'s dans chaque état'
     },
     xAxis: {
         categories: tabEt
