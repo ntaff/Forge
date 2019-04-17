@@ -68,9 +68,6 @@ async function run()
       bdd.currentListPoints = bdd.listPoints;
       res.render('engine.html');
     });
-    server.get('/statistiques.html', function(req, res){
-      res.render('statistiques.html');
-    });
     server.get('/scriptchart_correlation.html', function(req, res){
       res.render('scriptchart_correlation.html');
     });
