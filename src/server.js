@@ -17,8 +17,8 @@ server.set('view cache', false);
 server.set('views', __dirname);
 
 var bodyParser = require('body-parser');
-server.use(bodyParser.json()); // support json encoded bodies
-server.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: false }));
 
 let bdd = new Points();
 var ob = new Points();
@@ -38,7 +38,7 @@ async function Db_ressources()
     ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State"));
 }
 
-function run()
+async function run()
 {
     // Index of ressources
     server.get('/bdd', async function(req, res){
@@ -64,9 +64,9 @@ function run()
     server.get('/index.html', function(req, res){
       res.render('index.html');
     });
-    server.get('/carte.html', function(req, res){
+    server.get('/engine.html', function(req, res){
       bdd.currentListPoints = bdd.listPoints;
-      res.render('carte.html');
+      res.render('engine.html');
     });
     server.get('/statistiques.html', function(req, res){
       res.render('statistiques.html');
@@ -79,7 +79,7 @@ function run()
     });
 
     // Gestion of formulaire
-    server.post('/carte.html', function(req, res){
+    server.post('/engine.html', function(req, res){
       var points = req.body.enseignes;
       bdd.selectPoints(points);
       res.status(204).send();

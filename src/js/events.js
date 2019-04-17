@@ -27,7 +27,7 @@ $("#longitudePt").on('change', function(ev){
 });
 
 $("#enseignes").on('change', function () {
-  $.post("/carte.html", $("#enseignes").serialize());
+  $.post("/engine.html", $("#enseignes").serialize());
   $.ajax({
      url: "/bdd",
      beforeSend: function ( xhr ) {
