@@ -145,7 +145,8 @@ async function scripchart_obesite_etat()
 
   var chart = Highcharts.chart('obesiteEtat', {
     chart: {
-         zoomType: 'x'
+         zoomType: 'x',
+         backgroundColor:'#F0F0F0'
     },
     title: {
       text: 'Taux d\'obésité par états (en %)'
@@ -218,9 +219,10 @@ async function scriptchart_tm_state()
 
   var chart = Highcharts.chart('fftm',{
       chart: {
-          renderTo: 'container',
+          renderTo: 'tope',
           type: 'column',
-          zoomType: 'x'
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
       },
       title: {
           text: 'Nombre de Tim Hortons par états'
@@ -274,7 +276,8 @@ async function scriptchart_ff_inhabitants()
   Highcharts.chart('ff_inhabitants', {
     chart: {
       type: 'cylinder',
-      zoomType: 'x'
+      zoomType: 'x',
+      backgroundColor:'#F0F0F0'
     },
     title: {
       text: 'Nombre d\'habitants par McDonald\'s dans chaque état'
@@ -306,10 +309,11 @@ async function scriptchart_correlation()
   await filledTabFF();
 
   // Creation of the chart
-  Highcharts.chart('container', {
+  Highcharts.chart('tope', {
     chart: {
       type: 'column',
-      zoomType: 'x'
+      zoomType: 'x',
+      backgroundColor:'#F0F0F0'
     },
     title: {
       text: "Corrélation entre le nombre de fast food et le taux d'obésité par états"
@@ -367,6 +371,7 @@ async function scriptchart_correlation()
       type: 'spline',
       name: 'Obésité',
       data: tabOb
+
     }]
   });
 }

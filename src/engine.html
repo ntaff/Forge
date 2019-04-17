@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/footer.css"/>
     <link rel="stylesheet" href="css/bootstrap-slider.css"/>
     <link rel="stylesheet" href="css/dock.css"/>
+    <link rel="stylesheet" href="css/statistiques.css"/>
   </head>
 
 <body>
@@ -194,11 +195,47 @@
             </tbody>
          </table>
       </div>
+        <!-- Fin Formulaires -->
 
-       <!-- Carte taux d'obésité -->
-       <div class="chart" id="geochart" style="width: 881px; height: 442px;"></div>
+        <!-- Carousel de stats -->
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#my_carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#my_carousel" data-slide-to="1"></li>
+          <li data-target="#my_carousel" data-slide-to="2"></li>
+          <li data-target="#my_carousel" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+             <div id="tope"></div>
+          </div>
+          <div class="carousel-item">
+            <div id="obesiteEtat"></div>
+             <div>
+               <button id="plain" style="margin-left: 200px; height: 30px; width: 60px; background-color: #08b22a; border: none; color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Plain</button>
+               <button id="inverted" style="margin-left: 2px; height: 30px; width: 70px; background-color: #08b22a; border: none; color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Inverted</button>
+             </div>
+          </div>
+          <div class="carousel-item">
+            <div id="fftm"></div>
+          </div>
+          <div class="carousel-item">
+            <div id="ff_inhabitants"></div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!-- Fin carousel de stats -->
     </div>
   </div>
+
       <script src="js/jquery.js"></script>
       <script src="js/map.js"></script>
       <script src="js/markerclusterer.js"></script>
@@ -296,5 +333,30 @@
       google.charts.load({'packages':['geochart']});
       google.charts.setOnLoadCallback(function() { geochartObesityUS(); });
   </script>
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/cylinder.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script>
+  StringToTabOb();
+  StringToTabFF();
+  StringToTabTM();
+  StringToTabIN();
+  // Geochart United States's states Obesity
+  google.charts.load({'packages':['geochart']});
+  google.charts.setOnLoadCallback(geochartObesityUS);
+  scripchart_obesite_etat();
+  scriptchart_correlation();
+  scriptchart_tm_state();
+  scriptchart_ff_inhabitants();
+  </script>
+
+
+
 
 </html>
