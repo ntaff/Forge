@@ -25,6 +25,7 @@ var ob = new Points();
 var ff = new Points();
 var fftm = new Points();
 var ffinhabitants = new Points();
+var obCA = new Points();
 
 async function Db_ressources()
 {
@@ -36,6 +37,7 @@ async function Db_ressources()
     ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food"));
     fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State"));
     ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State"));
+    obCA.setPoints(await dao.AllFastFoodNumber("ObesityCanada"));
 }
 
 async function run()
@@ -55,6 +57,9 @@ async function run()
     });
     server.get('/ffinhabitants', async function(req, res){
       res.send(ffinhabitants.listPoints);
+    });
+    server.get('/obCA', async function(req, res){
+      res.send(obCA.listPoints);
     });
 
     // Gestion of pages

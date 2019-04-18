@@ -397,6 +397,46 @@ async function scriptchart_correlation()
   });
 }
 
+async function scriptchart_camembert_ff()
+{
+  Highcharts.chart('camembertFF', {
+    chart: {
+      type: 'pie',
+      options3d: {
+        enabled: true,
+        alpha: 45,
+        beta: 0
+      },
+      backgroundColor:'#F0F0F0'
+
+    },
+    title: {
+      text: 'Fast food autour du point '
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        depth: 35,
+      }
+    },
+    series: [{
+      type: 'pie',
+      name: 'Fast food',
+      data: [
+        ['McDonald\'s', 45.0],
+        ['Burger King', 26.8],
+        ['Pizza Hut', 8.5],
+        ['Tim Horton\'s', 6.2]
+      ]
+    }]
+  });
+
+}
+
 async function geochartObesityUS()
 {
   await filledTabOb();
