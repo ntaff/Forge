@@ -3,6 +3,8 @@ var point;
 var markers=[];
 var markerCluster;
 var lastWindow=null;
+var featuresUS;
+var featuresCanada;
 
 function initMap()
 {
@@ -37,6 +39,7 @@ function initMap()
 
   // Set Adress Point
   setAdressPoint();
+
 }
 
 // Parameter : radius : radius around the point in km
@@ -156,4 +159,28 @@ async function setAdressPoint()
 function removeMarkers()
 {
   markerCluster.clearMarkers();
+}
+
+async function geojson()
+{
+  // Get US States borders
+  $.getJSON('geojson/geojson_us.js', function (data) {
+    featuresUS = map.data.addGeoJson(data);
+  });
+  // Get Canada Provinces borders
+  $.getJSON('geojson/geojson_canada.js', function (data) {
+    featuresCanada = map.data.addGeoJson(data);
+  });
+}
+
+async function deletegeojson()
+{
+  for (var i = 0; i < featuresUS.length; i++)
+  {
+     map.data.remove(featuresUS[i]);
+  }
+  for (var i = 0; i < featuresCanada.length; i++)
+  {
+     map.data.remove(featuresCanada[i]);
+  }
 }

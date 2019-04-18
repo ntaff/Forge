@@ -42,6 +42,17 @@ $("#enseignes").on('change', function () {
     });
 });
 
+$("#afficherObCol").on('click', function () {
+  if($("#afficherObCol").is(":checked"))
+  {
+    geojson();
+  }
+  else
+  {
+    deletegeojson();
+  }
+});
+
 $("#afficherall").on('click', function () {
   repopulateMap(true);
 });

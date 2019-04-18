@@ -9,6 +9,7 @@ server.use("/css", express.static(__dirname + '/css'));
 server.use("/images", express.static(__dirname + '/images'));
 server.use("/js", express.static(__dirname + '/js'));
 server.use("/dao", express.static(__dirname + '/dao'));
+server.use("/geojson", express.static(__dirname + '/geojson'));
 
 server.engine('html', require('atpl').__express);
 server.set('devel', false);
