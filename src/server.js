@@ -77,7 +77,7 @@ async function run()
     server.get('/scriptchart_correlation.html', function(req, res){
       res.render('scriptchart_correlation.html');
     });
-    server.listen(port, address, function() {
+    server.listen(process.env.PORT || port, address, function() {
         console.log('Listening to port:  ' + port);
     });
 
