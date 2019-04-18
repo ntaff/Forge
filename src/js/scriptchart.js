@@ -145,6 +145,11 @@ async function scripchart_obesite_etat()
 
   var chart = Highcharts.chart('obesiteEtat', {
     chart: {
+      resetZoomButton: {
+                    theme: {
+                        display: 'none'
+                    }
+                },
          zoomType: 'x',
          backgroundColor:'#F0F0F0'
     },
@@ -219,6 +224,11 @@ async function scriptchart_tm_state()
 
   var chart = Highcharts.chart('fftm',{
       chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
           renderTo: 'tope',
           type: 'column',
           zoomType: 'x',
@@ -275,6 +285,11 @@ async function scriptchart_ff_inhabitants()
 
   Highcharts.chart('ff_inhabitants', {
     chart: {
+      resetZoomButton: {
+                    theme: {
+                        display: 'none'
+                    }
+                },
       type: 'cylinder',
       zoomType: 'x',
       backgroundColor:'#F0F0F0'
@@ -311,6 +326,11 @@ async function scriptchart_correlation()
   // Creation of the chart
   Highcharts.chart('tope', {
     chart: {
+      resetZoomButton: {
+                    theme: {
+                        display: 'none'
+                    }
+                },
       type: 'column',
       zoomType: 'x',
       backgroundColor:'#F0F0F0'
@@ -343,6 +363,7 @@ async function scriptchart_correlation()
               text: 'Taux obésite en %'
           }
     }],
+
     legend: {
       enabled: true
     },
@@ -372,7 +393,7 @@ async function scriptchart_correlation()
       name: 'Obésité',
       data: tabOb
 
-    }]
+    }],
   });
 }
 
