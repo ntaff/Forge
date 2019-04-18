@@ -1,6 +1,8 @@
 {
-  "start": "node server.js",
   "requires": true,
+  "scripts": {
+    "start": "node src/server.js"
+  },
   "lockfileVersion": 1,
   "dependencies": {
     "accepts": {
