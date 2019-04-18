@@ -187,15 +187,7 @@
       "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.22.tgz",
       "version": "2.1.22"
     },
-    "mongodb": {
-      "integrity": "sha512-jw8UyPsq4QleZ9z+t/pIVy3L++51vKdaJ2Q/XXeYxk/3cnKioAH8H6f5tkkDivrQL4PUgUOHe9uZzkpRFH1XtQ==",
-      "requires": {
-        "mongodb-core": "^3.2.3",
-        "safe-buffer": "^5.1.2"
-      },
-      "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-3.2.3.tgz",
-      "version": "3.2.3"
-    },
+    "mongodb": "^3.2.3",
     "mongodb-core": {
       "integrity": "sha512-UyI0rmvPPkjOJV8XGWa9VCTq7R4hBVipimhnAXeSXnuAPjuTqbyfA5Ec9RcYJ1Hhu+ISnc8bJ1KfGZd4ZkYARQ==",
       "requires": {
