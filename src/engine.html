@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/footer.css"/>
     <link rel="stylesheet" href="css/bootstrap-slider.css"/>
     <link rel="stylesheet" href="css/dock.css"/>
-    <link rel="stylesheet" href="css/statistiques.css"/>
   </head>
 
 <body>
@@ -322,33 +321,25 @@
   <script src="js/scriptchart.js"></script>
   <script src="js/events.js"></script>
   <script src="js/don.js"></script>
-  <script>
-      StringToTabOb();
-      // Geochart United States's states Obesity
-      google.charts.load({'packages':['geochart']});
-      google.charts.setOnLoadCallback(function() { geochartObesityUS(); });
-  </script>
-
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/data.js"></script>
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="https://code.highcharts.com/modules/cylinder.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-
   <script>
-  StringToTabOb();
-  StringToTabFF();
-  StringToTabTM();
-  StringToTabIN();
-  // Geochart United States's states Obesity
-  google.charts.load({'packages':['geochart']});
-  google.charts.setOnLoadCallback(geochartObesityUS);
-  scripchart_obesite_etat();
-  scriptchart_correlation();
-  scriptchart_tm_state();
-  scriptchart_ff_inhabitants();
-  scriptchart_camembert_ff();
+    StringToTabOb();
+    StringToTabFF();
+    StringToTabTM();
+    StringToTabIN();
+    // Geochart United States's states Obesity
+    //google.charts.load({'packages':['geochart']});
+    //google.charts.setOnLoadCallback(geochartObesityUS);
+    scripchart_obesite_etat();
+    scriptchart_correlation();
+    scriptchart_tm_state();
+    scriptchart_ff_inhabitants();
+    scriptchart_camembert_ff();
   </script>
 
 </html>
