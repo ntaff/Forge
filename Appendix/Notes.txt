@@ -19,12 +19,25 @@
 
 /* Run the server */
 
+	npm start
 	node server.js
 	ngrok http 3000
 		--> Copy/Paste in browser Forwarding address : https://077ebf73.ngrok.io
 
 /* ************** */
 
+/* Heroku (Host) */
+
+	// Project creation
+		heroku create forge-project --region eu
+
+	// Update deployed Web Site
+		git push heroku master
+
+	// Server Logs
+		heroku logs --tail
+
+/* ************** */
 
 /* Other */
 
