@@ -45,7 +45,7 @@ async function run()
 {
     // Index of ressources
     server.get('/bdd', async function(req, res){
-      res.send(bdd.currentListPoints);
+      res.send(bdd.listPoints);
     });
     server.get('/ob', async function(req, res){
       res.send(ob.listPoints);
@@ -71,7 +71,7 @@ async function run()
       res.render('index.html');
     });
     server.get('/engine.html', function(req, res){
-      bdd.currentListPoints = bdd.listPoints;
+      bdd.listPoints;
       res.render('engine.html');
     });
     server.get('/scriptchart_correlation.html', function(req, res){
@@ -81,10 +81,9 @@ async function run()
         console.log('Listening to port:  ' + port);
     });
 
-    // Gestion of formulaire
+    // Post requests from view
     server.post('/engine.html', function(req, res){
-      var points = req.body.enseignes;
-      bdd.selectPoints(points);
+      // var points = req.body.enseignes;
       res.status(204).send();
     });
 }

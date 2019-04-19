@@ -27,19 +27,7 @@ $("#longitudePt").on('change', function(ev){
 });
 
 $("#enseignes").on('change', function () {
-  $.post("/engine.html", $("#enseignes").serialize());
-  $.ajax({
-     url: "/bdd",
-     beforeSend: function ( xhr ) {
-         xhr.overrideMimeType("text/plain; charset=x-user-defined");
-     }
-    }).done(function (data, textStatus, jqXHR) {
-        console.log(jqXHR.status);
-        if(jqXHR.status == 200)
-        {
-          repopulateMap(true);
-        }
-    });
+  repopulateMap(false);
 });
 
 $("#afficherObCol").on('click', function () {
@@ -60,3 +48,20 @@ $("#afficherall").on('click', function () {
 $("#etats").on('change', function () {
   //insert code here
 });
+
+
+/* POST METHOD
+$.post("/engine.html", $("#enseignes").serialize());
+$.ajax({
+   url: "/bdd",
+   beforeSend: function ( xhr ) {
+       xhr.overrideMimeType("text/plain; charset=x-user-defined");
+   }
+  }).done(function (data, textStatus, jqXHR) {
+      console.log(jqXHR.status);
+      if(jqXHR.status == 200)
+      {
+        repopulateMap(true);
+      }
+  });
+  */

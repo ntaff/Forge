@@ -6,6 +6,8 @@ var lastWindow=null;
 var featuresUS;
 var featuresCanada;
 
+const iconsClusterPATH = 'images/clustermarker/m';
+
 function initMap()
 {
   var coordinateMapCenter = {lat: 41.0 , lng: -94.0};
@@ -53,28 +55,37 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
           success:function(data)
           {
             markers=[];
-            // Popup settings
+            var selectedFastFood = selectPoints();
             for (var i in data)
             {
-              var long = parseFloat(data[i].Longitude);
-              var lat = parseFloat(data[i].Latitude);
               var point_name = data[i].Name;
-              var position =  {lat: lat , lng: long};
-              // Add geopoint on Google Map API
-              var marker = new google.maps.Marker({
-                position: position,
-                title: point_name
-                });
 
-              var a2 = new google.maps.LatLng(lat,long);
-
-              if(((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) || boolDisplayAll)
+              for (var nom in selectedFastFood)
               {
-                addInfoWindow(marker);
-                markers.push(marker);
+                if(boolDisplayAll || point_name == selectedFastFood[nom])
+                {
+                  var long = parseFloat(data[i].Longitude);
+                  var lat = parseFloat(data[i].Latitude);
+                  var a2 = new google.maps.LatLng(lat,long);
+
+                  if(boolDisplayAll || ((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius))
+                  {
+                    var position =  {lat: lat , lng: long};
+                    // Add geopoint on Google Map API
+                    var marker = new google.maps.Marker({
+                      position: position,
+                      title: point_name
+                      });
+
+                    addInfoWindow(marker);
+                    markers.push(marker);
+                  }
+                  nom = selectedFastFood.length;
+                  break;
+                }
               }
             }
-            var icon_cluster = {imagePath: 'images/clustermarker/m'};
+            var icon_cluster = {imagePath: iconsClusterPATH};
             markerCluster = new MarkerClusterer(map, markers, icon_cluster);
           }
         });
@@ -93,6 +104,16 @@ function repopulateMap(special)
     PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
   }
 }
+
+function selectPoints()
+{
+  var vals = [];
+  $('#enseignes :selected').each(function() {
+    vals.push($(this).val())
+  });
+  return vals;
+}
+
 
 function reverseGeocoding(latlng)
 {
