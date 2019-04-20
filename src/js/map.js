@@ -8,7 +8,7 @@ var featuresCanada;
 
 const iconsClusterPATH = 'images/clustermarker/m';
 
-function initMap()
+async function initMap()
 {
   var coordinateMapCenter = {lat: 41.0 , lng: -94.0};
 

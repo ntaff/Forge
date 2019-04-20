@@ -34,6 +34,7 @@
 			https://git-scm.com/downloads
 		// Heroku CLI
 			https://devcenter.heroku.com/articles/heroku-cli
+			
 	// Connection/ Link to account
 		heroku login
 

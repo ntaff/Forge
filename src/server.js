@@ -28,17 +28,27 @@ var fftm = new Points();
 var ffinhabitants = new Points();
 var obCA = new Points();
 
+async function Db_ressources_mcdo() { bdd.setPoints(await dao.AllTable("Macdonald's")); }
+async function Db_ressources_bk() { bdd.setPoints(await dao.AllTable("Burger King's")); }
+async function Db_ressources_mcdoeu() { bdd.setPoints(await dao.AllTable("Macdonald's Europe")); }
+async function Db_ressources_tim() { bdd.setPoints(await dao.AllTable("Tim Horton's")); }
+async function Db_ressources_obusa() { ob.setPoints(await dao.AllObesity("Obesity USA")); }
+async function Db_ressources_nbff() { ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food")); }
+async function Db_ressources_timstate() { fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State")); }
+async function Db_ressources_habstate() { ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State")); }
+async function Db_ressources_obca() { obCA.setPoints(await dao.AllFastFoodNumber("ObesityCanada")); }
+
 async function Db_ressources()
 {
-    bdd.setPoints(await dao.AllTable("Macdonald's"));
-    bdd.setPoints(await dao.AllTable("Burger King's"));
-    bdd.setPoints(await dao.AllTable("Macdonald's Europe"));
-    bdd.setPoints(await dao.AllTable("Tim Horton's"));
-    ob.setPoints(await dao.AllObesity("Obesity USA"));
-    ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food"));
-    fftm.setPoints(await dao.AllFastFoodNumber("Tim Horton per State"));
-    ffinhabitants.setPoints(await dao.AllFastFoodNumber("Inhabitants per State"));
-    obCA.setPoints(await dao.AllFastFoodNumber("ObesityCanada"));
+  Db_ressources_mcdo();
+  Db_ressources_bk();
+  Db_ressources_mcdoeu();
+  Db_ressources_tim();
+  Db_ressources_obusa();
+  Db_ressources_nbff();
+  Db_ressources_timstate();
+  Db_ressources_habstate();
+  Db_ressources_obca();
 }
 
 async function run()
