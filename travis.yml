@@ -6,8 +6,3 @@ node_js: stable
 
 services:
   - mongodb
-
-script: npm run coverage
-
-after_success:
-  - npm run coveralls
