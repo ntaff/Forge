@@ -62,7 +62,7 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
 
               for (var nom in selectedFastFood)
               {
-                if(boolDisplayAll || point_name == selectedFastFood[nom])
+                if(point_name == selectedFastFood[nom])
                 {
                   var long = parseFloat(data[i].Longitude);
                   var lat = parseFloat(data[i].Latitude);
@@ -81,7 +81,6 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
                     markers.push(marker);
                   }
                   nom = selectedFastFood.length;
-                  break;
                 }
               }
             }

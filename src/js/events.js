@@ -27,7 +27,7 @@ $("#longitudePt").on('change', function(ev){
 });
 
 $("#enseignes").on('change', function () {
-  repopulateMap(false);
+  repopulateMap(true);
 });
 
 $("#afficherObCol").on('click', function () {
