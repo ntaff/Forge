@@ -28,6 +28,21 @@
 
 /* Heroku (Host) */
 
+	// Downloads
+
+		// Git Commandtools
+			https://git-scm.com/downloads
+		// Heroku CLI
+			https://devcenter.heroku.com/articles/heroku-cli
+	// Connection/ Link to account
+		heroku login
+
+	// Linking current folder with Heroku project
+		heroku git:remote -a forge-project
+
+	// Displaying current remote in current folder
+		git remote -v
+
 	// Project creation
 		heroku create forge-project --region eu
 
