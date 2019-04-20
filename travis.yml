@@ -1,15 +1,13 @@
 sudo: false
 
-#language: python
+language: node_js
 
-#python:
-#  - "3.6"
-  
-#install:
-  - pip install codecov
+node_js: stable
 
-#script:
-  - coverage run tests.py
+services:
+  - mongodb
 
-#after_success:
-  - codecov
+script: npm run coverage
+
+after_success:
+  - npm run coveralls
