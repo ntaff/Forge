@@ -253,6 +253,244 @@ async function scriptchart_tm_state()
           color: '#bf1313'
       }]
   });
+
+
+
+
+
+
+
+
+
+
+  var chart = Highcharts.chart('fftm2',{
+      chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
+          renderTo: 'tope',
+          type: 'column',
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
+      },
+      title: {
+          text: 'Nombre de Tim Hortons par états'
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
+      series: [{
+          data: tabVal,
+          color: '#bf1313'
+      }]
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var chart = Highcharts.chart('fftm3',{
+      chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
+          renderTo: 'tope',
+          type: 'column',
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
+      },
+      title: {
+          text: 'Nombre de Tim Hortons par états'
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
+      series: [{
+          data: tabVal,
+          color: '#bf1313'
+      }]
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var chart = Highcharts.chart('fftm4',{
+      chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
+          renderTo: 'tope',
+          type: 'column',
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
+      },
+      title: {
+          text: 'Nombre de Tim Hortons par états'
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
+      series: [{
+          data: tabVal,
+          color: '#bf1313'
+      }]
+  });
+
+
+
+
+
+
+
+
+
+  var chart = Highcharts.chart('fftm5',{
+      chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
+          renderTo: 'tope',
+          type: 'column',
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
+      },
+      title: {
+          text: 'Nombre de Tim Hortons par états'
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
+      series: [{
+          data: tabVal,
+          color: '#bf1313'
+      }]
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var chart = Highcharts.chart('fftm',{
+      chart: {
+        resetZoomButton: {
+                      theme: {
+                          display: 'none'
+                      }
+                  },
+          renderTo: 'tope',
+          type: 'column',
+          zoomType: 'x',
+          backgroundColor:'#F0F0F0'
+      },
+      title: {
+          text: 'Nombre de Tim Hortons par états'
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        categories: tabEt
+      },
+      yAxis: {
+      title: {
+        text: 'Quantité'
+        }
+      },
+      series: [{
+          data: tabVal,
+          color: '#bf1313'
+      }]
+  });
 }
 
 async function scriptchart_ff_inhabitants()
