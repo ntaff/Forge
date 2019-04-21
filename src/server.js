@@ -80,12 +80,13 @@ async function run()
     server.get('/index.html', function(req, res){
       res.render('index.html');
     });
+
     server.get('/engine.html', function(req, res){
       bdd.listPoints;
       res.render('engine.html');
     });
-    server.get('/scriptchart_correlation.html', function(req, res){
-      res.render('scriptchart_correlation.html');
+    server.get('*', function(req, res){
+      res.render('404.html');
     });
     server.listen(process.env.PORT || port, address, function() {
         console.log('Listening to port:  ' + port);
