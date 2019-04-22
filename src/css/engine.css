@@ -108,11 +108,11 @@ margin-left: 15px;
 background-color: rgb(240,240,240);
 }
 
-hr {
+.separator {
     border: 0;
     height: 0; /* Firefox... */
     box-shadow: 0 0 15px 1px black;
 }
-hr:after {  /* Not really supposed to work, but does */
+.separator:after {  /* Not really supposed to work, but does */
     content: "\00a0";  /* Prevent margin collapse */
 }
