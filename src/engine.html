@@ -35,7 +35,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="engine.html">Engine <span class="sr-only">(current)</span></a>
               </li>
-
             </ul>
           </div>
         </nav>
@@ -201,7 +200,7 @@
       </div>
         <!-- Fin Formulaires -->
 
-        <!-- Carousel de stats -->
+        <!-- Carousel de stats dynamique -->
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#my_carousel" data-slide-to="0" class="active"></li>
@@ -224,11 +223,15 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <!-- Fin carousel de stats -->
+      <!-- Fin carousel de stats dynamique -->
+
     </div>
+    <!-- Fin row -->
+
   </div>
 
-  <!-- Carousel de stats -->
+<hr>
+  <!-- Carousel de stats statique -->
 <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#my_carousel" data-slide-to="0" class="active"></li>
@@ -260,13 +263,9 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<!-- Fin carousel de stats -->
+<!-- Fin carousel de stats statique -->
 
-
-  <script src="js/jquery.js"></script>
-      <script src="js/map.js"></script>
-      <script src="js/markerclusterer.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap&libraries=geometry" async defer></script>
+<hr>
 
       <!--Footer -->
       <footer class="site-footer">
@@ -293,7 +292,6 @@
                   <a href="https://www.linkedin.com/in/nicolas-taffoureau-66a717109/" class="pl-0 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
                   <a href="https://www.linkedin.com/in/quentin-g%C3%A9rome-omel-28b994151/" class="pl-2 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
                   <a href="https://www.linkedin.com/in/ian-jammes-sanz-4084b6183/" class="pl-2 pr-2"><img id="food" src="images/linkedin.svg" alt="sucess" height="35" width="35" /></a>
-
                   <h2 id="don" class="footer-heading mb-4">Faire un don !</h2>
                   <div id="copy">
                     <a href="#don">
@@ -309,7 +307,6 @@
               </div>
             </div>
           </div>
-
           <div class="row pt-5 mt-5 text-center">
             <div class="col-md-12">
               <div class="border-top pt-5">
@@ -324,6 +321,7 @@
       </footer>
       <!--Fin Footer -->
 
+      <!-- Dock -->
     <div id="dockContainer">
     <div id="dockWrapper">
     <ul class="dock">
@@ -334,14 +332,19 @@
         <a href="engine.html" title=""><img src="images/map.svg" alt="carte" height="50" width="50" /></a>
       </li>
         <li>
-        <a href="statistiques.html" title=""><img src="images/stats.svg" alt="stats" height="50" width="50" /></a>
+        <a href="engine.html#carouselExampleControls2" title=""><img src="images/stats.svg" alt="stats" height="50" width="50" /></a>
       </li>
     </ul>
       </div>
     </div>
+    <!-- Fin dock -->
 
 </body>
 
+  <script src="js/jquery.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/markerclusterer.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfRNt5cOH2oVJsYGXcK1XQMb6RXD2a3yc&callback=initMap&libraries=geometry" async defer></script>
   <script src="https://unpkg.com/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>

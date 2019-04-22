@@ -107,3 +107,12 @@ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 margin-left: 15px;
 background-color: rgb(240,240,240);
 }
+
+hr {
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 15px 1px black;
+}
+hr:after {  /* Not really supposed to work, but does */
+    content: "\00a0";  /* Prevent margin collapse */
+}
