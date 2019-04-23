@@ -5,6 +5,7 @@ var markerCluster;
 var lastWindow=null;
 var featuresUS;
 var featuresCanada;
+var featuresFrance;
 
 const iconsClusterPATH = 'images/clustermarker/m';
 
@@ -191,6 +192,10 @@ async function geojson()
   $.getJSON('geojson/geojson_canada.js', function (data) {
     featuresCanada = map.data.addGeoJson(data);
   });
+  // Get France Regions borders
+  $.getJSON('geojson/geojson_france.js', function (data) {
+    featuresFrance = map.data.addGeoJson(data);
+  });
 }
 
 async function deletegeojson()
@@ -202,5 +207,9 @@ async function deletegeojson()
   for (var i = 0; i < featuresCanada.length; i++)
   {
      map.data.remove(featuresCanada[i]);
+  }
+  for (var i = 0; i < featuresFrance.length; i++)
+  {
+     map.data.remove(featuresFrance[i]);
   }
 }
