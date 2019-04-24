@@ -94,6 +94,8 @@ async function run()
     // Post requests from view
     server.post('/engine.html', function(req, res){
       // var points = req.body.enseignes;
+      console.log(req.body.lat);
+      console.log(req.body.lng);
       res.status(204).send();
     });
 }

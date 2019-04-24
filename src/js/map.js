@@ -2,6 +2,7 @@ var map;
 var point;
 var markers=[];
 var markerCluster;
+var currentMarker;
 var lastWindow=null;
 var featuresUS;
 var featuresCanada;
@@ -149,12 +150,33 @@ async function getPointAddress(marker)
 async function addInfoWindow(marker)
 {
     google.maps.event.addListener(marker, 'click', async function () {
-        var content = await getPointAddress(marker);
+        currentMarker = marker;
+        var adress = await getPointAddress(marker);
+        var btn = '<input id="addBtn" class="btn btn-default btn-lg btn3d" onclick="test()" value="Hello ♥"/>';
+        var content =  adress + '</br>' + btn;
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
         hideLastInfoWindow(infoWindow);
         infoWindow.open(map, marker);
+    });
+}
+
+function test()
+{
+  console.log(currentMarker);
+  $.post("/engine.html", {'lat': currentMarker.getPosition().lat(), 'lng': currentMarker.getPosition().lng()});
+  $.ajax({
+     url: "/bdd",
+     beforeSend: function ( xhr ) {
+         xhr.overrideMimeType("text/plain; charset=x-user-defined");
+     }
+    }).done(function (data, textStatus, jqXHR) {
+        console.log(jqXHR.status);
+        if(jqXHR.status == 200)
+        {
+          repopulateMap(true);
+        }
     });
 }
 
