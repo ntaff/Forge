@@ -239,13 +239,17 @@
     <li data-target="#my_carousel" data-slide-to="2"></li>
     <li data-target="#my_carousel" data-slide-to="3"></li>
     <li data-target="#my_carousel" data-slide-to="4"></li>
+    <li data-target="#my_carousel" data-slide-to="5"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
        <div id="tope"></div>
     </div>
     <div class="carousel-item">
-      <div id="obesiteEtat"></div>
+      <div id="obesiteEtatUSA"></div>
+    </div>
+    <div class="carousel-item">
+      <div id="obesiteEtatCA"></div>
     </div>
     <div class="carousel-item">
       <div id="fftm"></div>
@@ -365,13 +369,15 @@
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script>
     StringToTabOb();
+    StringToTabObCA();
     StringToTabFF();
     StringToTabTM();
     StringToTabIN();
     // Geochart United States's states Obesity
     //google.charts.load({'packages':['geochart']});
     //google.charts.setOnLoadCallback(geochartObesityUS);
-    scripchart_obesite_etat();
+    scripchart_obesite_etat_USA();
+    scripchart_obesite_etat_CA();
     scriptchart_correlation();
     scriptchart_tm_state();
     scriptchart_ff_inhabitants();
