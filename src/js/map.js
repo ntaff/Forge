@@ -17,7 +17,9 @@ async function initMap()
   // Creating new Google Map
   map = new google.maps.Map(document.getElementById('map'), {
     center: coordinateMapCenter,
-    zoom: 3
+    zoom: 3,
+    disableDoubleClickZoom: true,
+    scrollwheel:true
   });
 
   // Populate the Google Map API with Points
@@ -88,11 +90,14 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
             }
             var icon_cluster = {imagePath: iconsClusterPATH};
             markerCluster = new MarkerClusterer(map, markers, icon_cluster);
+            addMapEvents();
+
           }
         });
       });
 }
 
+// Parameters : special : VIP pass to force repopulating map
 function repopulateMap(special)
 {
   var boolDisplayAll = getBoolDisplayAll();
@@ -152,17 +157,73 @@ async function addInfoWindow(marker)
     google.maps.event.addListener(marker, 'click', async function () {
         currentMarker = marker;
         var adress = await getPointAddress(marker);
-        var btn = '<input id="addBtn" class="btn btn-default btn-lg btn3d" onclick="test()" value="Hello ♥"/>';
-        var content =  adress + '</br>' + btn;
+        var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Change me ♥"/>';
+        var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Delete me ♥"/>';
+        var content =  '<p>' + adress + btnChange + btnDelete + '</p>';
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
         hideLastInfoWindow(infoWindow);
+        google.maps.event.addListener(infoWindow, 'domready', function() {
+          $("#changeBtn").on('click', function() {
+              modificationPost("change");
+          });
+          $("#deleteBtn").on('click', function() {
+              modificationPost("delete");
+          });
+        });
         infoWindow.open(map, marker);
     });
 }
 
-function test()
+async function addMapEvents()
+{
+  map.addListener('dblclick', function(event) {
+    addInfoWindowAddButton(event);
+  });
+}
+
+async function addInfoWindowAddButton(event)
+{
+    var position = event.latLng;
+    var inputAdd = '<input id="addInput" type="text" value="" placeholder="Add me ♥"/>';
+    var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value="Add me ♥"/>';
+    var content =  '<p>' + inputAdd + '<br />' + btnAdd + '</p>';
+    var infoWindow = new google.maps.InfoWindow({
+        content: content,
+    });
+    hideLastInfoWindow(infoWindow);
+    infoWindow.setPosition(position);
+    google.maps.event.addListener(infoWindow, 'domready', function() {
+      /* $("#addInput").focusout(function() {
+          validateNewPoint(this.value, position);
+      }); */
+      $("#addBtn").on('click', function() {
+          validateNewPoint($("#addInput").val(), position);
+      });
+    });
+    infoWindow.open(map);
+}
+
+// Parameters : -name : Marker's Name
+//              -position : Marker's Position
+async function validateNewPoint(name, position)
+{
+  //var position = {lat:lat, lng:lng};
+  console.log(position);
+  console.log(name);
+  var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: "name"
+  });
+  addInfoWindow(marker);
+}
+
+// Parameters : type : - delete : delete point from bdd
+//                     - change : change point lat/lng from bdd
+//                     - add    : add point (lat/lng) to bdd
+function modificationPost(type)
 {
   console.log(currentMarker);
   $.post("/engine.html", {'lat': currentMarker.getPosition().lat(), 'lng': currentMarker.getPosition().lng()});
