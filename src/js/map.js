@@ -18,6 +18,7 @@ async function initMap()
   map = new google.maps.Map(document.getElementById('map'), {
     center: coordinateMapCenter,
     zoom: 3,
+    disableDefaultUI: true,
     disableDoubleClickZoom: true,
     scrollwheel:true
   });
@@ -279,24 +280,86 @@ function removeMarkers()
   markerCluster.clearMarkers();
 }
 
+function pickHex(color1, color2, weight)
+{
+    var w1 = weight;
+    var w2 = 1 - w1;
+    var rgb = 'rgb(' + Math.round(color1[0] * w1 + color2[0] * w2) + ',' +
+      Math.round(color1[1] * w1 + color2[1] * w2) + ',' +
+      Math.round(color1[2] * w1 + color2[2] * w2) + ')';
+    return rgb;
+}
+
+// Parameters : - switchOnOff : On/Off
+async function changeLabelsVisibility(switchOnOff)
+{
+  var customStyled = [
+    {
+      featureType: "all",
+      elementType: "labels",
+      stylers: [{ visibility: switchOnOff }]
+    }];
+  map.set('styles',customStyled);
+}
+
+async function colorObesity()
+{
+    await filledTabOb();
+    await filledTabObCA();
+    var tabAux = $.merge(tabOb,tabObCA);
+    var tab = [];
+    var max = 0;
+    var etat, tauxOb;
+    for(var i = 1; i < tabAux.length; i++)
+    {
+      etat = tabAux[i][0];
+      tauxOb = tabAux[i][1];
+      if(tauxOb > max){max = tauxOb}
+      tab[i]=[etat,tauxOb];
+    }
+
+    map.data.setStyle(function(feature) {
+      var colorMin = [255,255,255];
+      var colorMax = [119,50,57];
+      for(var i = 1; i < tab.length; i++)
+      {
+        if(feature.l.NAME == tab[i][0])
+        {
+          var color = pickHex(colorMin, colorMax, tab[i][1]/max);
+          break;
+        }
+      }
+      return {
+        fillColor: color,
+        strokeWeight: 0,
+        fillOpacity: 1
+      }
+    });
+}
+
 async function geojson()
 {
+  changeLabelsVisibility("off");
   // Get US States borders
-  $.getJSON('geojson/geojson_us.js', function (data) {
-    featuresUS = map.data.addGeoJson(data);
+  $.getJSON('geojson/geojson_us.js', async function (data) {
+      featuresUS = map.data.addGeoJson(data);
+      // Get Canada Provinces borders
+      $.getJSON('geojson/geojson_canada.js', async function (data) {
+          featuresCanada = map.data.addGeoJson(data);
+          colorObesity();
+      });
   });
-  // Get Canada Provinces borders
-  $.getJSON('geojson/geojson_canada.js', function (data) {
-    featuresCanada = map.data.addGeoJson(data);
-  });
+
   // Get France Regions borders
   $.getJSON('geojson/geojson_france.js', function (data) {
-    featuresFrance = map.data.addGeoJson(data);
+      featuresFrance = map.data.addGeoJson(data);
   });
 }
 
 async function deletegeojson()
 {
+  changeLabelsVisibility("on");
+
   for (var i = 0; i < featuresUS.length; i++)
   {
      map.data.remove(featuresUS[i]);
