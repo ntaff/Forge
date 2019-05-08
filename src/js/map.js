@@ -158,14 +158,15 @@ async function addInfoWindow(marker)
         currentMarker = marker;
         var adress = await getPointAddress(marker);
 
+        var changerType = 'Modifier le type du fast-food';
         var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
         var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
         var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Tim Horton\'s</label>';
         var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
 
         var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Modifier"/>';
-        var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer"/>';
-        var content =  '<p>' + adress + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + typeChoixPH + btnChange + btnDelete + '</fieldset>' ;
+        var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer le point"/>';
+        var content =  '<p>' + adress + '</p>' + '<p>' + changerType + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + typeChoixPH + btnChange + btnDelete + '</fieldset>' ;
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
@@ -192,9 +193,16 @@ async function addMapEvents()
 async function addInfoWindowAddButton(event)
 {
     var position = event.latLng;
-    var inputAdd = '<input id="addInput" type="text" value="" placeholder="Add me ♥"/>';
-    var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value="Add me ♥"/>';
-    var content =  '<p>' + inputAdd + '<br />' + btnAdd + '</p>';
+    var inputAdd = '<input id="addInput" type="text" value="" placeholder="Nom"/>';
+
+    var addType = 'Choisir le type du fast-food :';
+    var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
+    var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
+    var typeChoixTHAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Tim Horton\'s</label>';
+    var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
+
+    var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value=Ajouter le point"/>';
+    var content =  inputAdd + '<br />' + '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
     var infoWindow = new google.maps.InfoWindow({
         content: content,
     });
