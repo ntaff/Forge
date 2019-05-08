@@ -157,9 +157,15 @@ async function addInfoWindow(marker)
     google.maps.event.addListener(marker, 'click', async function () {
         currentMarker = marker;
         var adress = await getPointAddress(marker);
-        var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Change me ♥"/>';
-        var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Delete me ♥"/>';
-        var content =  '<p>' + adress + btnChange + btnDelete + '</p>';
+
+        var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
+        var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
+        var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Tim Horton\'s</label>';
+        var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
+
+        var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Modifier"/>';
+        var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer"/>';
+        var content =  '<p>' + adress + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + typeChoixPH + btnChange + btnDelete + '</fieldset>' ;
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
