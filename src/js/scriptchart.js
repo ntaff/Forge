@@ -2,6 +2,7 @@
 
 // Global Variables
 var tabOb = [];
+var tabObCA = [];
 var tabFF = [];
 var tabTM = [];
 var tabIN = [];
@@ -12,6 +13,17 @@ function filledTabOb()
   return new Promise(resolve => {
       setTimeout(() => {
               while(tabOb.length == 0){}
+              resolve();
+      }, 1000);
+  });
+}
+
+// Waiting for tabObCA to be filled with datas
+function filledTabObCA()
+{
+  return new Promise(resolve => {
+      setTimeout(() => {
+              while(tabObCA.length == 0){}
               resolve();
       }, 1000);
   });
@@ -66,6 +78,27 @@ async function StringToTabOb()
           tabOb.push([state,value]);
         }
         tabOb.sort();
+      }
+    });
+  });
+}
+
+// Correlation between obesity and states
+async function StringToTabObCA()
+{
+  $(document).ready(function(){
+    $.ajax({
+      method: "GET",
+      url: "/obCA",
+      dataType: "JSON",
+      success: function(data){
+        for (var i in data)
+        {
+          var state = data[i].State;
+          var quantity = parseFloat(data[i].Quantity);
+          tabObCA.push([state,quantity]);
+        }
+        tabObCA.sort();
       }
     });
   });
@@ -132,7 +165,7 @@ async function StringToTabIN()
   });
 }
 
-async function scripchart_obesite_etat()
+async function scripchart_obesite_etat_USA()
 {
   await filledTabOb();
   var tabEt = [];
@@ -143,7 +176,7 @@ async function scripchart_obesite_etat()
     tabVal.push([tabOb[i][1]]);
   }
 
-  var chart = Highcharts.chart('obesiteEtat', {
+  var chart = Highcharts.chart('obesiteEtatUSA', {
     chart: {
       resetZoomButton: {
                     theme: {
@@ -154,7 +187,7 @@ async function scripchart_obesite_etat()
          backgroundColor:'#F0F0F0'
     },
     title: {
-      text: 'Taux d\'obésité par états (en %)'
+      text: 'Taux d\'obésité par états aux Etats-Unis (en %)'
     },
 
     xAxis: {
@@ -207,6 +240,67 @@ async function scripchart_obesite_etat()
         inverted: true
       }
     });
+  });
+}
+
+async function scripchart_obesite_etat_CA()
+{
+  await filledTabObCA();
+  var tabEt = [];
+  var tabVal = [];
+
+  for(var i=1; i<tabObCA.length;i++){
+    tabEt.push([tabObCA[i][0]]);
+    tabVal.push([tabObCA[i][1]]);
+  }
+
+  var chart = Highcharts.chart('obesiteEtatCA', {
+    chart: {
+      resetZoomButton: {
+                    theme: {
+                        display: 'none'
+                    }
+                },
+         zoomType: 'x',
+         backgroundColor:'#F0F0F0'
+    },
+    title: {
+      text: 'Taux d\'obésité par états au Canada (en %)'
+    },
+
+    xAxis: {
+      categories: tabEt
+    },
+
+    yAxis: {
+      title: {
+        text: 'Obésité en %'
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<b>{point.y}%</b>'
+    },
+
+    series: [{
+      type: 'column',
+      colorByPoint: false,
+      data: tabVal,
+      zones: [{
+            value: 16,
+            color: 'green'
+        }, {
+            value: 24,
+            color: 'green'
+        }, {
+            value: 30,
+            color: '#e58014'
+        }, {
+            color: '#d10000'
+        }],
+      showInLegend: false
+    }]
+
   });
 }
 
