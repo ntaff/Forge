@@ -187,7 +187,7 @@ async function scripchart_obesite_etat_USA()
          backgroundColor:'#F0F0F0'
     },
     title: {
-      text: 'Taux d\'obésité par états aux Etats-Unis (en %)'
+      text: 'Taux d\'obésité par état aux Etats-Unis (en %)'
     },
 
     xAxis: {
@@ -265,7 +265,7 @@ async function scripchart_obesite_etat_CA()
          backgroundColor:'#F0F0F0'
     },
     title: {
-      text: 'Taux d\'obésité par états au Canada (en %)'
+      text: 'Taux d\'obésité par état au Canada (en %)'
     },
 
     xAxis: {
@@ -431,7 +431,7 @@ async function scriptchart_correlation()
       backgroundColor:'#F0F0F0'
     },
     title: {
-      text: "Corrélation entre le nombre de fast food et le taux d'obésité par états"
+      text: "Corrélation entre le nombre de fasts food et le taux d'obésité par état"
     },
     xAxis: {
       type: 'category',
@@ -506,7 +506,7 @@ async function scriptchart_camembert_ff()
 
     },
     title: {
-      text: 'Fast food autour du point '
+      text: 'Fasts food autour du point '
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
