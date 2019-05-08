@@ -259,11 +259,10 @@ async function addInfoWindow(marker)
         var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
         var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King\'s</label>';
         var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
-        var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
         var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Modifier"/>';
         var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer le point"/>';
-        var content =  '<p>' + adress + '</p>' + '<p>' + changerType + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + typeChoixPH + btnChange + btnDelete + '</fieldset>' ;
+        var content =  '<p>' + adress + '</p>' + '<p>' + changerType + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + btnChange + btnDelete + '</fieldset>' ;
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
@@ -295,10 +294,9 @@ async function addInfoWindowAddButton(event)
     var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
     var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King</label>';
     var typeChoixTHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
-    var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
     var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value=Ajouter le point"/>';
-    var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
+    var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + btnAdd + '</fieldset>';
     var infoWindow = new google.maps.InfoWindow({
         content: content,
     });
