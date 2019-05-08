@@ -319,8 +319,8 @@ async function colorObesity()
     }
 
     map.data.setStyle(function(feature) {
-      var colorMin = [255,255,255];
-      var colorMax = [119,50,57];
+      var colorMax = [255,255,255];
+      var colorMin = [119,50,57];
       for(var i = 1; i < tab.length; i++)
       {
         if(feature.l.NAME == tab[i][0])
