@@ -522,10 +522,9 @@ async function scriptchart_camembert_ff()
       type: 'pie',
       name: 'Fast food',
       data: [
-        ['McDonald\'s', 45.0],
-        ['Burger King', 26.8],
-        ['Pizza Hut', 8.5],
-        ['Tim Horton\'s', 6.2]
+        ['McDonald\'s', fastfoodNumber[0]],
+        ['Burger King', fastfoodNumber[1]],
+        ['Tim Horton\'s', fastfoodNumber[2]]
       ]
     }]
   });

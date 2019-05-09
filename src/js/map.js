@@ -7,6 +7,7 @@ var lastWindow=null;
 var featuresUS;
 var featuresCanada;
 var featuresFrance;
+var fastfoodNumber;
 
 const iconsClusterPATH = 'images/clustermarker/m';
 
@@ -60,6 +61,7 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
           success:function(data)
           {
             markers=[];
+            fastfoodNumber=[0,0,0];
             var selectedFastFood = selectPoints();
             for (var i in data)
             {
@@ -81,18 +83,19 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
                       position: position,
                       title: point_name
                       });
-
                     addInfoWindow(marker);
                     markers.push(marker);
+                    fastfoodNumberFill(point_name);
                   }
                   nom = selectedFastFood.length;
                 }
               }
             }
+            console.log(fastfoodNumber);            
+            scriptchart_camembert_ff();
             var icon_cluster = {imagePath: iconsClusterPATH};
             markerCluster = new MarkerClusterer(map, markers, icon_cluster);
             addMapEvents();
-
           }
         });
       });
@@ -119,6 +122,23 @@ function selectPoints()
     vals.push($(this).val())
   });
   return vals;
+}
+
+function fastfoodNumberFill(fastfoodName)
+{
+  switch (fastfoodName)
+  {
+    case "Macdonald's":
+      fastfoodNumber[0]+=1;
+      break;
+    case "Burger King's":
+      fastfoodNumber[1]+=1;
+      break;
+    case "Tim Horton's":
+      fastfoodNumber[2]+=1;
+      break;
+    default: // Nothing
+  }
 }
 
 
@@ -339,13 +359,15 @@ async function colorObesity()
         var content = event.feature.l.NAME + '<br />' + event.feature.m ;
         var infoWindow = new google.maps.InfoWindow({
             content: content,
+            closeBoxURL: ''
         });
         hideLastInfoWindow(infoWindow);
         infoWindow.setPosition(event.latLng);
         infoWindow.open(map);
     });
     map.data.addListener('mouseout', function(event) {
-        lastWindow.close();
+        if(lastWindow != null)
+          lastWindow.close();
     });
 }
 
