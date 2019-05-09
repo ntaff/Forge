@@ -8,6 +8,7 @@ var featuresUS;
 var featuresCanada;
 var featuresFrance;
 var fastfoodNumber;
+var obesityIcons=[];
 
 const iconsClusterPATH = 'images/clustermarker/m';
 
@@ -412,6 +413,7 @@ async function obesityIcon()
 {
   await filledTabOb();
   await filledTabObCA();
+  obesityIcons = [];
   var tabAux = $.merge(tabOb,tabObCA);
   var max = 0;
   for(var i = 1; i < tabAux.length; i++)
@@ -440,18 +442,22 @@ async function obesityIcon()
         break;
       default: var img = 'images/obesity/1.svg';
     }
+
     var obIcon = new google.maps.Marker({
       position: states_US_CA_Center(etat),
       map: map,
       icon: {url: img, scaledSize: new google.maps.Size(35, 35)}
     });
+    obesityIcons.push(obIcon);
   }
 }
 
 function deleteObesityIcon()
 {
-
-
+  for(var i = 0; i < obesityIcons.length; i++)
+  {
+    obesityIcons[i].setMap(null);
+  }
 }
 
 function states_US_CA_Center(stateName)
