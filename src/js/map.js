@@ -325,6 +325,7 @@ async function colorObesity()
       {
         if(feature.l.NAME == tab[i][0])
         {
+          feature.m = tab[i][1];
           var color = pickHex(colorMin, colorMax, tab[i][1]/max);
           break;
         }
@@ -334,6 +335,19 @@ async function colorObesity()
         strokeWeight: 0,
         fillOpacity: 1
       }
+    });
+
+    map.data.addListener('mouseover', function(event) {
+        var content = event.feature.l.NAME + '<br />' + event.feature.m;
+        var infoWindow = new google.maps.InfoWindow({
+            content: content,
+        });
+        hideLastInfoWindow(infoWindow);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open(map);
+    });
+    map.data.addListener('mouseout', function(event) {
+        lastWindow.close();
     });
 }
 
@@ -351,9 +365,9 @@ async function geojson()
   });
 
   // Get France Regions borders
-  $.getJSON('geojson/geojson_france.js', function (data) {
+  /* $.getJSON('geojson/geojson_france.js', function (data) {
       featuresFrance = map.data.addGeoJson(data);
-  });
+  }); */
 }
 
 async function deletegeojson()
