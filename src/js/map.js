@@ -362,7 +362,7 @@ async function colorObesity()
             closeBoxURL: ''
         });
         hideLastInfoWindow(infoWindow);
-        infoWindow.setPosition(event.latLng);
+        infoWindow.setPosition(states_US_CA_Center(event.feature.l.NAME));
         infoWindow.open(map);
     });
     map.data.addListener('mouseout', function(event) {
