@@ -80,9 +80,11 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
                   {
                     var position =  {lat: lat , lng: long};
                     // Add geopoint on Google Map API
+                    var icon = typeFastFoodIcon(point_name);
                     var marker = new google.maps.Marker({
                       position: position,
-                      title: point_name
+                      title: point_name,
+                      icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
                       });
                     addInfoWindow(marker);
                     markers.push(marker);
@@ -112,6 +114,22 @@ function repopulateMap(special)
     var lng = point.getPosition().lng();
     var pointCenter = new google.maps.LatLng(lat, lng);
     PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
+  }
+}
+
+function typeFastFoodIcon(fastfoodName)
+{
+  switch (fastfoodName) {
+    case "Macdonald's":
+      return 'images/mcdo.png';
+      break;
+    case "Burger King's":
+      return 'images/bk.png';
+      break;
+    case "Tim Horton's":
+      return 'images/tim.png';
+      break;
+    default: 'images/favicon.icon';
   }
 }
 
