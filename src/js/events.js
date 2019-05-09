@@ -41,6 +41,17 @@ $("#afficherObCol").on('click', function () {
   }
 });
 
+$("#afficherObIco").on('click', function () {
+  if($("#afficherObIco").is(":checked"))
+  {
+    obesityIcon();
+  }
+  else
+  {
+    deleteObesityIcon();
+  }
+});
+
 $("#afficherall").on('click', function () {
   repopulateMap(true);
 });
