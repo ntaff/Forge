@@ -472,7 +472,6 @@ async function obesityIcon()
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
-        console.log(event);
         hideLastInfoWindow(infoWindow);
         infoWindow.setPosition(event.latLng);
         infoWindow.open(map);
