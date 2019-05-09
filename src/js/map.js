@@ -54,12 +54,12 @@ async function initMap()
 // Parameter : radius : radius around the point in km
 async function PopulateMap(radius, pointCenter, boolDisplayAll)
 {
-      $(document).ready(function(){
+      $(document).ready(async function(){
         $.ajax({
           method: "GET",
           url: "/bdd",
           dataType: "JSON",
-          success:function(data)
+          success: async function(data)
           {
             markers=[];
             fastfoodNumber=[0,0,0];
@@ -80,7 +80,7 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
                   {
                     var position =  {lat: lat , lng: long};
                     // Add geopoint on Google Map API
-                    var icon = typeFastFoodIcon(point_name);
+                    var icon = await typeFastFoodIcon(point_name);
                     var marker = new google.maps.Marker({
                       position: position,
                       title: point_name,
@@ -104,7 +104,7 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
 }
 
 // Parameters : special : VIP pass to force repopulating map
-function repopulateMap(special)
+async function repopulateMap(special)
 {
   var boolDisplayAll = getBoolDisplayAll();
   if(!boolDisplayAll || special)
@@ -117,7 +117,7 @@ function repopulateMap(special)
   }
 }
 
-function typeFastFoodIcon(fastfoodName)
+async function typeFastFoodIcon(fastfoodName)
 {
   switch (fastfoodName) {
     case "Macdonald's":
@@ -374,7 +374,7 @@ async function colorObesity()
     });
 
     map.data.addListener('mouseover', function(event) {
-        var content = event.feature.l.NAME + '<br />' + event.feature.m ;
+        var content = event.feature.l.NAME + '<br />' + event.feature.m + ' %';
         var infoWindow = new google.maps.InfoWindow({
             content: content,
             closeBoxURL: ''
@@ -464,7 +464,22 @@ async function obesityIcon()
     var obIcon = new google.maps.Marker({
       position: states_US_CA_Center(etat),
       map: map,
-      icon: {url: img, scaledSize: new google.maps.Size(35, 35)}
+      icon: {url: img, scaledSize: new google.maps.Size(35, 35)},
+      customInfo: tauxOb
+    });
+    google.maps.event.addListener(obIcon, 'mouseover', function(event) {
+        var content = this.customInfo + ' %';
+        var infoWindow = new google.maps.InfoWindow({
+            content: content
+        });
+        console.log(event);
+        hideLastInfoWindow(infoWindow);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open(map);
+    });
+    google.maps.event.addListener(obIcon, 'mouseout', function(event) {
+        if(lastWindow != null)
+          lastWindow.close();
     });
     obesityIcons.push(obIcon);
   }

@@ -1,6 +1,6 @@
-function sliderEvent()
+async function sliderEvent()
 {
-  $("#dist").slider().on('slideStop', function(ev){
+  $("#dist").slider().on('slideStop', async function(ev){
     repopulateMap(false);
     $('#dist').unbind();
     setTimeout(function(){sliderEvent();}, 500);
@@ -8,7 +8,7 @@ function sliderEvent()
 }
 sliderEvent();
 
-$("#latitudePt").on('change', function(ev){
+$("#latitudePt").on('change', async function(ev){
   point.setPosition({
       lat: parseFloat($("#latitudePt").val()),
       lng: point.getPosition().lng()
@@ -17,7 +17,7 @@ $("#latitudePt").on('change', function(ev){
   setAdressPoint();
 });
 
-$("#longitudePt").on('change', function(ev){
+$("#longitudePt").on('change', async function(ev){
   point.setPosition({
       lat: point.getPosition().lat(),
       lng: parseFloat($("#longitudePt").val())
@@ -26,11 +26,11 @@ $("#longitudePt").on('change', function(ev){
   setAdressPoint();
 });
 
-$("#enseignes").on('change', function () {
+$("#enseignes").on('change', async function () {
   repopulateMap(true);
 });
 
-$("#afficherObCol").on('click', function () {
+$("#afficherObCol").on('click', async function () {
   if($("#afficherObCol").is(":checked"))
   {
     geojson();
@@ -41,7 +41,7 @@ $("#afficherObCol").on('click', function () {
   }
 });
 
-$("#afficherObIco").on('click', function () {
+$("#afficherObIco").on('click', async function () {
   if($("#afficherObIco").is(":checked"))
   {
     obesityIcon();
@@ -52,11 +52,11 @@ $("#afficherObIco").on('click', function () {
   }
 });
 
-$("#afficherall").on('click', function () {
+$("#afficherall").on('click', async function () {
   repopulateMap(true);
 });
 
-$("#etats").on('change', function () {
+$("#etats").on('change', async function () {
   //insert code here
 });
 
