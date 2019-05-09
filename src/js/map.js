@@ -194,8 +194,6 @@ async function addMapEvents()
 async function addInfoWindowAddButton(event)
 {
     var position = event.latLng;
-    var inputAdd = '<input id="addInput" type="text" value="" placeholder="Nom"/>';
-
     var addType = 'Choisir le type du fast-food :';
     var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
     var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
@@ -203,7 +201,7 @@ async function addInfoWindowAddButton(event)
     var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
 
     var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value=Ajouter le point"/>';
-    var content =  inputAdd + '<br />' + '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
+    var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
     var infoWindow = new google.maps.InfoWindow({
         content: content,
     });
@@ -338,7 +336,7 @@ async function colorObesity()
     });
 
     map.data.addListener('mouseover', function(event) {
-        var content = event.feature.l.NAME + '<br />' + event.feature.m;
+        var content = event.feature.l.NAME + '<br />' + event.feature.m ;
         var infoWindow = new google.maps.InfoWindow({
             content: content,
         });
