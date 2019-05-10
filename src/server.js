@@ -115,11 +115,11 @@ async function run()
         default: // Nothing
       }
       bdd = new Points();
-      var ob = new Points();
-      var ff = new Points();
-      var fftm = new Points();
-      var ffinhabitants = new Points();
-      var obCA = new Points();
+      ob = new Points();
+      ff = new Points();
+      fftm = new Points();
+      ffinhabitants = new Points();
+      obCA = new Points();
       await Db_ressources();
       server.get('/bdd', async function(req, res){
         res.send(bdd.listPoints);
