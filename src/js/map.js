@@ -1,3 +1,4 @@
+var jsonfile;
 var map;
 var point;
 var markers=[];
@@ -25,90 +26,90 @@ async function initMap()
     scrollwheel:true
   });
 
-  // Populate the Google Map API with Points
-  PopulateMap(500, new google.maps.LatLng(41, -94), false, false);
+    $(document).ready(async function(){
+      $.ajax({
+        method: "GET",
+        url: "/bdd",
+        dataType: "JSON",
+        success: async function(data)
+        {
+          jsonfile = data;
+          // Populate the Google Map API with Points
+          PopulateMap(500, new google.maps.LatLng(41, -94), false, false);
 
-  point = new google.maps.Marker({
-    position: coordinateMapCenter,
-    map: map,
-    title: 'Move me~♥',
-    zIndex:99999,
-    draggable: true,
-    icon: {url:'images/pin2.svg', scaledSize: new google.maps.Size(50, 50)}
-  });
+          point = new google.maps.Marker({
+            position: coordinateMapCenter,
+            map: map,
+            title: 'Move me~♥',
+            zIndex:99999,
+            draggable: true,
+            icon: {url:'images/pin2.svg', scaledSize: new google.maps.Size(50, 50)}
+          });
 
-  google.maps.event.addListener(point, 'dragend', async function() {
-      repopulateMap(false,false);
-      var lat = point.getPosition().lat();
-      var lng = point.getPosition().lng();
-      $("#latitudePt").val(lat);
-      $("#longitudePt").val(lng);
-      setAdressPoint();
-  });
+          google.maps.event.addListener(point, 'dragend', async function() {
+              repopulateMap(false,false);
+              var lat = point.getPosition().lat();
+              var lng = point.getPosition().lng();
+              $("#latitudePt").val(lat);
+              $("#longitudePt").val(lng);
+              setAdressPoint();
+          });
 
-  // Set Adress Point
-  setAdressPoint();
-
+          // Set Adress Point
+          setAdressPoint();
+        }
+      });
+    });
 }
 
 // Parameter : radius : radius around the point in km
 async function PopulateMap(radius, pointCenter, boolDisplayAll, removeSpecial)
 {
-      $(document).ready(async function(){
-        $.ajax({
-          method: "GET",
-          url: "/bdd",
-          dataType: "JSON",
-          success: async function(data)
-          {
-            markers=[];
-            fastfoodNumber=[0,0,0];
-            var selectedFastFood = selectPoints();
-            var selectedStates = selectStates();
-            $.getJSON('geojson/geojson_us.js', async function (dataUS) {
-                $.getJSON('geojson/geojson_canada.js', async function (dataCA) {
-                    var polygon = polygonsStates(selectedStates,dataUS.features,dataCA.features);
-                    for (var i in data)
+    markers=[];
+    fastfoodNumber=[0,0,0];
+    var selectedFastFood = selectPoints();
+    var selectedStates = selectStates();
+    $.getJSON('geojson/geojson_us.js', async function (dataUS) {
+        $.getJSON('geojson/geojson_canada.js', async function (dataCA) {
+            var polygon = polygonsStates(selectedStates,dataUS.features,dataCA.features);
+            for (var i in jsonfile)
+            {
+              var point_name = jsonfile[i].Name;
+              for (var nom in selectedFastFood)
+              {
+                if(point_name == selectedFastFood[nom])
+                {
+                    var long = parseFloat(jsonfile[i].Longitude);
+                    var lat = parseFloat(jsonfile[i].Latitude);
+                    var a2 = new google.maps.LatLng(lat,long);
+                    var boolState = pointInStates(new google.maps.LatLng(lat,long),polygon);
+                    if(!removeSpecial || removeSpecial && !(lat == currentMarker.getPosition().lat() || long == currentMarker.getPosition().lng()))
                     {
-                      var point_name = data[i].Name;
-                      for (var nom in selectedFastFood)
+                      if((boolDisplayAll && boolState) || (((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) && boolState))
                       {
-                        if(point_name == selectedFastFood[nom])
-                        {
-                            var long = parseFloat(data[i].Longitude);
-                            var lat = parseFloat(data[i].Latitude);
-                            var a2 = new google.maps.LatLng(lat,long);
-                            var boolState = pointInStates(new google.maps.LatLng(lat,long),polygon);
-                            if(!removeSpecial || removeSpecial && !(lat == currentMarker.getPosition().lat() || long == currentMarker.getPosition().lng()))
-                            {
-                              if((boolDisplayAll && boolState) || (((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) && boolState))
-                              {
-                                var position =  {lat: lat , lng: long};
-                                // Add geopoint on Google Map API
-                                var icon = await typeFastFoodIcon(point_name);
-                                var marker = new google.maps.Marker({
-                                  position: position,
-                                  title: point_name,
-                                  icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
-                                  });
-                                addInfoWindow(marker);
-                                markers.push(marker);
-                                fastfoodNumberFill(point_name);
-                              }
-                            }
-                            nom = selectedFastFood.length;
-                        }
+                        var position =  {lat: lat , lng: long};
+                        // Add geopoint on Google Map API
+                        var icon = await typeFastFoodIcon(point_name);
+                        var marker = new google.maps.Marker({
+                          position: position,
+                          title: point_name,
+                          icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
+                          });
+                        addInfoWindow(marker);
+                        markers.push(marker);
+                        fastfoodNumberFill(point_name);
                       }
                     }
-                    scriptchart_camembert_ff();
-                    var icon_cluster = {imagePath: iconsClusterPATH};
-                    markerCluster = new MarkerClusterer(map, markers, icon_cluster);
-                    addMapEvents();
-                });
-            });
-          }
+                    nom = selectedFastFood.length;
+                }
+              }
+            }
+            scriptchart_camembert_ff();
+            var icon_cluster = {imagePath: iconsClusterPATH};
+            markerCluster = new MarkerClusterer(map, markers, icon_cluster);
+            addMapEvents();
         });
-      });
+    });
 }
 
 // Parameters : special : VIP pass to force repopulating map
@@ -123,6 +124,36 @@ async function repopulateMap(special,removeSpecial)
     var pointCenter = new google.maps.LatLng(lat, lng);
     PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll,removeSpecial);
   }
+}
+
+function deletePointJSON(latDel,lngDel)
+{
+  for (var i in jsonfile)
+  {
+    var long = parseFloat(jsonfile[i].Longitude);
+    var lat = parseFloat(jsonfile[i].Latitude);
+    if(latDel==lat || lngDel==long)
+    {
+      delete jsonfile[i];
+      return 1;
+    }
+  }
+  return 0;
+}
+
+function modificatePointJSON(latDel,lngDel,title)
+{
+  for (var i in jsonfile)
+  {
+    var long = parseFloat(jsonfile[i].Longitude);
+    var lat = parseFloat(jsonfile[i].Latitude);
+    if(latDel==lat || lngDel==long)
+    {
+      jsonfile[i].Name = title;
+      return 1;
+    }
+  }
+  return 0;
 }
 
 async function typeFastFoodIcon(fastfoodName)
@@ -259,10 +290,11 @@ async function addInfoWindow(marker)
         var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
         var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King\'s</label>';
         var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
+        var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
         var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Modifier"/>';
         var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer le point"/>';
-        var content =  '<p>' + adress + '</p>' + '<p>' + changerType + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + btnChange + btnDelete + '</fieldset>' ;
+        var content =  '<p>' + adress + '</p>' + '<p>' + changerType + '</p>' + '<fieldset>' + typeChoixMcDo  + typeChoixBK + typeChoixTH + typeChoixPH + btnChange + btnDelete + '</fieldset>' ;
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
@@ -270,9 +302,11 @@ async function addInfoWindow(marker)
         google.maps.event.addListener(infoWindow, 'domready', function() {
           $("#changeBtn").on('click', function() {
               fastfoodName = $('input[name=optradio]:checked').val();
+              modificatePointJSON(currentMarker.getPosition().lat(),currentMarker.getPosition().lng(),fastfoodName);
               modificationPost("change", fastfoodName);
           });
           $("#deleteBtn").on('click', function() {
+              deletePointJSON(currentMarker.getPosition().lat(),currentMarker.getPosition().lng());
               modificationPost("delete","");
           });
         });
@@ -294,9 +328,10 @@ async function addInfoWindowAddButton(event)
     var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
     var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King</label>';
     var typeChoixTHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
+    var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
     var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value=Ajouter le point"/>';
-    var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + btnAdd + '</fieldset>';
+    var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
     var infoWindow = new google.maps.InfoWindow({
         content: content,
     });
@@ -317,6 +352,8 @@ async function addInfoWindowAddButton(event)
           });
           currentMarker = marker;
           hideLastInfoWindow(infoWindow);
+          jsonfile.push({Name: name, Longitude: position.lng().toString(), Latitude: position.lat().toString()});
+          marker.setMap(null);
           modificationPost("add",name);
 
       });
@@ -340,14 +377,7 @@ function modificationPost(type, newFastfoodName)
         console.log(jqXHR.status);
         if(jqXHR.status == 200)
         {
-          if(type=="delete")
-          {
-            repopulateMap(true,true);
-          }
-          else
-          {
-            repopulateMap(true,false);
-          }
+          repopulateMap(true,false);
         }
     });
 }
