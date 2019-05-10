@@ -256,7 +256,7 @@ async function addInfoWindow(marker)
         var adress = await getPointAddress(marker);
 
         var changerType = 'Modifier le type du fast-food';
-        var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" value="Mac Donald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
+        var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
         var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King\'s</label>';
         var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
         var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
@@ -292,10 +292,10 @@ async function addInfoWindowAddButton(event)
 {
     var position = event.latLng;
     var addType = 'Choisir le type du fast-food :';
-    var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
-    var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
-    var typeChoixTHAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Tim Horton\'s</label>';
-    var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
+    var typeChoixMcDoAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Macdonald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
+    var typeChoixBKAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King</label>';
+    var typeChoixTHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
+    var typeChoixPHAdd = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
     var btnAdd = '<input id="addBtn" class="btn btn-default btn-lg btn3d" value=Ajouter le point"/>';
     var content =  '<p style = "margin-bottom : 15px; margin-top : 15px;">' + addType + '</p>' + '<fieldset>' + typeChoixMcDoAdd  + typeChoixBKAdd + typeChoixTHAdd + typeChoixPHAdd + btnAdd + '</fieldset>';
@@ -308,26 +308,22 @@ async function addInfoWindowAddButton(event)
       /* $("#addInput").focusout(function() {
           validateNewPoint(this.value, position);
       }); */
-      $("#addBtn").on('click', function() {
-          validateNewPoint($("#addInput").val(), position);
+      $("#addBtn").on('click', async function() {
+          var name = $('input[name=optradio]:checked').val();
+          var icon = await typeFastFoodIcon(name);
+          var marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: name,
+                icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
+          });
+          currentMarker = marker;
+          hideLastInfoWindow(infoWindow);
+          modificationPost("add",name);
+
       });
     });
     infoWindow.open(map);
-}
-
-// Parameters : -name : Marker's Name
-//              -position : Marker's Position
-async function validateNewPoint(name, position)
-{
-  //var position = {lat:lat, lng:lng};
-  console.log(position);
-  console.log(name);
-  var marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        title: "name"
-  });
-  addInfoWindow(marker);
 }
 
 // Parameters : type : - delete : delete point from bdd
@@ -336,6 +332,7 @@ async function validateNewPoint(name, position)
 function modificationPost(type, newFastfoodName)
 {
   $.post("/engine.html", {'type': type,'lat': currentMarker.getPosition().lat().toString(), 'lng': currentMarker.getPosition().lng().toString(), 'newFastfood': newFastfoodName, 'oldFastfood': currentMarker.getTitle()});
+  currentMarker.setTitle("newFastfoodName");
   $.ajax({
      url: "/bdd",
      beforeSend: function ( xhr ) {
@@ -345,7 +342,14 @@ function modificationPost(type, newFastfoodName)
         console.log(jqXHR.status);
         if(jqXHR.status == 200)
         {
-          repopulateMap(true,true);
+          if(type=="delete")
+          {
+            repopulateMap(true,true);
+          }
+          else
+          {
+            repopulateMap(true,false);
+          }
         }
     });
 }

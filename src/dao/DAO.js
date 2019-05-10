@@ -121,18 +121,20 @@ module.exports = {
         var bdd_client = await module.exports.DAO(bdd_name);
         var bdd = bdd_client[0];
         var client = bdd_client[1];
-        var query = { Latitude: lat, Longitude: lng };
+        var query = { $or: [{Latitude: lat}, {Longitude: lng}] };
         const cursor = await bdd.deleteOne(query);
         // Do not forget to close the connection
         client.close();
+        console.log("Enregistrement supprimé : " + cursor.deletedCount);
 
         bdd_client = await module.exports.DAO(fastfoodType);
         bdd = bdd_client[0];
         client = bdd_client[1];
         query = { Latitude: lat, Longitude: lng };
-        const cursor2 = await bdd.insert(query);
-
+        const cursor2 = await bdd.insertOne(query);
+        // Do not forget to close the connection
         client.close();
+        console.log("Enregistrement ajouté : " + cursor2);
         var end = "end";
 
         return new Promise(resolve => {
@@ -160,35 +162,20 @@ module.exports = {
             }, 0);
     },
 
-    AddPoint: async function(bdd_name) {
+    AddPoint: async function(bdd_name, lat, lng) {
         var bdd_client = await module.exports.DAO(bdd_name);
-        var bdd = bdd_client[0];
-        var client = bdd_client[1];
-        var query = {};
-        const cursor = await bdd.find(query);
-
-        var tab = [];
-        var result = "";
-
-        while(await cursor.hasNext())
-        {
-          const doc = await cursor.next();
-          // String with Longitude,Latitude
-          result+= doc.State + "," + doc.Quantity + ",";
-          // Object with Longitude: , Latitude:
-          tab.push({State: doc.State, Quantity: doc.Quantity});
-        }
-        // Deleting the last ',' from the String
-        result.slice(0,-1);
-
+        bdd = bdd_client[0];
+        client = bdd_client[1];
+        query = { Latitude: lat, Longitude: lng };
+        const cursor = await bdd.insertOne(query);
         // Do not forget to close the connection
         client.close();
-
-        //console.log(tab);
+        console.log("Enregistrement ajouté : " + cursor);
+        var end = "end";
 
         return new Promise(resolve => {
             setTimeout(() => {
-                    resolve(tab);
+                    resolve(end);
                 });
             }, 0);
     },

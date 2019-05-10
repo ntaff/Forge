@@ -109,6 +109,9 @@ async function run()
         case "delete":
           await dao.DeletePoint(req.body.oldFastfood,req.body.lat,req.body.lng);
           break;
+        case "add":
+          await dao.AddPoint(req.body.newFastfood,req.body.lat,req.body.lng);
+          break;
         default: // Nothing
       }
       bdd = new Points();
