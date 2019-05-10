@@ -30,7 +30,7 @@ var obCA = new Points();
 
 async function Db_ressources_mcdo() { bdd.setPoints(await dao.AllTable("Macdonald's")); }
 async function Db_ressources_bk() { bdd.setPoints(await dao.AllTable("Burger King's")); }
-async function Db_ressources_mcdoeu() { bdd.setPoints(await dao.AllTable("Macdonald's Europe")); }
+//async function Db_ressources_mcdoeu() { bdd.setPoints(await dao.AllTable("Macdonald's Europe")); }
 async function Db_ressources_tim() { bdd.setPoints(await dao.AllTable("Tim Horton's")); }
 async function Db_ressources_obusa() { ob.setPoints(await dao.AllObesity("Obesity USA")); }
 async function Db_ressources_nbff() { ff.setPoints(await dao.AllFastFoodNumber("State's Fast Food")); }
@@ -42,7 +42,7 @@ async function Db_ressources()
 {
   Db_ressources_mcdo();
   Db_ressources_bk();
-  Db_ressources_mcdoeu();
+  //Db_ressources_mcdoeu();
   Db_ressources_tim();
   Db_ressources_obusa();
   Db_ressources_nbff();
@@ -51,27 +51,32 @@ async function Db_ressources()
   Db_ressources_obca();
 }
 
+async function Index_ressources()
+{
+  // Index of ressources
+  server.get('/bdd', async function(req, res){
+    res.send(bdd.listPoints);
+  });
+  server.get('/ob', async function(req, res){
+    res.send(ob.listPoints);
+  });
+  server.get('/ff', async function(req, res){
+    res.send(ff.listPoints);
+  });
+  server.get('/fftm', async function(req, res){
+    res.send(fftm.listPoints);
+  });
+  server.get('/ffinhabitants', async function(req, res){
+    res.send(ffinhabitants.listPoints);
+  });
+  server.get('/obCA', async function(req, res){
+    res.send(obCA.listPoints);
+  });
+}
+
 async function run()
 {
-    // Index of ressources
-    server.get('/bdd', async function(req, res){
-      res.send(bdd.listPoints);
-    });
-    server.get('/ob', async function(req, res){
-      res.send(ob.listPoints);
-    });
-    server.get('/ff', async function(req, res){
-      res.send(ff.listPoints);
-    });
-    server.get('/fftm', async function(req, res){
-      res.send(fftm.listPoints);
-    });
-    server.get('/ffinhabitants', async function(req, res){
-      res.send(ffinhabitants.listPoints);
-    });
-    server.get('/obCA', async function(req, res){
-      res.send(obCA.listPoints);
-    });
+    Index_ressources();
 
     // Gestion of pages
     server.get('/', function(req, res){
@@ -92,11 +97,26 @@ async function run()
     });
 
     // Post requests from view
-    server.post('/engine.html', function(req, res){
+    server.post('/engine.html', async function(req, res){
       // var points = req.body.enseignes;
-      console.log(req.body.lat);
-      console.log(req.body.lng);
-      res.status(204).send();
+      // console.log(req.body.lat);
+      // console.log(req.body.lng);
+      switch (req.body.type)
+      {
+        case "change":
+          await dao.ModificationPoint(req.body.oldFastfood,req.body.lat,req.body.lng,req.body.newFastfood);
+          break;
+        case "delete":
+          await dao.DeletePoint(req.body.oldFastfood,req.body.lat,req.body.lng);
+          break;
+        default: // Nothing
+      }
+      bdd = new Points();
+      await Db_ressources();
+      server.get('/bdd', async function(req, res){
+        res.send(bdd.listPoints);
+        res.status(204).send();
+      });
     });
 }
 

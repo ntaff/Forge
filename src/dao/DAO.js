@@ -117,6 +117,82 @@ module.exports = {
             }, 0);
     },
 
+    ModificationPoint: async function(bdd_name, lat, lng, fastfoodType) {
+        var bdd_client = await module.exports.DAO(bdd_name);
+        var bdd = bdd_client[0];
+        var client = bdd_client[1];
+        var query = { Latitude: lat, Longitude: lng };
+        const cursor = await bdd.deleteOne(query);
+        // Do not forget to close the connection
+        client.close();
+
+        bdd_client = await module.exports.DAO(fastfoodType);
+        bdd = bdd_client[0];
+        client = bdd_client[1];
+        query = { Latitude: lat, Longitude: lng };
+        const cursor2 = await bdd.insert(query);
+
+        client.close();
+        var end = "end";
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                    resolve(end);
+                });
+            }, 0);
+    },
+
+    DeletePoint: async function(bdd_name, lat, lng) {
+      var bdd_client = await module.exports.DAO(bdd_name);
+      var bdd = bdd_client[0];
+      var client = bdd_client[1];
+      var query = { $or: [{Latitude: lat}, {Longitude: lng}] };
+      const cursor = await bdd.deleteOne(query);
+      // Do not forget to close the connection
+      client.close();
+      console.log("Enregistrement supprimé : " + cursor.deletedCount);
+      var end = "end";
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                    resolve(end);
+                });
+            }, 0);
+    },
+
+    AddPoint: async function(bdd_name) {
+        var bdd_client = await module.exports.DAO(bdd_name);
+        var bdd = bdd_client[0];
+        var client = bdd_client[1];
+        var query = {};
+        const cursor = await bdd.find(query);
+
+        var tab = [];
+        var result = "";
+
+        while(await cursor.hasNext())
+        {
+          const doc = await cursor.next();
+          // String with Longitude,Latitude
+          result+= doc.State + "," + doc.Quantity + ",";
+          // Object with Longitude: , Latitude:
+          tab.push({State: doc.State, Quantity: doc.Quantity});
+        }
+        // Deleting the last ',' from the String
+        result.slice(0,-1);
+
+        // Do not forget to close the connection
+        client.close();
+
+        //console.log(tab);
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                    resolve(tab);
+                });
+            }, 0);
+    },
+
     // Test method for DAO
     Test: async function() {
         var mc = await module.exports.AllTable("Macdonald's");

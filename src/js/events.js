@@ -1,7 +1,7 @@
 async function sliderEvent()
 {
   $("#dist").slider().on('slideStop', async function(ev){
-    repopulateMap(false);
+    repopulateMap(false,false);
     $('#dist').unbind();
     setTimeout(function(){sliderEvent();}, 500);
   });
@@ -13,7 +13,7 @@ $("#latitudePt").on('change', async function(ev){
       lat: parseFloat($("#latitudePt").val()),
       lng: point.getPosition().lng()
     });
-  repopulateMap(false);
+  repopulateMap(false,false);
   setAdressPoint();
 });
 
@@ -22,12 +22,16 @@ $("#longitudePt").on('change', async function(ev){
       lat: point.getPosition().lat(),
       lng: parseFloat($("#longitudePt").val())
     });
-  repopulateMap(false);
+  repopulateMap(false,false);
   setAdressPoint();
 });
 
 $("#enseignes").on('change', async function () {
-  repopulateMap(true);
+  repopulateMap(true,false);
+});
+
+$("#etats").on('change', async function () {
+  repopulateMap(true,false);
 });
 
 $("#afficherObCol").on('click', async function () {
@@ -53,7 +57,7 @@ $("#afficherObIco").on('click', async function () {
 });
 
 $("#afficherall").on('click', async function () {
-  repopulateMap(true);
+  repopulateMap(true,false);
 });
 
 $("#etats").on('change', async function () {
@@ -72,7 +76,7 @@ $.ajax({
       console.log(jqXHR.status);
       if(jqXHR.status == 200)
       {
-        repopulateMap(true);
+        repopulateMap(true,,false);
       }
   });
   */

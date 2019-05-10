@@ -26,7 +26,7 @@ async function initMap()
   });
 
   // Populate the Google Map API with Points
-  PopulateMap(500, new google.maps.LatLng(41, -94));
+  PopulateMap(500, new google.maps.LatLng(41, -94), false, false);
 
   point = new google.maps.Marker({
     position: coordinateMapCenter,
@@ -38,7 +38,7 @@ async function initMap()
   });
 
   google.maps.event.addListener(point, 'dragend', async function() {
-      repopulateMap(false);
+      repopulateMap(false,false);
       var lat = point.getPosition().lat();
       var lng = point.getPosition().lng();
       $("#latitudePt").val(lat);
@@ -52,7 +52,7 @@ async function initMap()
 }
 
 // Parameter : radius : radius around the point in km
-async function PopulateMap(radius, pointCenter, boolDisplayAll)
+async function PopulateMap(radius, pointCenter, boolDisplayAll, removeSpecial)
 {
       $(document).ready(async function(){
         $.ajax({
@@ -64,47 +64,55 @@ async function PopulateMap(radius, pointCenter, boolDisplayAll)
             markers=[];
             fastfoodNumber=[0,0,0];
             var selectedFastFood = selectPoints();
-            for (var i in data)
-            {
-              var point_name = data[i].Name;
-
-              for (var nom in selectedFastFood)
-              {
-                if(point_name == selectedFastFood[nom])
-                {
-                  var long = parseFloat(data[i].Longitude);
-                  var lat = parseFloat(data[i].Latitude);
-                  var a2 = new google.maps.LatLng(lat,long);
-
-                  if(boolDisplayAll || ((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius))
-                  {
-                    var position =  {lat: lat , lng: long};
-                    // Add geopoint on Google Map API
-                    var icon = await typeFastFoodIcon(point_name);
-                    var marker = new google.maps.Marker({
-                      position: position,
-                      title: point_name,
-                      icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
-                      });
-                    addInfoWindow(marker);
-                    markers.push(marker);
-                    fastfoodNumberFill(point_name);
-                  }
-                  nom = selectedFastFood.length;
-                }
-              }
-            }
-            scriptchart_camembert_ff();
-            var icon_cluster = {imagePath: iconsClusterPATH};
-            markerCluster = new MarkerClusterer(map, markers, icon_cluster);
-            addMapEvents();
+            var selectedStates = selectStates();
+            $.getJSON('geojson/geojson_us.js', async function (dataUS) {
+                $.getJSON('geojson/geojson_canada.js', async function (dataCA) {
+                    var polygon = polygonsStates(selectedStates,dataUS.features,dataCA.features);
+                    for (var i in data)
+                    {
+                      var point_name = data[i].Name;
+                      for (var nom in selectedFastFood)
+                      {
+                        if(point_name == selectedFastFood[nom])
+                        {
+                            var long = parseFloat(data[i].Longitude);
+                            var lat = parseFloat(data[i].Latitude);
+                            var a2 = new google.maps.LatLng(lat,long);
+                            var boolState = pointInStates(new google.maps.LatLng(lat,long),polygon);
+                            if(!removeSpecial || removeSpecial && !(lat == currentMarker.getPosition().lat() || long == currentMarker.getPosition().lng()))
+                            {
+                              if((boolDisplayAll && boolState) || (((google.maps.geometry.spherical.computeDistanceBetween(pointCenter,a2)/1000) < radius) && boolState))
+                              {
+                                var position =  {lat: lat , lng: long};
+                                // Add geopoint on Google Map API
+                                var icon = await typeFastFoodIcon(point_name);
+                                var marker = new google.maps.Marker({
+                                  position: position,
+                                  title: point_name,
+                                  icon: {url:icon, scaledSize: new google.maps.Size(35, 35)}
+                                  });
+                                addInfoWindow(marker);
+                                markers.push(marker);
+                                fastfoodNumberFill(point_name);
+                              }
+                            }
+                            nom = selectedFastFood.length;
+                        }
+                      }
+                    }
+                    scriptchart_camembert_ff();
+                    var icon_cluster = {imagePath: iconsClusterPATH};
+                    markerCluster = new MarkerClusterer(map, markers, icon_cluster);
+                    addMapEvents();
+                });
+            });
           }
         });
       });
 }
 
 // Parameters : special : VIP pass to force repopulating map
-async function repopulateMap(special)
+async function repopulateMap(special,removeSpecial)
 {
   var boolDisplayAll = getBoolDisplayAll();
   if(!boolDisplayAll || special)
@@ -113,7 +121,7 @@ async function repopulateMap(special)
     var lat = point.getPosition().lat();
     var lng = point.getPosition().lng();
     var pointCenter = new google.maps.LatLng(lat, lng);
-    PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll);
+    PopulateMap($("#dist").slider('getValue'), pointCenter, boolDisplayAll,removeSpecial);
   }
 }
 
@@ -142,6 +150,57 @@ function selectPoints()
   return vals;
 }
 
+function selectStates()
+{
+  var states = [];
+  $('#etats :selected').each(function() {
+    states.push($(this).val())
+  });
+  return states;
+}
+
+function polygonsStates(statesList,polygonsListUS,polygonsListCA)
+{
+  var result = [];
+  var polys = [polygonsListUS,polygonsListCA];
+  if(statesList.length>0)
+  {
+    for(var i = 0; i < polys.length; i++)
+    {
+      for(var j = 0; j < polys[i].length; j++)
+      {
+        if(statesList.includes(polys[i][j].properties.NAME))
+        {
+          var paths = _.map(polys[i][j].geometry.coordinates, function(entry) {
+              return _.reduce(entry, function(list, polygon) {
+                  // This map() only transforms the data.
+                  _.each(_.map(polygon, function(point) {
+                      // Important: the lat/lng are vice-versa in GeoJSON
+                      return new google.maps.LatLng(point[1], point[0]);
+                  }), function(point) {
+                      list.push(point);
+                  });
+
+                  return list;
+              }, []);
+          });
+          result = $.merge(result,paths);
+        }
+      }
+    }
+    var polygon = new google.maps.Polygon({
+        paths: result
+    });
+  }
+  return polygon;
+}
+
+function pointInStates(pointPosition,polygon)
+{
+  //return google.maps.geometry.poly.containsLocation(pointPosition,polygon);
+  return true;
+}
+
 function fastfoodNumberFill(fastfoodName)
 {
   switch (fastfoodName)
@@ -158,7 +217,6 @@ function fastfoodNumberFill(fastfoodName)
     default: // Nothing
   }
 }
-
 
 function reverseGeocoding(latlng)
 {
@@ -198,10 +256,10 @@ async function addInfoWindow(marker)
         var adress = await getPointAddress(marker);
 
         var changerType = 'Modifier le type du fast-food';
-        var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
-        var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Burger King</label>';
-        var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Tim Horton\'s</label>';
-        var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" style="margin-left : 5px;">Pizza Hut</label>';
+        var typeChoixMcDo = '<label class="radio-inline"><input type="radio" name="optradio" value="Mac Donald\'s" style="margin-left : 5px;" checked>Mac Donald\'s</label>';
+        var typeChoixBK = '<label class="radio-inline"><input type="radio" name="optradio" value="Burger King\'s" style="margin-left : 5px;">Burger King\'s</label>';
+        var typeChoixTH = '<label class="radio-inline"><input type="radio" name="optradio" value="Tim Horton\'s" style="margin-left : 5px;">Tim Horton\'s</label>';
+        var typeChoixPH = '<label class="radio-inline"><input type="radio" name="optradio" value="Pizza Hut" style="margin-left : 5px;">Pizza Hut</label>';
 
         var btnChange = '<input id="changeBtn" class="btn btn-default btn-lg btn3d" value="Modifier"/>';
         var btnDelete = '<input id="deleteBtn" class="btn btn-default btn-lg btn3d" value="Supprimer le point"/>';
@@ -212,10 +270,11 @@ async function addInfoWindow(marker)
         hideLastInfoWindow(infoWindow);
         google.maps.event.addListener(infoWindow, 'domready', function() {
           $("#changeBtn").on('click', function() {
-              modificationPost("change");
+              fastfoodName = $('input[name=optradio]:checked').val();
+              modificationPost("change", fastfoodName);
           });
           $("#deleteBtn").on('click', function() {
-              modificationPost("delete");
+              modificationPost("delete","");
           });
         });
         infoWindow.open(map, marker);
@@ -272,12 +331,11 @@ async function validateNewPoint(name, position)
 }
 
 // Parameters : type : - delete : delete point from bdd
-//                     - change : change point lat/lng from bdd
+//                     - change : change point's type from bdd
 //                     - add    : add point (lat/lng) to bdd
-function modificationPost(type)
+function modificationPost(type, newFastfoodName)
 {
-  console.log(currentMarker);
-  $.post("/engine.html", {'lat': currentMarker.getPosition().lat(), 'lng': currentMarker.getPosition().lng()});
+  $.post("/engine.html", {'type': type,'lat': currentMarker.getPosition().lat().toString(), 'lng': currentMarker.getPosition().lng().toString(), 'newFastfood': newFastfoodName, 'oldFastfood': currentMarker.getTitle()});
   $.ajax({
      url: "/bdd",
      beforeSend: function ( xhr ) {
@@ -287,7 +345,7 @@ function modificationPost(type)
         console.log(jqXHR.status);
         if(jqXHR.status == 200)
         {
-          repopulateMap(true);
+          repopulateMap(true,true);
         }
     });
 }
@@ -490,6 +548,12 @@ function deleteObesityIcon()
   {
     obesityIcons[i].setMap(null);
   }
+}
+
+
+function fastfoodPerState()
+{
+   google.maps.geometry.poly.containsLocation()
 }
 
 function states_US_CA_Center(stateName)
